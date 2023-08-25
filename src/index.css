@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    .rounded-record {
+        border-radius: 0rem 0.5rem 0.5rem 0.5rem;
+    }
+}
