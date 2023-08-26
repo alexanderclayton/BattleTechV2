@@ -6,7 +6,7 @@ import ArmorDiagram from "../assets/ArmorDiagram.jpg";
 import DamageTransferDiagram from "../assets/DamageTransferDiagram.jpg";
 import InternalStructureDiagram from "../assets/InternalStructureDiagram.jpg";
 import HeatScale from "../assets/HeatScale.jpg";
-import { BiCircle } from "react-icons/bi";
+import { BiCircle, BiCopyright } from "react-icons/bi";
 import { GoDash } from "react-icons/go";
 
 export const RecordSheet: React.FC = () => {
@@ -855,6 +855,8 @@ export const RecordSheet: React.FC = () => {
         alt=""
         className="col-start-62 col-end-65 row-start-42 row-end-89 border"
       />
+      <p className="col-start-7 col-end-64 row-start-89 row-end-90 text-2xs font-bold pt-1 flex items-center flex-wrap justify-center"><BiCopyright /> 2019 The Topps Company, Inc. Classic BattleTech, BattleTech, 'Mech and BattleMech are trademarks of The Topps Company, Inc. All right reserved.</p>
+      <p className="col-start-7 col-end-64 row-start-90 row-end-91 text-2xs font-bold pt-1 flex items-center flex-wrap justify-center">Catalyst Game Labs and the Catalyst Game Labs logo are trademarks of InMediaRes Production, LLC. Permission to photocopy for personal use.</p>
     </div>
   );
 };
