@@ -5,7 +5,7 @@ export default {
     extend: {
       fontSize: {
         "2xs": "0.6rem",
-        "3xs": "0.3rem",
+        "3xs": "0.5rem",
       },
       gridTemplateColumns: {
         68: "repeat(68, minmax(0, 1fr))",
