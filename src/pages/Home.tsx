@@ -1,11 +1,11 @@
 //import//
 
-import { RecordSheet } from "../components/RecordSheet";
+import { UpdateRecordSheet } from "../components/UpdateRecordSheet";
 
 export const Home: React.FC = () => {
   return (
     <div className="flex justify-end">
-      <RecordSheet />
+      <UpdateRecordSheet />
     </div>
   );
 };
