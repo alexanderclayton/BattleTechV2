@@ -8,12 +8,15 @@ export default {
         "3xs": "0.5rem",
       },
       gridTemplateColumns: {
-  
+        16: "repeat(16, minmax(0, 1fr))",
         22: "repeat(22, minmax(0, 1fr))",
+        38: "repeat(38, minmax(0, 1fr))",
         68: "repeat(68, minmax(0, 1fr))",
       },
       gridTemplateRows: {
+        9: "repeat(9, minmax(0, 1fr))",
         30: "repeat(30, minmax(0, 1fr))",
+        47: "repeat(47, minmax(0, 1fr))",
         94: "repeat(94, minmax(0, 1fr))",
       },
       gridColumnStart: {
