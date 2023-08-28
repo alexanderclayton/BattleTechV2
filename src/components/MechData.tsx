@@ -2,7 +2,7 @@
 import { GoDash } from "react-icons/go"
 import MechDataImage from '../assets/MechDataImage.jpg'
 
-export const UpdateMechData: React.FC = () => {
+export const MechData: React.FC = () => {
   return (
     <div className="grid grid-cols-22 grid-rows-30 w-full h-full">
         <p className="col-start-1 col-end-10 row-start-1 row-end-3 bg-black text-white text-sm text-center z-10 rounded-full pt-[2px]">

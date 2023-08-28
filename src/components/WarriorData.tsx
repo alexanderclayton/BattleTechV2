@@ -1,6 +1,6 @@
 //import//
 
-export const UpdateWarriorData: React.FC = () => {
+export const WarriorData: React.FC = () => {
   return (
     <div className="grid grid-cols-16 grid-rows-9 w-full h-full">
         <p className="col-start-1 col-end-12 row-start-1 row-end-3 bg-black text-white text-sm text-center z-10 rounded-full pt-[2px]">WARRIOR DATA</p>
