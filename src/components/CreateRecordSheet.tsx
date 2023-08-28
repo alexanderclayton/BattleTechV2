@@ -1,16 +1,18 @@
-//import
-import Logo from "../assets/BattletechBlackLogo.jpg";
-import Atlas from "../assets/AtlasCardImage.png";
-import ArmorDiagram from "../assets/ArmorDiagram.jpg";
-import InternalStructureDiagram from "../assets/InternalStructureDiagram.jpg";
-import HeatScale from "../assets/HeatScale.jpg";
-import { BiCopyright } from "react-icons/bi";
-import { MechData } from "./MechData";
-import { WarriorData } from "./WarriorData";
-import { CriticalHitTable } from "./CriticalHitTable";
-import { HeatData } from "./HeatData";
+//import//
+import Logo from '../assets/BattletechBlackLogo.jpg'
+import { CreateMechData } from './CreateMechData'
+import { BiCopyright } from 'react-icons/bi'
+//unused imports//
+import { WarriorData } from './WarriorData'
+import Atlas from '../assets/AtlasCardImage.png'
+import ArmorDiagram from '../assets/ArmorDiagram.jpg'
+import { CriticalHitTable } from './CriticalHitTable'
+import InternalStructureDiagram from '../assets/InternalStructureDiagram.jpg'
+import { HeatData } from './HeatData'
+import HeatScale from '../assets/HeatScale.jpg'
 
-export const RecordSheet: React.FC = () => {
+
+export const CreateRecordSheet: React.FC = () => {
   return (
     <div className="flex justify-between w-full">
       <div>
@@ -21,7 +23,7 @@ export const RecordSheet: React.FC = () => {
           <img src={Logo} alt="battletech logo" className="h-full" />
         </div>
         <div className="col-start-6 col-end-28 row-start-11 row-end-41">
-          <MechData />
+          <CreateMechData />
         </div>
         <div className="col-start-29 col-end-45 row-start-11 row-end-20">
           <WarriorData />
@@ -69,5 +71,5 @@ export const RecordSheet: React.FC = () => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
