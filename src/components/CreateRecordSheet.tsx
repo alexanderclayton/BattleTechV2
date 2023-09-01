@@ -2,8 +2,8 @@
 import Logo from '../assets/BattletechBlackLogo.jpg'
 import { CreateMechData } from './CreateMechData'
 import { BiCopyright } from 'react-icons/bi'
+import { CreateWarriorData } from './CreateWarriorData'
 //unused imports//
-import { WarriorData } from './WarriorData'
 import Atlas from '../assets/AtlasCardImage.png'
 import ArmorDiagram from '../assets/ArmorDiagram.jpg'
 import { CriticalHitTable } from './CriticalHitTable'
@@ -26,7 +26,7 @@ export const CreateRecordSheet: React.FC = () => {
           <CreateMechData />
         </div>
         <div className="col-start-29 col-end-45 row-start-11 row-end-20">
-          <WarriorData />
+          <CreateWarriorData />
         </div>
         <img
           src={Atlas}
