@@ -9,7 +9,6 @@ import { GoDash, GoPlusCircle } from 'react-icons/go'
 export const CreateMechData: React.FC = () => {
     const [typeModal, setTypeModal] = useState<boolean>(false)
     const [movementModal, setMovementModal] = useState<boolean>(false)
-    const [specModal, setSpecModal] = useState<boolean>(false)
     const [typeValue, setTypeValue] = useState<string>("")
     const [walkingValue, setWalkingValue] = useState<number>(0)
     const [runningValue, setRunningValue] = useState<number>(0)
@@ -21,10 +20,6 @@ export const CreateMechData: React.FC = () => {
 
     const toggleTypeModal: React.MouseEventHandler<SVGSVGElement> = (): void => {
         setTypeModal(!typeModal)
-    }
-
-    const toggleMovementModal: React.MouseEventHandler<SVGSVGElement> = (): void => {
-        setMovementModal(!movementModal)
     }
 
     const closeModal: React.MouseEventHandler<HTMLButtonElement> = (): void => {
@@ -94,8 +89,8 @@ export const CreateMechData: React.FC = () => {
     }
   return (
     <div className="grid grid-cols-22 grid-rows-30 w-full h-full">
-        <p className="col-start-1 col-end-10 row-start-1 row-end-3 bg-black text-white text-sm text-center z-10 rounded-full pt-[2px]">
-          'MECH DATA
+        <p className="col-start-1 col-end-11 row-start-1 row-end-3 bg-black text-white text-sm text-center z-10 rounded-full flex justify-center items-center">
+          'MECH DATA <GoPlusCircle onClick={toggleTypeModal} className='bg bg-yellow-300 text-black rounded-full ml-3 mt-[2px] hover:cursor-pointer'/>
         </p>
         <div className="col-start-1 col-end-23 row-start-1 row-end-31"></div>
         <span className="col-start-1 col-end-23 row-start-2 row-end-31 border-2 border-black rounded-record"></span>
@@ -154,7 +149,7 @@ export const CreateMechData: React.FC = () => {
         </div>
         )}
         <div className="col-start-1 col-end-23 row-start-3 row-end-5 pl-1">
-            <p className="font-bold text-xs flex items-center">Type: {typeValue === "" ? (<GoPlusCircle onClick={toggleTypeModal} className='bg-yellow-400 ml-2 hover:cursor-pointer'/>) : (<><span className='bg-green-400'>{typeValue}</span> <GoPlusCircle onClick={toggleTypeModal} className='bg-blue-400 ml-2 hover:cursor-pointer'/><AiOutlineCloseCircle onClick={deleteType}  className='bg-red-400 ml-1 hover:cursor-pointer'/></>)}</p>
+            <p className="font-bold text-xs flex items-center">Type: {typeValue === "" ? (<p>{typeValue}</p>) : (<><span className='bg-green-400'>{typeValue}</span><AiOutlineCloseCircle onClick={deleteType}  className='bg-red-400 ml-1 hover:cursor-pointer'/></>)}</p>
         </div>
         <p className="col-start-2 col-end-12 row-start-5 row-end-6 text-2xs font-bold flex items-center">Movement Points</p>
         <p className="col-start-2 col-end-7 row-start-6 row-end-7 text-2xs font-bold">Walking:</p>
