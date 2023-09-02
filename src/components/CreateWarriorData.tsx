@@ -3,16 +3,31 @@ import { useState } from "react";
 import { GoPlusCircle } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
+type WarriorDataType = {
+  name: string;
+  gunnerySkill: number;
+  pilotingSkill: number;
+  oneHit: number;
+  twoHit: number;
+  threeHit: number;
+  fourHit: number;
+  fiveHit: number;
+};
+
 export const CreateWarriorData: React.FC = () => {
   const [modal, setModal] = useState<boolean>(false);
-  const [name, setName] = useState<string>("");
-  const [gunnerySkill, setGunnerySkill] = useState<number>(0);
-  const [pilotingSkill, setPilotingSkill] = useState<number>(0);
-  const [oneHit, setOneHit] = useState<number>(0);
-  const [twoHit, setTwoHit] = useState<number>(0);
-  const [threeHit, setThreeHit] = useState<number>(0);
-  const [fourHit, setFourHit] = useState<number>(0);
-  const [fiveHit, setFiveHit] = useState<number>(0);
+  const [warriorData, setWarriorData] = useState<WarriorDataType>({
+    name: "",
+    gunnerySkill: 0,
+    pilotingSkill: 0,
+    oneHit: 0,
+    twoHit: 0,
+    threeHit: 0,
+    fourHit: 0,
+    fiveHit: 0,
+  });
+
+  console.log(warriorData);
 
   const toggleModal: React.MouseEventHandler<SVGSVGElement> = (): void => {
     setModal(!modal);
@@ -26,63 +41,19 @@ export const CreateWarriorData: React.FC = () => {
     setModal(false);
   };
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setName(e.target.value);
+    setWarriorData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
-  const deleteName: React.MouseEventHandler<SVGSVGElement> = () => {
-    setName("");
-  };
-  const handleGunnerySkillChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setGunnerySkill(parseInt(e.target.value));
-  };
-  const deleteGunnerySkill: React.MouseEventHandler<SVGSVGElement> = () => {
-    setGunnerySkill(0);
-  };
-  const handlePilotingSkillChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    e.preventDefault();
-    setPilotingSkill(parseInt(e.target.value));
-  };
-  const deletePilotingSkill: React.MouseEventHandler<SVGSVGElement> = () => {
-    setPilotingSkill(0);
-  };
-  const handleOneHitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setOneHit(parseInt(e.target.value));
-  };
-  const deleteOneHit: React.MouseEventHandler<SVGSVGElement> = () => {
-    setOneHit(0);
-  };
-  const handleTwoHitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setTwoHit(parseInt(e.target.value));
-  };
-  const deleteTwoHit: React.MouseEventHandler<SVGSVGElement> = () => {
-    setOneHit(0);
-  };
-  const handleThreeHitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setThreeHit(parseInt(e.target.value));
-  };
-  const deleteThreeHit: React.MouseEventHandler<SVGSVGElement> = () => {
-    setThreeHit(0);
-  };
-  const handleFourHitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setFourHit(parseInt(e.target.value));
-  };
-  const deleteFourHit: React.MouseEventHandler<SVGSVGElement> = () => {
-    setFourHit(0);
-  };
-  const handleFiveHitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setFiveHit(parseInt(e.target.value));
-  };
-  const deleteFiveHit: React.MouseEventHandler<SVGSVGElement> = () => {
-    setFiveHit(0);
+
+  const handleDelete = (name: string, type: "string" | "number") => {
+    setWarriorData((prev) => ({
+      ...prev,
+      [name]: type === "string" ? "" : 0,
+    }));
   };
 
   return (
@@ -110,9 +81,10 @@ export const CreateWarriorData: React.FC = () => {
               </label>
               <input
                 type="text"
-                value={name}
-                placeholder={name}
-                onChange={handleNameChange}
+                value={warriorData.name}
+                name="name"
+                placeholder={warriorData.name}
+                onChange={handleChange}
                 className="border-2 border-black ml-2 pl-2 w-[80%]"
               />
             </div>
@@ -124,9 +96,10 @@ export const CreateWarriorData: React.FC = () => {
                   </label>
                   <input
                     type="number"
-                    value={gunnerySkill}
-                    placeholder={gunnerySkill.toString()}
-                    onChange={handleGunnerySkillChange}
+                    value={warriorData.gunnerySkill}
+                    name="gunnerySkill"
+                    placeholder={warriorData.gunnerySkill.toString()}
+                    onChange={handleChange}
                     className="border-2 border-black ml-3 pl-2 w-[20%]"
                   />
                 </div>
@@ -136,9 +109,10 @@ export const CreateWarriorData: React.FC = () => {
                   </label>
                   <input
                     type="number"
-                    value={pilotingSkill}
-                    placeholder={pilotingSkill.toString()}
-                    onChange={handlePilotingSkillChange}
+                    value={warriorData.pilotingSkill}
+                    name="pilotingSkill"
+                    placeholder={warriorData.pilotingSkill.toString()}
+                    onChange={handleChange}
                     className="border-2 border-black ml-2 pl-2 w-[20%]"
                   />
                 </div>
@@ -170,37 +144,42 @@ export const CreateWarriorData: React.FC = () => {
                 </p>
                 <input
                   type="number"
-                  value={oneHit}
-                  placeholder={oneHit.toString()}
-                  onChange={handleOneHitChange}
+                  value={warriorData.oneHit}
+                  name="oneHit"
+                  placeholder={warriorData.oneHit.toString()}
+                  onChange={handleChange}
                   className="col-start-5 col-end-6 row-start-2 row-end-3 border-2 border-black"
                 />
                 <input
                   type="number"
-                  value={twoHit}
-                  placeholder={twoHit.toString()}
-                  onChange={handleTwoHitChange}
+                  value={warriorData.twoHit}
+                  name="twoHit"
+                  placeholder={warriorData.twoHit.toString()}
+                  onChange={handleChange}
                   className="col-start-6 col-end-7 row-start-2 row-end-3 border-2 border-black"
                 />
                 <input
                   type="number"
-                  value={threeHit}
-                  placeholder={threeHit.toString()}
-                  onChange={handleThreeHitChange}
+                  value={warriorData.threeHit}
+                  name="threeHit"
+                  placeholder={warriorData.threeHit.toString()}
+                  onChange={handleChange}
                   className="col-start-7 col-end-8 row-start-2 row-end-3 border-2 border-black"
                 />
                 <input
                   type="number"
-                  value={fourHit}
-                  placeholder={fourHit.toString()}
-                  onChange={handleFourHitChange}
+                  value={warriorData.fourHit}
+                  name="fourHit"
+                  placeholder={warriorData.fourHit.toString()}
+                  onChange={handleChange}
                   className="col-start-8 col-end-9 row-start-2 row-end-3 border-2 border-black"
                 />
                 <input
                   type="number"
-                  value={fiveHit}
-                  placeholder={fiveHit.toString()}
-                  onChange={handleFiveHitChange}
+                  value={warriorData.fiveHit}
+                  name="fiveHit"
+                  placeholder={warriorData.fiveHit.toString()}
+                  onChange={handleChange}
                   className="col-start-9 col-end-10 row-start-2 row-end-3 border-2 border-black"
                 />
                 <p className="col-start-10 col-end-12 row-start-2 row-end-3 font-bold flex items-center justify-center border-2 border-black">
@@ -229,13 +208,13 @@ export const CreateWarriorData: React.FC = () => {
         Name:
       </p>
       <p className="col-start-5 col-end-16 row-start-3 row-end-4 border-b border-black text-2xs pl-2 flex">
-        {name === "" ? (
-          <p></p>
+        {warriorData.name === "" ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400">{name}</span>
+            <span className="bg-green-400">{warriorData.name}</span>
             <AiOutlineCloseCircle
-              onClick={deleteName}
+              onClick={() => handleDelete("name", "string")}
               size={10}
               className="bg-red-400 ml-1 hover:cursor-pointer mt-[1px]"
             />
@@ -246,13 +225,15 @@ export const CreateWarriorData: React.FC = () => {
         Gunnery Skill:
       </p>
       <p className="col-start-7 col-end-9 row-start-4 row-end-5 border-b border-black text-2xs text-center flex">
-        {gunnerySkill === 0 ? (
-          <p></p>
+        {warriorData.gunnerySkill === 0 ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-1">{gunnerySkill}</span>
+            <span className="bg-green-400 px-1">
+              {warriorData.gunnerySkill}
+            </span>
             <AiOutlineCloseCircle
-              onClick={deleteGunnerySkill}
+              onClick={() => handleDelete("gunnerySkill", "number")}
               size={10}
               className="bg-red-400 ml-1 hover:cursor-pointer mt-[1px]"
             />
@@ -263,13 +244,15 @@ export const CreateWarriorData: React.FC = () => {
         Piloting Skill:
       </p>
       <p className="col-start-14 col-end-16 row-start-4 row-end-5 border-b border-black text-2xs text-center flex">
-        {pilotingSkill === 0 ? (
-          <p></p>
+        {warriorData.pilotingSkill === 0 ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-1">{pilotingSkill}</span>
+            <span className="bg-green-400 px-1">
+              {warriorData.pilotingSkill}
+            </span>
             <AiOutlineCloseCircle
-              onClick={deletePilotingSkill}
+              onClick={() => handleDelete("pilotingSkill", "number")}
               size={10}
               className="bg-red-400 ml-1 hover:cursor-pointer mt-[1px]"
             />
@@ -301,115 +284,77 @@ export const CreateWarriorData: React.FC = () => {
         Consciousness #
       </p>
       <p className="col-start-8 col-end-9 row-start-7 row-end-8 border border-black text-2xs font-bold">
-        {oneHit === 0 ? (
-          <p></p>
+        {warriorData.oneHit === 0 ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-[2px] mt-1">{oneHit}</span>
+            <span className="bg-green-400 px-[2px] mt-1">
+              {warriorData.oneHit}
+            </span>
+            <AiOutlineCloseCircle
+              onClick={() => handleDelete("oneHit", "number")}
+              size={10}
+              className="col-start-8 col-end-9 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer"
+            />
           </>
         )}
       </p>
-      {oneHit === 0 ? (
-        <p></p>
-      ) : (
-        <AiOutlineCloseCircle
-          onClick={deleteOneHit}
-          size={10}
-          className="col-start-8 col-end-9 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer mt-1 ml-[1px]"
-        />
-      )}
       <p className="col-start-9 col-end-10 row-start-7 row-end-8 border border-black text-2xs font-bold">
-        {twoHit === 0 ? (
-          <p></p>
+        {warriorData.twoHit === 0 ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-1">{twoHit}</span>
+            <span className="bg-green-400 px-1">{warriorData.twoHit}</span>
             <AiOutlineCloseCircle
-              onClick={deleteTwoHit}
+              onClick={() => handleDelete("twoHit", "number")}
               size={10}
-              className="bg-red-400 ml-1 hover:cursor-pointer mt-[1px]"
+              className="col-start-9 col-end-10 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer ml-[1px]"
             />
           </>
         )}
       </p>
-      {twoHit === 0 ? (
-        <p></p>
-      ) : (
-        <AiOutlineCloseCircle
-          onClick={deleteTwoHit}
-          size={10}
-          className="col-start-8 col-end-9 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer mt-1 ml-[1px]"
-        />
-      )}
       <p className="col-start-10 col-end-11 row-start-7 row-end-8 border border-black text-2xs font-bold">
-        {threeHit === 0 ? (
-          <p></p>
+        {warriorData.threeHit === 0 ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-1">{threeHit}</span>
+            <span className="bg-green-400 px-1">{warriorData.threeHit}</span>
             <AiOutlineCloseCircle
-              onClick={deleteThreeHit}
+              onClick={() => handleDelete("threeHit", "number")}
               size={10}
-              className="bg-red-400 ml-1 hover:cursor-pointer mt-[1px]"
+              className="col-start-10 col-end-11 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer ml-[1px]"
             />
           </>
         )}
       </p>
-      {threeHit === 0 ? (
-        <p></p>
-      ) : (
-        <AiOutlineCloseCircle
-          onClick={deleteThreeHit}
-          size={10}
-          className="col-start-8 col-end-9 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer mt-1 ml-[1px]"
-        />
-      )}
       <p className="col-start-11 col-end-12 row-start-7 row-end-8 border border-black text-2xs font-bold">
-        {fourHit === 0 ? (
-          <p></p>
+        {warriorData.fourHit === 0 ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-1">{fourHit}</span>
+            <span className="bg-green-400 px-1">{warriorData.fourHit}</span>
             <AiOutlineCloseCircle
-              onClick={deleteFourHit}
+              onClick={() => handleDelete("fourHit", "number")}
               size={10}
-              className="bg-red-400 ml-1 hover:cursor-pointer mt-[1px]"
+              className="col-start-10 col-end-11 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer ml-[1px]"
             />
           </>
         )}
       </p>
-      {fourHit === 0 ? (
-        <p></p>
-      ) : (
-        <AiOutlineCloseCircle
-          onClick={deleteFourHit}
-          size={10}
-          className="col-start-8 col-end-9 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer mt-1 ml-[1px]"
-        />
-      )}
       <p className="col-start-12 col-end-13 row-start-7 row-end-8 border border-black text-2xs font-bold">
-        {fiveHit === 0 ? (
-          <p></p>
+        {warriorData.fiveHit === 0 ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-1">{fiveHit}</span>
+            <span className="bg-green-400 px-1">{warriorData.fiveHit}</span>
             <AiOutlineCloseCircle
-              onClick={deleteFiveHit}
+              onClick={() => handleDelete("fiveHit", "number")}
               size={10}
-              className="bg-red-400 ml-1 hover:cursor-pointer mt-[1px]"
+              className="col-start-11 col-end-12 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer ml-[1px]"
             />
           </>
         )}
       </p>
-      {fiveHit === 0 ? (
-        <p></p>
-      ) : (
-        <AiOutlineCloseCircle
-          onClick={deleteFiveHit}
-          size={10}
-          className="col-start-8 col-end-9 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer mt-1 ml-[1px]"
-        />
-      )}
       <p className="col-start-13 col-end-15 row-start-7 row-end-8 border border-black text-2xs font-bold">
         Dead
       </p>
