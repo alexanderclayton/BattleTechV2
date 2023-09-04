@@ -6,97 +6,70 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { GoDash, GoPlusCircle } from "react-icons/go";
 //unused imports//
 
-export const CreateMechData: React.FC = () => {
-  const [typeModal, setTypeModal] = useState<boolean>(false);
-  const [typeValue, setTypeValue] = useState<string>("");
-  const [walkingValue, setWalkingValue] = useState<number>(0);
-  const [runningValue, setRunningValue] = useState<number>(0);
-  const [jumpingValue, setJumpingValue] = useState<number>(0);
-  const [tonnageValue, setTonnageValue] = useState<number>(0);
-  const [techBaseValue, setTechBaseValue] = useState<string>("");
-  const [rulesLevelValue, setRulesLevelValue] = useState<string>("");
-  const [roleValue, setRoleValue] = useState<string>("");
+type MechDataType = {
+  type: string;
+  walking: number;
+  running: number;
+  jumping: number;
+  tonnage: number;
+  techBase: string;
+  rulesLevel: string;
+  role: string;
+};
 
-  const toggleTypeModal: React.MouseEventHandler<SVGSVGElement> = (): void => {
-    setTypeModal(!typeModal);
+export const CreateMechData: React.FC = () => {
+  const [modal, setModal] = useState<boolean>(false);
+  const [mechData, setMechData] = useState<MechDataType>({
+    type: "",
+    walking: 0,
+    running: 0,
+    jumping: 0,
+    tonnage: 0,
+    techBase: "",
+    rulesLevel: "",
+    role: "",
+  });
+
+  const toggleModal: React.MouseEventHandler<SVGSVGElement> = (): void => {
+    setModal(!modal);
   };
 
   const closeModal: React.MouseEventHandler<HTMLButtonElement> = (): void => {
-    setTypeModal(false);
+    setModal(false);
   };
 
   const saveModal: React.MouseEventHandler<HTMLButtonElement> = (): void => {
-    setTypeModal(false);
+    setModal(false);
   };
-  const handleTypeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setTypeValue(e.target.value);
+    setMechData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
   };
-  const deleteType: React.MouseEventHandler<SVGSVGElement> = () => {
-    setTypeValue("");
+
+  const handleDelete = (name: string, type: 'string' | 'number') => {
+    setMechData((prev => ({
+      ...prev,
+      [name]: type === 'string' ? "" : 0,
+    })))
   };
-  const handleWalkingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setWalkingValue(parseInt(e.target.value));
-  };
-  const deleteWalking: React.MouseEventHandler<SVGSVGElement> = () => {
-    setWalkingValue(0);
-  };
-  const handleRunningChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setRunningValue(parseInt(e.target.value));
-  };
-  const deleteRunning: React.MouseEventHandler<SVGSVGElement> = () => {
-    setRunningValue(0);
-  };
-  const handleJumpingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setJumpingValue(parseInt(e.target.value));
-  };
-  const deleteJumping: React.MouseEventHandler<SVGSVGElement> = () => {
-    setJumpingValue(0);
-  };
-  const handleTonnageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setTonnageValue(parseInt(e.target.value));
-  };
-  const deleteTonnage: React.MouseEventHandler<SVGSVGElement> = () => {
-    setTonnageValue(0);
-  };
-  const handleTechBaseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setTechBaseValue(e.target.value);
-  };
-  const deleteTechBase: React.MouseEventHandler<SVGSVGElement> = () => {
-    setTechBaseValue("");
-  };
-  const handleRulesLevelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setRulesLevelValue(e.target.value);
-  };
-  const deleteRulesLevel: React.MouseEventHandler<SVGSVGElement> = () => {
-    setRulesLevelValue("");
-  };
-  const handleRoleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setRoleValue(e.target.value);
-  };
-  const deleteRole: React.MouseEventHandler<SVGSVGElement> = () => {
-    setRoleValue("");
-  };
+  
   return (
     <div className="grid grid-cols-22 grid-rows-30 w-full h-full">
       <p className="col-start-1 col-end-11 row-start-1 row-end-3 bg-black text-white text-sm text-center z-10 rounded-full flex justify-center items-center">
         'MECH DATA{" "}
         <GoPlusCircle
-          onClick={toggleTypeModal}
+          onClick={toggleModal}
           className="bg bg-yellow-300 text-black rounded-full ml-3 mt-[2px] hover:cursor-pointer"
         />
       </p>
       <div className="col-start-1 col-end-23 row-start-1 row-end-31"></div>
       <span className="col-start-1 col-end-23 row-start-2 row-end-31 border-2 border-black rounded-record"></span>
 
-      {typeModal && (
+      {modal && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="absolute inset-0 bg-black opacity-70"></div>
           <div className="bg-white p-4 rounded-lg z-50 flex flex-col">
@@ -110,9 +83,10 @@ export const CreateMechData: React.FC = () => {
               </label>
               <input
                 type="text"
-                value={typeValue}
-                placeholder={typeValue}
-                onChange={handleTypeChange}
+                value={mechData.type}
+                name="type"
+                placeholder={mechData.type}
+                onChange={handleChange}
                 className="border-2 border-black ml-2 pl-2 w-[80%]"
               />
             </div>
@@ -123,9 +97,10 @@ export const CreateMechData: React.FC = () => {
                 </label>
                 <input
                   type="number"
-                  value={walkingValue}
-                  placeholder={walkingValue.toString()}
-                  onChange={handleWalkingChange}
+                  value={mechData.walking}
+                  name="walking"
+                  placeholder={mechData.walking.toString()}
+                  onChange={handleChange}
                   className="border-2 border-black ml-3 pl-2 w-[25%]"
                 />
               </div>
@@ -135,9 +110,10 @@ export const CreateMechData: React.FC = () => {
                 </label>
                 <input
                   type="number"
-                  value={tonnageValue}
-                  placeholder={tonnageValue.toString()}
-                  onChange={handleTonnageChange}
+                  value={mechData.tonnage}
+                  name="tonnage"
+                  placeholder={mechData.tonnage.toString()}
+                  onChange={handleChange}
                   className="border-2 border-black ml-2 pl-2 w-[25%]"
                 />
               </div>
@@ -149,9 +125,10 @@ export const CreateMechData: React.FC = () => {
                 </label>
                 <input
                   type="number"
-                  value={runningValue}
-                  placeholder={runningValue.toString()}
-                  onChange={handleRunningChange}
+                  value={mechData.running}
+                  name="running"
+                  placeholder={mechData.running.toString()}
+                  onChange={handleChange}
                   className="border-2 border-black ml-3 pl-2 w-[25%]"
                 />
               </div>
@@ -161,9 +138,10 @@ export const CreateMechData: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  value={techBaseValue}
-                  placeholder={techBaseValue}
-                  onChange={handleTechBaseChange}
+                  value={mechData.techBase}
+                  name="techBase"
+                  placeholder={mechData.techBase}
+                  onChange={handleChange}
                   className="border-2 border-black ml-2 pl-2 w-[70%]"
                 />
               </div>
@@ -175,9 +153,10 @@ export const CreateMechData: React.FC = () => {
                 </label>
                 <input
                   type="number"
-                  value={jumpingValue}
-                  placeholder={jumpingValue.toString()}
-                  onChange={handleJumpingChange}
+                  value={mechData.jumping}
+                  name="jumping"
+                  placeholder={mechData.jumping.toString()}
+                  onChange={handleChange}
                   className="border-2 border-black ml-2 pl-2 w-[26%]"
                 />
               </div>
@@ -187,9 +166,10 @@ export const CreateMechData: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  value={rulesLevelValue}
-                  placeholder={rulesLevelValue}
-                  onChange={handleRulesLevelChange}
+                  value={mechData.rulesLevel}
+                  name="rulesLevel"
+                  placeholder={mechData.rulesLevel}
+                  onChange={handleChange}
                   className="border-2 border-black ml-2 pl-2 w-[66%]"
                 />
               </div>
@@ -201,9 +181,10 @@ export const CreateMechData: React.FC = () => {
                 </label>
                 <input
                   type="text"
-                  value={roleValue}
-                  placeholder={roleValue}
-                  onChange={handleRoleChange}
+                  value={mechData.role}
+                  name="role"
+                  placeholder={mechData.role}
+                  onChange={handleChange}
                   className="border-2 border-black ml-2 pl-2 w-[84%]"
                 />
               </div>
@@ -227,14 +208,13 @@ export const CreateMechData: React.FC = () => {
       )}
       <div className="col-start-1 col-end-23 row-start-3 row-end-5 pl-1">
         <p className="font-bold text-xs flex items-center">
-          Type:{" "}
-          {typeValue === "" ? (
-            <p></p>
+          {mechData.type === "" ? (
+            ""
           ) : (
             <>
-              <span className="bg-green-400">{typeValue}</span>
+              <span className="bg-green-400">{mechData.type}</span>
               <AiOutlineCloseCircle
-                onClick={deleteType}
+                onClick={() => handleDelete('type', 'string')}
                 className="bg-red-400 ml-1 hover:cursor-pointer"
               />
             </>
@@ -248,13 +228,13 @@ export const CreateMechData: React.FC = () => {
         Walking:
       </p>
       <p className="col-start-7 col-end-12 row-start-6 row-end-7 text-2xs flex">
-        {walkingValue === 0 ? (
-          <p></p>
+        {mechData.walking === 0 ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{walkingValue}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.walking}</span>{" "}
             <AiOutlineCloseCircle
-              onClick={deleteWalking}
+              onClick={() => handleDelete('walking', 'number')}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
             />
           </>
@@ -264,13 +244,13 @@ export const CreateMechData: React.FC = () => {
         Running:
       </p>
       <p className="col-start-7 col-end-12 row-start-7 row-end-8 text-2xs flex">
-        {runningValue === 0 ? (
-          <p></p>
+        {mechData.running === 0 ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{runningValue}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.running}</span>{" "}
             <AiOutlineCloseCircle
-              onClick={deleteRunning}
+              onClick={() => handleDelete('running', 'number')}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
             />
           </>
@@ -280,13 +260,13 @@ export const CreateMechData: React.FC = () => {
         Jumping:
       </p>
       <p className="col-start-7 col-end-12 row-start-8 row-end-9 text-2xs flex">
-        {jumpingValue === 0 ? (
-          <p></p>
+        {mechData.jumping === 0 ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{jumpingValue}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.jumping}</span>{" "}
             <AiOutlineCloseCircle
-              onClick={deleteJumping}
+              onClick={() => handleDelete('jumping', 'number')}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
             />
           </>
@@ -296,13 +276,13 @@ export const CreateMechData: React.FC = () => {
         Tonnage:
       </p>
       <p className="col-start-16 col-end-23 row-start-5 row-end-6 text-2xs flex pl-1 justify-start">
-        {tonnageValue === 0 ? (
-          <p></p>
+        {mechData.tonnage === 0 ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{tonnageValue}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.tonnage}</span>{" "}
             <AiOutlineCloseCircle
-              onClick={deleteTonnage}
+              onClick={() => handleDelete('tonnage', 'number')}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
             />
           </>
@@ -312,13 +292,13 @@ export const CreateMechData: React.FC = () => {
         Tech Base:
       </p>
       <p className="col-start-16 col-end-23 row-start-6 row-end-7 text-2xs flex pl-1">
-        {techBaseValue === "" ? (
-          <p></p>
+        {mechData.techBase === "" ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{techBaseValue}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.techBase}</span>{" "}
             <AiOutlineCloseCircle
-              onClick={deleteTechBase}
+              onClick={() => handleDelete('techBase', 'string')}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
             />
           </>
@@ -328,13 +308,13 @@ export const CreateMechData: React.FC = () => {
         Rules Level:
       </p>
       <p className="col-start-16 col-end-23 row-start-7 row-end-8 text-2xs flex pl-1">
-        {rulesLevelValue === "" ? (
-          <p></p>
+        {mechData.rulesLevel === "" ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{rulesLevelValue}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.rulesLevel}</span>{" "}
             <AiOutlineCloseCircle
-              onClick={deleteRulesLevel}
+              onClick={() => handleDelete('rulesLevel', 'string')}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
             />
           </>
@@ -344,13 +324,13 @@ export const CreateMechData: React.FC = () => {
         Role:
       </p>
       <p className="col-start-16 col-end-23 row-start-8 row-end-9 text-2xs flex pl-1">
-        {roleValue === "" ? (
-          <p></p>
+        {mechData.role === "" ? (
+          ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{roleValue}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.role}</span>{" "}
             <AiOutlineCloseCircle
-              onClick={deleteRole}
+              onClick={() => handleDelete('role', 'string')}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
             />
           </>

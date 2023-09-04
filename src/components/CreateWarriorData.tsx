@@ -27,8 +27,6 @@ export const CreateWarriorData: React.FC = () => {
     fiveHit: 0,
   });
 
-  console.log(warriorData);
-
   const toggleModal: React.MouseEventHandler<SVGSVGElement> = (): void => {
     setModal(!modal);
   };
@@ -89,8 +87,8 @@ export const CreateWarriorData: React.FC = () => {
               />
             </div>
             <div className=" flex flex-col pt-2">
-              <div className="flex w-[50%]">
-                <div className="flex w-[40%]">
+              <div className="flex w-[80%]">
+                <div className="flex">
                   <label htmlFor="" className="font-bold">
                     Gunnery Skill
                   </label>
@@ -103,7 +101,7 @@ export const CreateWarriorData: React.FC = () => {
                     className="border-2 border-black ml-3 pl-2 w-[20%]"
                   />
                 </div>
-                <div className="flex w-[40%]">
+                <div className="flex">
                   <label htmlFor="" className="font-bold">
                     Piloting Skill
                   </label>
@@ -117,7 +115,7 @@ export const CreateWarriorData: React.FC = () => {
                   />
                 </div>
               </div>
-              <div className="w-[90%] grid grid-cols-16 grid-rows-2 h-14 pt-2">
+              <div className="w-[90%] grid grid-cols-12 grid-rows-2 h-14 pt-2">
                 <p className="col-start-1 col-end-4 row-start-1 row-end-2 font-bold flex items-center justify-end pr-3">
                   Hits Taken
                 </p>

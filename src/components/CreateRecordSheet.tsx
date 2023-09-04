@@ -3,6 +3,7 @@ import Logo from '../assets/BattletechBlackLogo.jpg'
 import { CreateMechData } from './CreateMechData'
 import { BiCopyright } from 'react-icons/bi'
 import { CreateWarriorData } from './CreateWarriorData'
+import { CreateCriticalHitTable } from './CreateCriticalHitTable'
 //unused imports//
 import Atlas from '../assets/AtlasCardImage.png'
 import ArmorDiagram from '../assets/ArmorDiagram.jpg'
@@ -42,7 +43,7 @@ export const CreateRecordSheet: React.FC = () => {
           className="col-start-45 col-end-65 row-start-5 row-end-42 w-[95%]"
         />
         <div className="col-start-6 col-end-44 row-start-42 row-end-89">
-          <CriticalHitTable />
+          <CreateCriticalHitTable />
         </div>
         <p className="col-start-45 col-end-61 row-start-42 row-end-44 bg-black text-white text-sm text-center z-10 rounded-full pt-[2px]">
           INTERNAL STRUCTURE DIAGRAM
