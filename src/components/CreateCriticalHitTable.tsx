@@ -51,13 +51,6 @@ export const CreateCriticalHitTable: React.FC = () => {
     }));
   };
 
-  const handleValue = (bodyPart: string) => {
-    const value = getValue(bodyPart);
-    if (value) {
-      return value;
-    }
-  };
-
   const handleChange = (bodyPart: string, propertyName: string, e: any) => {
     e.preventDefault();
     const setter = getSetter(bodyPart);
@@ -66,6 +59,13 @@ export const CreateCriticalHitTable: React.FC = () => {
         ...prev,
         [propertyName]: e.target.value,
       }));
+    }
+  };
+  
+  const handleValue = (bodyPart: string) => {
+    const value = getValue(bodyPart);
+    if (value) {
+      return value;
     }
   };
 
