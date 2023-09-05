@@ -8,7 +8,7 @@ type MechDataType = {
   type: string;
   walking: number;
   running: number;
-  jumping: number;
+  jumping: string;
   tonnage: number;
   techBase: string;
   rulesLevel: string;
@@ -43,7 +43,7 @@ type WeaponType = {
 export const CreateMechData: React.FC = () => {
   const [mechModal, setMechModal] = useState<boolean>(false);
   const [weiModal, setWeiModal] = useState<WeaponType>({ one: false, two: false, three: false, four: false, five: false, six: false, seven: false, eight: false });
-  const [mechData, setMechData] = useState<MechDataType>({ type: "", walking: 0, running: 0, jumping: 0, tonnage: 0, techBase: "", rulesLevel: "", role: "", ammo: "", bv: 0 });
+  const [mechData, setMechData] = useState<MechDataType>({ type: "", walking: 0, running: 0, jumping: "", tonnage: 0, techBase: "", rulesLevel: "", role: "", ammo: "", bv: 0 });
   const [weiOne, setWeiOne] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
   const [weiTwo, setWeiTwo] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
   const [weiThree, setWeiThree] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
@@ -259,7 +259,7 @@ export const CreateMechData: React.FC = () => {
                   type="number"
                   value={mechData.jumping}
                   name="jumping"
-                  placeholder={mechData.jumping.toString()}
+                  placeholder={mechData.jumping === "" ? "0" : mechData.jumping.toString()}
                   onChange={handleChange}
                   className="border-2 border-black ml-2 pl-2 w-[26%]"
                 />
@@ -349,7 +349,7 @@ export const CreateMechData: React.FC = () => {
               <span className="bg-green-400 ml-2">{mechData.type}</span>
               <AiOutlineCloseCircle
                 onClick={() => handleDelete("type", "string")}
-                className="bg-red-400 ml-1 hover:cursor-pointer"
+                className="bg-red-400 ml-1 hover:cursor-pointer z-10"
               />
             </>
           )}
@@ -367,7 +367,7 @@ export const CreateMechData: React.FC = () => {
           ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{mechData.walking}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.walking}</span>
             <AiOutlineCloseCircle
               onClick={() => handleDelete("walking", "number")}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
@@ -383,7 +383,7 @@ export const CreateMechData: React.FC = () => {
           ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{mechData.running}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.running}</span>
             <AiOutlineCloseCircle
               onClick={() => handleDelete("running", "number")}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
@@ -395,13 +395,13 @@ export const CreateMechData: React.FC = () => {
         Jumping:
       </p>
       <p className="col-start-7 col-end-12 row-start-8 row-end-9 text-2xs flex">
-        {mechData.jumping === 0 ? (
+        {mechData.jumping === "" ? (
           ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{mechData.jumping}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.jumping}</span>
             <AiOutlineCloseCircle
-              onClick={() => handleDelete("jumping", "number")}
+              onClick={() => handleDelete("jumping", "string")}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
             />
           </>
@@ -415,7 +415,7 @@ export const CreateMechData: React.FC = () => {
           ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{mechData.tonnage}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.tonnage}</span>
             <AiOutlineCloseCircle
               onClick={() => handleDelete("tonnage", "number")}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
@@ -431,7 +431,7 @@ export const CreateMechData: React.FC = () => {
           ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{mechData.techBase}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.techBase}</span>
             <AiOutlineCloseCircle
               onClick={() => handleDelete("techBase", "string")}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
@@ -447,7 +447,7 @@ export const CreateMechData: React.FC = () => {
           ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{mechData.rulesLevel}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.rulesLevel}</span>
             <AiOutlineCloseCircle
               onClick={() => handleDelete("rulesLevel", "string")}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"
@@ -463,7 +463,7 @@ export const CreateMechData: React.FC = () => {
           ""
         ) : (
           <>
-            <span className="bg-green-400 px-2">{mechData.role}</span>{" "}
+            <span className="bg-green-400 px-2">{mechData.role}</span>
             <AiOutlineCloseCircle
               onClick={() => handleDelete("role", "string")}
               className="bg-red-400 ml-2 hover:cursor-pointer mt-[2px]"

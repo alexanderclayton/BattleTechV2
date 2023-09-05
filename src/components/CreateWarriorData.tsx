@@ -7,11 +7,6 @@ type WarriorDataType = {
   name: string;
   gunnerySkill: number;
   pilotingSkill: number;
-  oneHit: number;
-  twoHit: number;
-  threeHit: number;
-  fourHit: number;
-  fiveHit: number;
 };
 
 export const CreateWarriorData: React.FC = () => {
@@ -20,11 +15,6 @@ export const CreateWarriorData: React.FC = () => {
     name: "",
     gunnerySkill: 0,
     pilotingSkill: 0,
-    oneHit: 0,
-    twoHit: 0,
-    threeHit: 0,
-    fourHit: 0,
-    fiveHit: 0,
   });
 
   const toggleModal: React.MouseEventHandler<SVGSVGElement> = (): void => {
@@ -114,75 +104,6 @@ export const CreateWarriorData: React.FC = () => {
                     className="border-2 border-black ml-2 pl-2 w-[20%]"
                   />
                 </div>
-              </div>
-              <div className="w-[90%] grid grid-cols-12 grid-rows-2 h-14 pt-2">
-                <p className="col-start-1 col-end-4 row-start-1 row-end-2 font-bold flex items-center justify-end pr-3">
-                  Hits Taken
-                </p>
-                <p className="col-start-1 col-end-4 row-start-2 row-end-3 font-bold flex items-center justify-end pr-3">
-                  Consciousness #
-                </p>
-                <p className="col-start-5 col-end-6 row-start-1 row-end-2 font-bold flex items-center justify-center border-2 border-black">
-                  1
-                </p>
-                <p className="col-start-6 col-end-7 row-start-1 row-end-2 font-bold flex items-center justify-center border-2 border-black">
-                  2
-                </p>
-                <p className="col-start-7 col-end-8 row-start-1 row-end-2 font-bold flex items-center justify-center border-2 border-black">
-                  3
-                </p>
-                <p className="col-start-8 col-end-9 row-start-1 row-end-2 font-bold flex items-center justify-center border-2 border-black">
-                  4
-                </p>
-                <p className="col-start-9 col-end-10 row-start-1 row-end-2 font-bold flex items-center justify-center border-2 border-black">
-                  5
-                </p>
-                <p className="col-start-10 col-end-12 row-start-1 row-end-2 font-bold flex items-center justify-center border-2 border-black">
-                  6
-                </p>
-                <input
-                  type="number"
-                  value={warriorData.oneHit}
-                  name="oneHit"
-                  placeholder={warriorData.oneHit.toString()}
-                  onChange={handleChange}
-                  className="col-start-5 col-end-6 row-start-2 row-end-3 border-2 border-black"
-                />
-                <input
-                  type="number"
-                  value={warriorData.twoHit}
-                  name="twoHit"
-                  placeholder={warriorData.twoHit.toString()}
-                  onChange={handleChange}
-                  className="col-start-6 col-end-7 row-start-2 row-end-3 border-2 border-black"
-                />
-                <input
-                  type="number"
-                  value={warriorData.threeHit}
-                  name="threeHit"
-                  placeholder={warriorData.threeHit.toString()}
-                  onChange={handleChange}
-                  className="col-start-7 col-end-8 row-start-2 row-end-3 border-2 border-black"
-                />
-                <input
-                  type="number"
-                  value={warriorData.fourHit}
-                  name="fourHit"
-                  placeholder={warriorData.fourHit.toString()}
-                  onChange={handleChange}
-                  className="col-start-8 col-end-9 row-start-2 row-end-3 border-2 border-black"
-                />
-                <input
-                  type="number"
-                  value={warriorData.fiveHit}
-                  name="fiveHit"
-                  placeholder={warriorData.fiveHit.toString()}
-                  onChange={handleChange}
-                  className="col-start-9 col-end-10 row-start-2 row-end-3 border-2 border-black"
-                />
-                <p className="col-start-10 col-end-12 row-start-2 row-end-3 font-bold flex items-center justify-center border-2 border-black">
-                  Dead
-                </p>
               </div>
             </div>
             <div className="flex justify-around">
@@ -281,79 +202,22 @@ export const CreateWarriorData: React.FC = () => {
       <p className="col-start-1 col-end-7 row-start-7 row-end-8 text-2xs font-bold text-right">
         Consciousness #
       </p>
-      <p className="col-start-8 col-end-9 row-start-7 row-end-8 border border-black text-2xs font-bold">
-        {warriorData.oneHit === 0 ? (
-          ""
-        ) : (
-          <>
-            <span className="bg-green-400 px-[2px] mt-1">
-              {warriorData.oneHit}
-            </span>
-            <AiOutlineCloseCircle
-              onClick={() => handleDelete("oneHit", "number")}
-              size={10}
-              className="col-start-8 col-end-9 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer"
-            />
-          </>
-        )}
+      <p className="col-start-8 col-end-9 row-start-7 row-end-8 border border-black text-2xs font-bold text-center -mt-[1px]">
+        3
       </p>
-      <p className="col-start-9 col-end-10 row-start-7 row-end-8 border border-black text-2xs font-bold">
-        {warriorData.twoHit === 0 ? (
-          ""
-        ) : (
-          <>
-            <span className="bg-green-400 px-1">{warriorData.twoHit}</span>
-            <AiOutlineCloseCircle
-              onClick={() => handleDelete("twoHit", "number")}
-              size={10}
-              className="col-start-9 col-end-10 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer ml-[1px]"
-            />
-          </>
-        )}
+      <p className="col-start-9 col-end-10 row-start-7 row-end-8 border border-black text-2xs font-bold text-center -mt-[1px]">
+        5
       </p>
-      <p className="col-start-10 col-end-11 row-start-7 row-end-8 border border-black text-2xs font-bold">
-        {warriorData.threeHit === 0 ? (
-          ""
-        ) : (
-          <>
-            <span className="bg-green-400 px-1">{warriorData.threeHit}</span>
-            <AiOutlineCloseCircle
-              onClick={() => handleDelete("threeHit", "number")}
-              size={10}
-              className="col-start-10 col-end-11 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer ml-[1px]"
-            />
-          </>
-        )}
+      <p className="col-start-10 col-end-11 row-start-7 row-end-8 border border-black text-2xs font-bold text-center -mt-[1px]">
+        7
       </p>
-      <p className="col-start-11 col-end-12 row-start-7 row-end-8 border border-black text-2xs font-bold">
-        {warriorData.fourHit === 0 ? (
-          ""
-        ) : (
-          <>
-            <span className="bg-green-400 px-1">{warriorData.fourHit}</span>
-            <AiOutlineCloseCircle
-              onClick={() => handleDelete("fourHit", "number")}
-              size={10}
-              className="col-start-10 col-end-11 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer ml-[1px]"
-            />
-          </>
-        )}
+      <p className="col-start-11 col-end-12 row-start-7 row-end-8 border border-black text-2xs font-bold text-center -mt-[1px]">
+        10
       </p>
-      <p className="col-start-12 col-end-13 row-start-7 row-end-8 border border-black text-2xs font-bold">
-        {warriorData.fiveHit === 0 ? (
-          ""
-        ) : (
-          <>
-            <span className="bg-green-400 px-1">{warriorData.fiveHit}</span>
-            <AiOutlineCloseCircle
-              onClick={() => handleDelete("fiveHit", "number")}
-              size={10}
-              className="col-start-11 col-end-12 row-start-8 row-end-9 bg-red-400 hover:cursor-pointer ml-[1px]"
-            />
-          </>
-        )}
+      <p className="col-start-12 col-end-13 row-start-7 row-end-8 border border-black text-2xs font-bold text-center -mt-[1px]">
+        11
       </p>
-      <p className="col-start-13 col-end-15 row-start-7 row-end-8 border border-black text-2xs font-bold">
+      <p className="col-start-13 col-end-15 row-start-7 row-end-8 border border-black text-2xs font-bold text-center -mt-[1px]">
         Dead
       </p>
     </div>
