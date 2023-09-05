@@ -1,7 +1,31 @@
 //import//
+import { useState } from 'react'
 import { BiCircle } from "react-icons/bi"
+import { GoPlusCircle } from 'react-icons/go'
+import { AiOutlineMinusCircle } from 'react-icons/ai'
 
 export const HeatData: React.FC = () => {
+  const [heatSinksA, setHeatSinksA] = useState<number>(0)
+  const [heatSinksB, setHeatSinksB] = useState<number>(0)
+
+  const addHeatSink = () => {
+    setHeatSinksA(heatSinksA + 1)
+    setHeatSinksB(heatSinksB + 2)
+  }
+
+  const subtractHeatSink = () => {
+    if(heatSinksA > 0 && heatSinksB > 0) {
+      setHeatSinksA(heatSinksA - 1)
+      setHeatSinksB(heatSinksB - 2)
+    }
+  }
+
+  const heatSinksCircle = []
+
+  for (let i = 0; i < heatSinksA; i++) {
+    heatSinksCircle.push(<BiCircle key={`heatSinkA-${i}`} />)
+  }
+
   return (
     <div className="grid grid-cols-16 grid-rows-22 w-full h-full">
         <p className="col-start-1 col-end-8 row-start-1 row-end-3 bg-black text-white text-sm text-center z-10 rounded-full pt-[2px]">HEAT DATA</p>
@@ -43,19 +67,12 @@ export const HeatData: React.FC = () => {
         <p className="col-start-5 col-end-13 row-start-19 row-end-20 text-2xs">-2 Movement Points</p>
         <p className="col-start-5 col-end-13 row-start-20 row-end-21 text-2xs">+1 Modifier to fire</p>
         <p className="col-start-5 col-end-13 row-start-21 row-end-22 text-2xs">-1 Movement Points</p>
-        <p className="col-start-9 col-end-17 row-start-3 row-end-4 text-xs">Double Heat Sinks:</p>
-        <p className="col-start-13 col-end-17 row-start-4 row-end-5 text-xs">10 [20]</p>
-        <div className="col-start-14 col-end-17 row-start-6 row-end-22">
-        <BiCircle />
-        <BiCircle />
-        <BiCircle />
-        <BiCircle />
-        <BiCircle />
-        <BiCircle />
-        <BiCircle />
-        <BiCircle />
-        <BiCircle />
-        <BiCircle />
+        <GoPlusCircle onClick={addHeatSink} className="col-start-13 col-end-14 row-start-2 row-end-3 bg-green-400 rounded-full hover:cursor-pointer"/>
+        <AiOutlineMinusCircle onClick={subtractHeatSink} className="col-start-14 col-end-15 row-start-2 row-end-3 ml-2 bg-red-400 rounded-full hover:cursor-pointer"/>
+        <p className="col-start-9 col-end-17 row-start-3 row-end-4 text-xs text-end pr-2">Heat Sinks:</p>
+        <p className="col-start-13 col-end-17 row-start-4 row-end-5 text-xs">{heatSinksA} [{heatSinksB}]</p>
+        <div id="heat-sinks" className="col-start-14 col-end-17 row-start-6 row-end-22 flex flex-col flex-wrap pr-2">
+          {heatSinksCircle}
         </div>
 
     </div>
