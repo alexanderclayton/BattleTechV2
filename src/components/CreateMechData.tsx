@@ -2,9 +2,7 @@
 import { useState } from "react";
 import MechDataImage from "../assets/MechDataImage.jpg";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-//unused imports//
 import { GoDash, GoPlusCircle } from "react-icons/go";
-//unused imports//
 
 type MechDataType = {
   type: string;
@@ -15,6 +13,8 @@ type MechDataType = {
   techBase: string;
   rulesLevel: string;
   role: string;
+  ammo: string
+  bv: number
 };
 
 type WeaponsEquipmentInventoryType = {
@@ -42,122 +42,16 @@ type WeaponType = {
 
 export const CreateMechData: React.FC = () => {
   const [mechModal, setMechModal] = useState<boolean>(false);
-  const [weiModal, setWeiModal] = useState<WeaponType>({
-    one: false,
-    two: false,
-    three: false,
-    four: false,
-    five: false,
-    six: false,
-    seven: false,
-    eight: false,
-  });
-  const [mechData, setMechData] = useState<MechDataType>({
-    type: "",
-    walking: 0,
-    running: 0,
-    jumping: 0,
-    tonnage: 0,
-    techBase: "",
-    rulesLevel: "",
-    role: "",
-  });
-  const [weiOne, setWeiOne] =
-    useState<WeaponsEquipmentInventoryType>({
-      qty: 0,
-      type: "",
-      loc: "",
-      ht: 0,
-      dmg: "",
-      min: 0,
-      sht: 0,
-      med: 0,
-      lng: 0,
-    });
-  const [weiTwo, setWeiTwo] =
-    useState<WeaponsEquipmentInventoryType>({
-      qty: 0,
-      type: "",
-      loc: "",
-      ht: 0,
-      dmg: "",
-      min: 0,
-      sht: 0,
-      med: 0,
-      lng: 0,
-    });
-  const [weiThree, setWeiThree] =
-    useState<WeaponsEquipmentInventoryType>({
-      qty: 0,
-      type: "",
-      loc: "",
-      ht: 0,
-      dmg: "",
-      min: 0,
-      sht: 0,
-      med: 0,
-      lng: 0,
-    });
-  const [weiFour, setWeiFour] =
-    useState<WeaponsEquipmentInventoryType>({
-      qty: 0,
-      type: "",
-      loc: "",
-      ht: 0,
-      dmg: "",
-      min: 0,
-      sht: 0,
-      med: 0,
-      lng: 0,
-    });
-  const [weiFive, setWeiFive] =
-    useState<WeaponsEquipmentInventoryType>({
-      qty: 0,
-      type: "",
-      loc: "",
-      ht: 0,
-      dmg: "",
-      min: 0,
-      sht: 0,
-      med: 0,
-      lng: 0,
-    });
-  const [weiSix, setWeiSix] =
-    useState<WeaponsEquipmentInventoryType>({
-      qty: 0,
-      type: "",
-      loc: "",
-      ht: 0,
-      dmg: "",
-      min: 0,
-      sht: 0,
-      med: 0,
-      lng: 0,
-    });
-  const [weiSeven, setWeiSeven] =
-    useState<WeaponsEquipmentInventoryType>({
-      qty: 0,
-      type: "",
-      loc: "",
-      ht: 0,
-      dmg: "",
-      min: 0,
-      sht: 0,
-      med: 0,
-      lng: 0,
-    });
-  const [weiEight, setWeiEight] =
-    useState<WeaponsEquipmentInventoryType>({
-      qty: 0,
-      type: "",
-      loc: "",
-      ht: 0,
-      dmg: "",
-      min: 0,
-      sht: 0,
-      med: 0,
-      lng: 0,
-    });
+  const [weiModal, setWeiModal] = useState<WeaponType>({ one: false, two: false, three: false, four: false, five: false, six: false, seven: false, eight: false });
+  const [mechData, setMechData] = useState<MechDataType>({ type: "", walking: 0, running: 0, jumping: 0, tonnage: 0, techBase: "", rulesLevel: "", role: "", ammo: "", bv: 0 });
+  const [weiOne, setWeiOne] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
+  const [weiTwo, setWeiTwo] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
+  const [weiThree, setWeiThree] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
+  const [weiFour, setWeiFour] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
+  const [weiFive, setWeiFive] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
+  const [weiSix, setWeiSix] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
+  const [weiSeven, setWeiSeven] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
+  const [weiEight, setWeiEight] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
 
   const toggleModal: React.MouseEventHandler<SVGSVGElement> = (): void => {
     setMechModal(!mechModal);
@@ -399,6 +293,35 @@ export const CreateMechData: React.FC = () => {
                 />
               </div>
             </div>
+            <div className="flex flex-col items-start pt-2 w-[75%]">
+              <div className="w-full">
+                <label htmlFor="" className="font-bold">
+                  Ammo
+                </label>
+                <input
+                  type="text"
+                  value={mechData.ammo}
+                  name="ammo"
+                  placeholder={mechData.ammo}
+                  onChange={handleChange}
+                  className="border-2 border-black ml-2 pl-2 w-[84%]"
+                />
+              </div>
+              <div className="w-full pt-2">
+                <label htmlFor="" className="font-bold pl-5">
+                  BV#
+                </label>
+                <input
+                  type="number"
+                  value={mechData.bv}
+                  name="bv"
+                  placeholder={mechData.bv.toString()}
+                  onChange={handleChange}
+                  className="border-2 border-black ml-2 pl-2 w-[20%]"
+                />
+              </div>
+                
+            </div>
             <div className="flex justify-around">
               <button
                 onClick={closeModal}
@@ -416,13 +339,14 @@ export const CreateMechData: React.FC = () => {
           </div>
         </div>
       )}
+      
       <div className="col-start-1 col-end-23 row-start-3 row-end-5 pl-1">
         <p className="font-bold text-xs flex items-center">
-          {mechData.type === "" ? (
+          Type: {mechData.type === "" ? (
             ""
           ) : (
             <>
-              <span className="bg-green-400">{mechData.type}</span>
+              <span className="bg-green-400 ml-2">{mechData.type}</span>
               <AiOutlineCloseCircle
                 onClick={() => handleDelete("type", "string")}
                 className="bg-red-400 ml-1 hover:cursor-pointer"
@@ -431,6 +355,7 @@ export const CreateMechData: React.FC = () => {
           )}
         </p>
       </div>
+      <span className="col-start-4 col-end-22 row-start-3 row-end-4 border-b-2 border-black -m-1"/>
       <p className="col-start-2 col-end-12 row-start-5 row-end-6 text-2xs font-bold flex items-center">
         Movement Points
       </p>
@@ -699,80 +624,105 @@ export const CreateMechData: React.FC = () => {
       <p className="col-start-21 col-end-23 row-start-11 row-end-12 text-2xs font-bold pl-1">Lng</p>
 
       <GoPlusCircle size={12} onClick={() => {toggleWeiModal('one')}} className="col-start-1 col-end-2 row-start-13 row-end-14 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]"/>
-      <p className="col-start-2 col-end-3 row-start-13 row-end-14 text-2xs">{weiOne.qty === 0 ? ("") : (weiOne.qty)}</p>
-      <p className="col-start-3 col-end-10 row-start-13 row-end-14 text-2xs">{weiOne.type === "" ? ("") : (weiOne.type)}</p>
-      <p className="col-start-9 col-end-11 row-start-13 row-end-14 text-2xs text-center">Loc 1</p>
-      <p className="col-start-11 col-end-12 row-start-13 row-end-14 text-2xs text-center"><GoDash size={13} /></p>
-      <p className="col-start-12 col-end-17 row-start-13 row-end-14 text-2xs pl-1">[E]</p>
-      <p className="col-start-16 col-end-18 row-start-13 row-end-14 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-18 col-end-19 row-start-13 row-end-14 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-19 col-end-21 row-start-13 row-end-14 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-21 col-end-22 row-start-13 row-end-14 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <div className={weiOne.qty === 0 ? ("hidden") : ("grid grid-cols-22 grid-rows-1 col-start-1 col-end-23 row-start-13 row-end-14")}>
+        <p className="col-start-2 col-end-3 row-start-1 row-end-2 text-2xs">{weiOne.qty === 0 ? ("") : (weiOne.qty)}</p>
+        <p className="col-start-3 col-end-10 row-start-1 row-end-2 text-2xs">{weiOne.type === "" ? ("") : (weiOne.type)}</p>
+        <p className="col-start-9 col-end-11 row-start-1 row-end-2 text-2xs text-center">{weiOne.loc === "" ? ("") : (weiOne.loc)}</p>
+        <p className="col-start-11 col-end-12 row-start-1 row-end-2 text-2xs text-center">{weiOne.ht === 0 ? (<GoDash size={13} />) : (weiOne.ht)}</p>
+        <p className="col-start-12 col-end-17 row-start-1 row-end-2 text-2xs pl-1">{weiOne.dmg === "" ? ("") : (weiOne.dmg)}</p>
+        <p className="col-start-16 col-end-18 row-start-1 row-end-2 text-2xs flex justify-center">{weiOne.min === 0 ? (<GoDash size={13} />) : (weiOne.min)}</p>
+        <p className="col-start-18 col-end-19 row-start-1 row-end-2 text-2xs flex justify-center">{weiOne.sht === 0 ? (<GoDash size={13} />) : (weiOne.sht)}</p>
+        <p className="col-start-19 col-end-21 row-start-1 row-end-2 text-2xs flex justify-center">{weiOne.med === 0 ? (<GoDash size={13} />) : (weiOne.med)}</p>
+        <p className="col-start-21 col-end-22 row-start-1 row-end-2 text-2xs flex justify-center">{weiOne.lng === 0 ? (<GoDash size={13} />) : (weiOne.lng)}</p>
+      </div>
+      <GoPlusCircle size={12} onClick={() => {toggleWeiModal('two')}} className={weiOne.qty === 0 ? ("hidden") : ("col-start-1 col-end-2 row-start-14 row-end-15 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]")}/>
+      <div className={weiTwo.qty === 0 ? ("hidden") : ("grid grid-cols-22 grid-rows-1 col-start-1 col-end-23 row-start-14 row-end-15")}>
+        <p className="col-start-2 col-end-3 row-start-1 row-end-2 text-2xs">{weiTwo.qty === 0 ? ("") : (weiTwo.qty)}</p>
+        <p className="col-start-3 col-end-10 row-start-1 row-end-2 text-2xs">{weiTwo.type === "" ? ("") : (weiTwo.type)}</p>
+        <p className="col-start-9 col-end-11 row-start-1 row-end-2 text-2xs text-center">{weiTwo.loc === "" ? ("") : (weiTwo.loc)}</p>
+        <p className="col-start-11 col-end-12 row-start-1 row-end-2 text-2xs text-center">{weiTwo.ht === 0 ? (<GoDash size={13} />) : (weiTwo.ht)}</p>
+        <p className="col-start-12 col-end-17 row-start-1 row-end-2 text-2xs pl-1">{weiTwo.dmg === "" ? ("") : (weiTwo.dmg)}</p>
+        <p className="col-start-16 col-end-18 row-start-1 row-end-2 text-2xs flex justify-center">{weiTwo.min === 0 ? (<GoDash size={13} />) : (weiTwo.min)}</p>
+        <p className="col-start-18 col-end-19 row-start-1 row-end-2 text-2xs flex justify-center">{weiTwo.sht === 0 ? (<GoDash size={13} />) : (weiTwo.sht)}</p>
+        <p className="col-start-19 col-end-21 row-start-1 row-end-2 text-2xs flex justify-center">{weiTwo.med === 0 ? (<GoDash size={13} />) : (weiTwo.med)}</p>
+        <p className="col-start-21 col-end-22 row-start-1 row-end-2 text-2xs flex justify-center">{weiTwo.lng === 0 ? (<GoDash size={13} />) : (weiTwo.lng)}</p>
+      </div>
+      <GoPlusCircle size={12} onClick={() => {toggleWeiModal('three')}} className={weiTwo.qty === 0 ? ("hidden") : ("col-start-1 col-end-2 row-start-15 row-end-16 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]")}/>
+      <div className={weiThree.qty === 0 ? ("hidden") : ("grid grid-cols-22 grid-rows-1 col-start-1 col-end-23 row-start-15 row-end-16")}>
+        <p className="col-start-2 col-end-3 row-start-1 row-end-2 text-2xs">{weiThree.qty === 0 ? ("") : (weiThree.qty)}</p>
+        <p className="col-start-3 col-end-10 row-start-1 row-end-2 text-2xs">{weiThree.type === "" ? ("") : (weiThree.type)}</p>
+        <p className="col-start-9 col-end-11 row-start-1 row-end-2 text-2xs text-center">{weiThree.loc === "" ? ("") : (weiThree.loc)}</p>
+        <p className="col-start-11 col-end-12 row-start-1 row-end-2 text-2xs text-center">{weiThree.ht === 0 ? (<GoDash size={13} />) : (weiThree.ht)}</p>
+        <p className="col-start-12 col-end-17 row-start-1 row-end-2 text-2xs pl-1">{weiThree.dmg === "" ? ("") : (weiThree.dmg)}</p>
+        <p className="col-start-16 col-end-18 row-start-1 row-end-2 text-2xs flex justify-center">{weiThree.min === 0 ? (<GoDash size={13} />) : (weiThree.min)}</p>
+        <p className="col-start-18 col-end-19 row-start-1 row-end-2 text-2xs flex justify-center">{weiThree.sht === 0 ? (<GoDash size={13} />) : (weiThree.sht)}</p>
+        <p className="col-start-19 col-end-21 row-start-1 row-end-2 text-2xs flex justify-center">{weiThree.med === 0 ? (<GoDash size={13} />) : (weiThree.med)}</p>
+        <p className="col-start-21 col-end-22 row-start-1 row-end-2 text-2xs flex justify-center">{weiThree.lng === 0 ? (<GoDash size={13} />) : (weiThree.lng)}</p>
+      </div>
+      <GoPlusCircle size={12} onClick={() => {toggleWeiModal('four')}} className={weiThree.qty === 0 ? ("hidden") : ("col-start-1 col-end-2 row-start-16 row-end-17 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]")}/>
+      <div className={weiFour.qty === 0 ? ("hidden") : ("grid grid-cols-22 grid-rows-1 col-start-1 col-end-23 row-start-16 row-end-17")}>
+        <p className="col-start-2 col-end-3 row-start-1 row-end-2 text-2xs">{weiFour.qty === 0 ? ("") : (weiFour.qty)}</p>
+        <p className="col-start-3 col-end-10 row-start-1 row-end-2 text-2xs">{weiFour.type === "" ? ("") : (weiFour.type)}</p>
+        <p className="col-start-9 col-end-11 row-start-1 row-end-2 text-2xs text-center">{weiFour.loc === "" ? ("") : (weiFour.loc)}</p>
+        <p className="col-start-11 col-end-12 row-start-1 row-end-2 text-2xs text-center">{weiFour.ht === 0 ? (<GoDash size={13} />) : (weiFour.ht)}</p>
+        <p className="col-start-12 col-end-17 row-start-1 row-end-2 text-2xs pl-1">{weiFour.dmg === "" ? ("") : (weiFour.dmg)}</p>
+        <p className="col-start-16 col-end-18 row-start-1 row-end-2 text-2xs flex justify-center">{weiFour.min === 0 ? (<GoDash size={13} />) : (weiFour.min)}</p>
+        <p className="col-start-18 col-end-19 row-start-1 row-end-2 text-2xs flex justify-center">{weiFour.sht === 0 ? (<GoDash size={13} />) : (weiFour.sht)}</p>
+        <p className="col-start-19 col-end-21 row-start-1 row-end-2 text-2xs flex justify-center">{weiFour.med === 0 ? (<GoDash size={13} />) : (weiFour.med)}</p>
+        <p className="col-start-21 col-end-22 row-start-1 row-end-2 text-2xs flex justify-center">{weiFour.lng === 0 ? (<GoDash size={13} />) : (weiFour.lng)}</p>
+      </div>
+      <GoPlusCircle size={12} onClick={() => {toggleWeiModal('five')}} className={weiFour.qty === 0 ? ("hidden") : ("col-start-1 col-end-2 row-start-17 row-end-18 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]")}/>
+      <div className={weiFive.qty === 0 ? ("hidden") : ("grid grid-cols-22 grid-rows-1 col-start-1 col-end-23 row-start-17 row-end-18")}>
+        <p className="col-start-2 col-end-3 row-start-1 row-end-2 text-2xs">{weiFive.qty === 0 ? ("") : (weiFive.qty)}</p>
+        <p className="col-start-3 col-end-10 row-start-1 row-end-2 text-2xs">{weiFive.type === "" ? ("") : (weiFive.type)}</p>
+        <p className="col-start-9 col-end-11 row-start-1 row-end-2 text-2xs text-center">{weiFive.loc === "" ? ("") : (weiFive.loc)}</p>
+        <p className="col-start-11 col-end-12 row-start-1 row-end-2 text-2xs text-center">{weiFive.ht === 0 ? (<GoDash size={13} />) : (weiFive.ht)}</p>
+        <p className="col-start-12 col-end-17 row-start-1 row-end-2 text-2xs pl-1">{weiFive.dmg === "" ? ("") : (weiFive.dmg)}</p>
+        <p className="col-start-16 col-end-18 row-start-1 row-end-2 text-2xs flex justify-center">{weiFive.min === 0 ? (<GoDash size={13} />) : (weiFive.min)}</p>
+        <p className="col-start-18 col-end-19 row-start-1 row-end-2 text-2xs flex justify-center">{weiFive.sht === 0 ? (<GoDash size={13} />) : (weiFive.sht)}</p>
+        <p className="col-start-19 col-end-21 row-start-1 row-end-2 text-2xs flex justify-center">{weiFive.med === 0 ? (<GoDash size={13} />) : (weiFive.med)}</p>
+        <p className="col-start-21 col-end-22 row-start-1 row-end-2 text-2xs flex justify-center">{weiFive.lng === 0 ? (<GoDash size={13} />) : (weiFive.lng)}</p>
+      </div>
+      <GoPlusCircle size={12} onClick={() => {toggleWeiModal('six')}} className={weiFive.qty === 0 ? ("hidden") : ("col-start-1 col-end-2 row-start-18 row-end-19 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]")}/>
+      <div className={weiSix.qty === 0 ? ("hidden") : ("grid grid-cols-22 grid-rows-1 col-start-1 col-end-23 row-start-18 row-end-19")}>
+        <p className="col-start-2 col-end-3 row-start-1 row-end-2 text-2xs">{weiSix.qty === 0 ? ("") : (weiSix.qty)}</p>
+        <p className="col-start-3 col-end-10 row-start-1 row-end-2 text-2xs">{weiSix.type === "" ? ("") : (weiSix.type)}</p>
+        <p className="col-start-9 col-end-11 row-start-1 row-end-2 text-2xs text-center">{weiSix.loc === "" ? ("") : (weiSix.loc)}</p>
+        <p className="col-start-11 col-end-12 row-start-1 row-end-2 text-2xs text-center">{weiSix.ht === 0 ? (<GoDash size={13} />) : (weiSix.ht)}</p>
+        <p className="col-start-12 col-end-17 row-start-1 row-end-2 text-2xs pl-1">{weiSix.dmg === "" ? ("") : (weiSix.dmg)}</p>
+        <p className="col-start-16 col-end-18 row-start-1 row-end-2 text-2xs flex justify-center">{weiSix.min === 0 ? (<GoDash size={13} />) : (weiSix.min)}</p>
+        <p className="col-start-18 col-end-19 row-start-1 row-end-2 text-2xs flex justify-center">{weiSix.sht === 0 ? (<GoDash size={13} />) : (weiSix.sht)}</p>
+        <p className="col-start-19 col-end-21 row-start-1 row-end-2 text-2xs flex justify-center">{weiSix.med === 0 ? (<GoDash size={13} />) : (weiSix.med)}</p>
+        <p className="col-start-21 col-end-22 row-start-1 row-end-2 text-2xs flex justify-center">{weiSix.lng === 0 ? (<GoDash size={13} />) : (weiSix.lng)}</p>
+      </div>
+      <GoPlusCircle size={12} onClick={() => {toggleWeiModal('seven')}} className={weiSix.qty === 0 ? ("hidden") : ("col-start-1 col-end-2 row-start-19 row-end-20 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]")}/>
+      <div className={weiSeven.qty === 0 ? ("hidden") : ("grid grid-cols-22 grid-rows-1 col-start-1 col-end-23 row-start-19 row-end-20")}>
+        <p className="col-start-2 col-end-3 row-start-1 row-end-2 text-2xs">{weiSeven.qty === 0 ? ("") : (weiSeven.qty)}</p>
+        <p className="col-start-3 col-end-10 row-start-1 row-end-2 text-2xs">{weiSeven.type === "" ? ("") : (weiSeven.type)}</p>
+        <p className="col-start-9 col-end-11 row-start-1 row-end-2 text-2xs text-center">{weiSeven.loc === "" ? ("") : (weiSeven.loc)}</p>
+        <p className="col-start-11 col-end-12 row-start-1 row-end-2 text-2xs text-center">{weiSeven.ht === 0 ? (<GoDash size={13} />) : (weiSeven.ht)}</p>
+        <p className="col-start-12 col-end-17 row-start-1 row-end-2 text-2xs pl-1">{weiSeven.dmg === "" ? ("") : (weiSeven.dmg)}</p>
+        <p className="col-start-16 col-end-18 row-start-1 row-end-2 text-2xs flex justify-center">{weiSeven.min === 0 ? (<GoDash size={13} />) : (weiSeven.min)}</p>
+        <p className="col-start-18 col-end-19 row-start-1 row-end-2 text-2xs flex justify-center">{weiSeven.sht === 0 ? (<GoDash size={13} />) : (weiSeven.sht)}</p>
+        <p className="col-start-19 col-end-21 row-start-1 row-end-2 text-2xs flex justify-center">{weiSeven.med === 0 ? (<GoDash size={13} />) : (weiSeven.med)}</p>
+        <p className="col-start-21 col-end-22 row-start-1 row-end-2 text-2xs flex justify-center">{weiSeven.lng === 0 ? (<GoDash size={13} />) : (weiSeven.lng)}</p>
+      </div>
+      <GoPlusCircle size={12} onClick={() => {toggleWeiModal('eight')}} className={weiSeven.qty === 0 ? ("hidden") : ("col-start-1 col-end-2 row-start-20 row-end-21 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]")}/>
+      <div className={weiEight.qty === 0 ? ("hidden") : ("grid grid-cols-22 grid-rows-1 col-start-1 col-end-23 row-start-20 row-end-21")}>
+        <p className="col-start-2 col-end-3 row-start-1 row-end-2 text-2xs">{weiEight.qty === 0 ? ("") : (weiEight.qty)}</p>
+        <p className="col-start-3 col-end-10 row-start-1 row-end-2 text-2xs">{weiEight.type === "" ? ("") : (weiEight.type)}</p>
+        <p className="col-start-9 col-end-11 row-start-1 row-end-2 text-2xs text-center">{weiEight.loc === "" ? ("") : (weiEight.loc)}</p>
+        <p className="col-start-11 col-end-12 row-start-1 row-end-2 text-2xs text-center">{weiEight.ht === 0 ? (<GoDash size={13} />) : (weiEight.ht)}</p>
+        <p className="col-start-12 col-end-17 row-start-1 row-end-2 text-2xs pl-1">{weiEight.dmg === "" ? ("") : (weiEight.dmg)}</p>
+        <p className="col-start-16 col-end-18 row-start-1 row-end-2 text-2xs flex justify-center">{weiEight.min === 0 ? (<GoDash size={13} />) : (weiEight.min)}</p>
+        <p className="col-start-18 col-end-19 row-start-1 row-end-2 text-2xs flex justify-center">{weiEight.sht === 0 ? (<GoDash size={13} />) : (weiEight.sht)}</p>
+        <p className="col-start-19 col-end-21 row-start-1 row-end-2 text-2xs flex justify-center">{weiEight.med === 0 ? (<GoDash size={13} />) : (weiEight.med)}</p>
+        <p className="col-start-21 col-end-22 row-start-1 row-end-2 text-2xs flex justify-center">{weiEight.lng === 0 ? (<GoDash size={13} />) : (weiEight.lng)}</p>
+      </div>
 
-      <GoPlusCircle size={12} onClick={() => {toggleWeiModal('two')}} className="col-start-1 col-end-2 row-start-14 row-end-15 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]"/>
-      <p className="col-start-2 col-end-3 row-start-14 row-end-15 text-2xs">2</p>
-      <p className="col-start-3 col-end-10 row-start-14 row-end-15 text-2xs">Machine Gun</p>
-      <p className="col-start-9 col-end-11 row-start-14 row-end-15 text-2xs text-center">RA</p>
-      <p className="col-start-11 col-end-12 row-start-14 row-end-15 text-2xs text-center"><GoDash size={13} /></p>
-      <p className="col-start-12 col-end-17 row-start-14 row-end-15 text-2xs pl-1">2 [DB, AI]</p>
-      <p className="col-start-16 col-end-18 row-start-14 row-end-15 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-18 col-end-19 row-start-14 row-end-15 text-2xs flex justify-center">1</p>
-      <p className="col-start-19 col-end-21 row-start-14 row-end-15 text-2xs flex justify-center">2</p>
-      <p className="col-start-21 col-end-22 row-start-14 row-end-15 text-2xs flex justify-center">3</p>
-      
-      <p className="col-start-2 col-end-3 row-start-15 row-end-16 text-2xs">1</p>
-      <p className="col-start-3 col-end-10 row-start-15 row-end-16 text-2xs">Flamer</p>
-      <p className="col-start-9 col-end-11 row-start-15 row-end-16 text-2xs text-center">RA</p>
-      <p className="col-start-11 col-end-12 row-start-15 row-end-16 text-2xs text-center">3</p>
-      <p className="col-start-12 col-end-17 row-start-15 row-end-16 text-2xs pl-1">2 [DE, H, AI]</p>
-      <p className="col-start-16 col-end-18 row-start-15 row-end-16 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-18 col-end-19 row-start-15 row-end-16 text-2xs flex justify-center">1</p>
-      <p className="col-start-19 col-end-21 row-start-15 row-end-16 text-2xs flex justify-center">2</p>
-      <p className="col-start-21 col-end-22 row-start-15 row-end-16 text-2xs flex justify-center">3</p>
-
-      <p className="col-start-2 col-end-3 row-start-16 row-end-17 text-2xs">2</p>
-      <p className="col-start-3 col-end-10 row-start-16 row-end-17 text-2xs">Anti-Missile System</p>
-      <p className="col-start-9 col-end-11 row-start-16 row-end-17 text-2xs text-center">LA</p>
-      <p className="col-start-11 col-end-12 row-start-16 row-end-17 text-2xs text-center">1</p>
-      <p className="col-start-12 col-end-17 row-start-16 row-end-17 text-2xs pl-1">[PD]</p>
-      <p className="col-start-16 col-end-18 row-start-16 row-end-17 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-18 col-end-19 row-start-16 row-end-17 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-19 col-end-21 row-start-16 row-end-17 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-21 col-end-22 row-start-16 row-end-17 text-2xs flex justify-center"><GoDash size={13} /></p>
-
-      <p className="col-start-2 col-end-3 row-start-17 row-end-18 text-2xs">1</p>
-      <p className="col-start-3 col-end-10 row-start-17 row-end-18 text-2xs">TAG</p>
-      <p className="col-start-9 col-end-11 row-start-17 row-end-18 text-2xs text-center">LA</p>
-      <p className="col-start-11 col-end-12 row-start-17 row-end-18 text-2xs text-center"><GoDash size={13} /></p>
-      <p className="col-start-12 col-end-17 row-start-17 row-end-18 text-2xs pl-1">[E]</p>
-      <p className="col-start-16 col-end-18 row-start-17 row-end-18 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-18 col-end-19 row-start-17 row-end-18 text-2xs flex justify-center">5</p>
-      <p className="col-start-19 col-end-21 row-start-17 row-end-18 text-2xs flex justify-center">9</p>
-      <p className="col-start-21 col-end-22 row-start-17 row-end-18 text-2xs flex justify-center">15</p>
-
-      <p className="col-start-2 col-end-3 row-start-18 row-end-19 text-2xs">1</p>
-      <p className="col-start-3 col-end-10 row-start-18 row-end-19 text-2xs">A-Pod</p>
-      <p className="col-start-9 col-end-11 row-start-18 row-end-19 text-2xs text-center">RL</p>
-      <p className="col-start-11 col-end-12 row-start-18 row-end-19 text-2xs text-center"><GoDash size={13} /></p>
-      <p className="col-start-12 col-end-17 row-start-18 row-end-19 text-2xs pl-1">[PD, OS, AI]</p>
-      <p className="col-start-16 col-end-18 row-start-18 row-end-19 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-18 col-end-19 row-start-18 row-end-19 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-19 col-end-21 row-start-18 row-end-19 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-21 col-end-22 row-start-18 row-end-19 text-2xs flex justify-center"><GoDash size={13} /></p>
-
-      <p className="col-start-2 col-end-3 row-start-19 row-end-20 text-2xs">1</p>
-      <p className="col-start-3 col-end-10 row-start-19 row-end-20 text-2xs">A-Pod</p>
-      <p className="col-start-9 col-end-11 row-start-19 row-end-20 text-2xs text-center">LL</p>
-      <p className="col-start-11 col-end-12 row-start-19 row-end-20 text-2xs text-center"><GoDash size={13} /></p>
-      <p className="col-start-12 col-end-17 row-start-19 row-end-20 text-2xs pl-1">[PD, OS, AI]</p>
-      <p className="col-start-16 col-end-18 row-start-19 row-end-20 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-18 col-end-19 row-start-19 row-end-20 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-19 col-end-21 row-start-19 row-end-20 text-2xs flex justify-center"><GoDash size={13} /></p>
-      <p className="col-start-21 col-end-22 row-start-19 row-end-20 text-2xs flex justify-center"><GoDash size={13} /></p>
-
-      <p className="col-start-2 col-end-23 row-start-25 row-end-26 text-2xs">Ammo: [AMS] 72, [Machine Gun] 100</p>
+      <p className="col-start-2 col-end-23 row-start-25 row-end-26 text-2xs"><span className="font-bold">Ammo: </span>{mechData.ammo}</p>
       <span className="col-start-1 col-end-23 row-start-27 border-b-2 border-black mx-1"/>
-      <p className="col-start-3 col-end-16 row-start-28 row-end-29 text-xs"><span className="font-bold">BV:</span>{" "}<span className="text-red-700">608 :setBV!!</span></p>
+      <p className="col-start-3 col-end-16 row-start-28 row-end-29 text-xs"><span className="font-bold">BV: </span>{mechData.bv}</p>
       <img src={MechDataImage} alt="sailboat lookin' thing" className="col-start-18 col-end-20 row-start-28 row-end-30 mt-1"/>
     </div>
   );
