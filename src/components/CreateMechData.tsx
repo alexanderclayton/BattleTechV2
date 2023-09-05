@@ -174,9 +174,23 @@ export const CreateMechData: React.FC = () => {
     setMechModal(false);
   };
 
+  const closeWeiModal = (weapon: string): void => {
+    setWeiModal((prev) => ({
+      ...prev,
+      [weapon]: false
+    }))
+  }
+
   const saveModal: React.MouseEventHandler<HTMLButtonElement> = (): void => {
     setMechModal(false);
   };
+
+  const saveWeiModal = (weapon: string): void => {
+    setWeiModal((prev) => ({
+      ...prev,
+      [weapon]: false,
+    }))
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -664,252 +678,102 @@ export const CreateMechData: React.FC = () => {
                 />
               </div>
             </div>
+            <div className="flex justify-center">
+              <button name={weapon} onClick={() => closeWeiModal(weapon)} className="bg-red-400 px-4 rounded-lg mt-4 mx-4">Cancel</button>
+              <button name={weapon} onClick={() => saveWeiModal(weapon)} className="bg-green-400 px-6 rounded-lg mt-4 mx-4">Save</button>
+            </div>
           </div>
         </div>
           )
         }
       })}
         
+      <p className="col-start-1 col-end-3 row-start-11 row-end-12 text-2xs font-bold text-right">Qty</p>
+      <p className="col-start-3 col-end-5 row-start-11 row-end-12 text-2xs font-bold text-right">Type</p>
+      <p className="col-start-9 col-end-11 row-start-11 row-end-12 text-2xs font-bold text-center">Loc</p>
+      <p className="col-start-11 col-end-12 row-start-11 row-end-12 text-2xs font-bold text-right">Ht</p>
+      <p className="col-start-12 col-end-17 row-start-11 row-end-12 text-2xs font-bold pl-2">Dmg</p>
+      <p className="col-start-16 col-end-18 row-start-11 row-end-12 text-2xs font-bold text-right">Min</p>
+      <p className="col-start-18 col-end-19 row-start-11 row-end-12 text-2xs font-bold pl-[2px]">Sht</p>
+      <p className="col-start-19 col-end-21 row-start-11 row-end-12 text-2xs font-bold text-right">Med</p>
+      <p className="col-start-21 col-end-23 row-start-11 row-end-12 text-2xs font-bold pl-1">Lng</p>
 
-      <p className="col-start-1 col-end-3 row-start-11 row-end-12 text-2xs font-bold text-right">
-        Qty
-      </p>
-      <p className="col-start-2 col-end-3 row-start-13 row-end-14 text-2xs">
-        1
-      </p>
-      <GoPlusCircle
-        size={12}
-        onClick={() => {toggleWeiModal('one')}}
-        className="col-start-1 col-end-2 row-start-13 row-end-14 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]"
-      />
-      <p className="col-start-2 col-end-3 row-start-14 row-end-15 text-2xs">
-        2
-      </p>
-      <GoPlusCircle
-        size={12}
-        onClick={() => {toggleWeiModal('two')}}
-        className="col-start-1 col-end-2 row-start-14 row-end-15 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]"
-      />
-      <p className="col-start-2 col-end-3 row-start-15 row-end-16 text-2xs">
-        1
-      </p>
-      <p className="col-start-2 col-end-3 row-start-16 row-end-17 text-2xs">
-        2
-      </p>
-      <p className="col-start-2 col-end-3 row-start-17 row-end-18 text-2xs">
-        1
-      </p>
-      <p className="col-start-2 col-end-3 row-start-18 row-end-19 text-2xs">
-        1
-      </p>
-      <p className="col-start-2 col-end-3 row-start-19 row-end-20 text-2xs">
-        1
-      </p>
-      <p className="col-start-3 col-end-5 row-start-11 row-end-12 text-2xs font-bold text-right">
-        Type
-      </p>
-      <p className="col-start-3 col-end-10 row-start-13 row-end-14 text-2xs">
-        Active Probe
-      </p>
-      <p className="col-start-3 col-end-10 row-start-14 row-end-15 text-2xs">
-        Machine Gun
-      </p>
-      <p className="col-start-3 col-end-10 row-start-15 row-end-16 text-2xs">
-        Flamer
-      </p>
-      <p className="col-start-3 col-end-10 row-start-16 row-end-17 text-2xs">
-        Anti-Missile System
-      </p>
-      <p className="col-start-3 col-end-10 row-start-17 row-end-18 text-2xs">
-        TAG
-      </p>
-      <p className="col-start-3 col-end-10 row-start-18 row-end-19 text-2xs">
-        A-Pod
-      </p>
-      <p className="col-start-3 col-end-10 row-start-19 row-end-20 text-2xs">
-        A-Pod
-      </p>
-      <p className="col-start-9 col-end-11 row-start-11 row-end-12 text-2xs font-bold text-center">
-        Loc
-      </p>
-      <p className="col-start-9 col-end-11 row-start-13 row-end-14 text-2xs text-center">
-        HD
-      </p>
-      <p className="col-start-9 col-end-11 row-start-14 row-end-15 text-2xs text-center">
-        RA
-      </p>
-      <p className="col-start-9 col-end-11 row-start-15 row-end-16 text-2xs text-center">
-        RA
-      </p>
-      <p className="col-start-9 col-end-11 row-start-16 row-end-17 text-2xs text-center">
-        LA
-      </p>
-      <p className="col-start-9 col-end-11 row-start-17 row-end-18 text-2xs text-center">
-        LA
-      </p>
-      <p className="col-start-9 col-end-11 row-start-18 row-end-19 text-2xs text-center">
-        RL
-      </p>
-      <p className="col-start-9 col-end-11 row-start-19 row-end-20 text-2xs text-center">
-        LL
-      </p>
-      <p className="col-start-11 col-end-12 row-start-11 row-end-12 text-2xs font-bold text-right">
-        Ht
-      </p>
-      <p className="col-start-11 col-end-12 row-start-13 row-end-14 text-2xs text-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-11 col-end-12 row-start-14 row-end-15 text-2xs text-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-11 col-end-12 row-start-15 row-end-16 text-2xs text-center">
-        3
-      </p>
-      <p className="col-start-11 col-end-12 row-start-16 row-end-17 text-2xs text-center">
-        1
-      </p>
-      <p className="col-start-11 col-end-12 row-start-17 row-end-18 text-2xs text-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-11 col-end-12 row-start-18 row-end-19 text-2xs text-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-11 col-end-12 row-start-19 row-end-20 text-2xs text-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-12 col-end-17 row-start-11 row-end-12 text-2xs font-bold pl-2">
-        Dmg
-      </p>
-      <p className="col-start-12 col-end-17 row-start-13 row-end-14 text-2xs pl-1">
-        [E]
-      </p>
-      <p className="col-start-12 col-end-17 row-start-14 row-end-15 text-2xs pl-1">
-        2 [DB, AI]
-      </p>
-      <p className="col-start-12 col-end-17 row-start-15 row-end-16 text-2xs pl-1">
-        2 [DE, H, AI]
-      </p>
-      <p className="col-start-12 col-end-17 row-start-16 row-end-17 text-2xs pl-1">
-        [PD]
-      </p>
-      <p className="col-start-12 col-end-17 row-start-17 row-end-18 text-2xs pl-1">
-        [E]
-      </p>
-      <p className="col-start-12 col-end-17 row-start-18 row-end-19 text-2xs pl-1">
-        [PD, OS, AI]
-      </p>
-      <p className="col-start-12 col-end-17 row-start-19 row-end-20 text-2xs pl-1">
-        [PD, OS, AI]
-      </p>
-      <p className="col-start-16 col-end-18 row-start-11 row-end-12 text-2xs font-bold text-right">
-        Min
-      </p>
-      <p className="col-start-16 col-end-18 row-start-13 row-end-14 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-16 col-end-18 row-start-14 row-end-15 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-16 col-end-18 row-start-15 row-end-16 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-16 col-end-18 row-start-16 row-end-17 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-16 col-end-18 row-start-17 row-end-18 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-16 col-end-18 row-start-18 row-end-19 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-16 col-end-18 row-start-19 row-end-20 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-18 col-end-19 row-start-11 row-end-12 text-2xs font-bold pl-[2px]">
-        Sht
-      </p>
-      <p className="col-start-18 col-end-19 row-start-13 row-end-14 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-18 col-end-19 row-start-14 row-end-15 text-2xs flex justify-center">
-        1
-      </p>
-      <p className="col-start-18 col-end-19 row-start-15 row-end-16 text-2xs flex justify-center">
-        1
-      </p>
-      <p className="col-start-18 col-end-19 row-start-16 row-end-17 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-18 col-end-19 row-start-17 row-end-18 text-2xs flex justify-center">
-        5
-      </p>
-      <p className="col-start-18 col-end-19 row-start-18 row-end-19 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-18 col-end-19 row-start-19 row-end-20 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-19 col-end-21 row-start-11 row-end-12 text-2xs font-bold text-right">
-        Med
-      </p>
-      <p className="col-start-19 col-end-21 row-start-13 row-end-14 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-19 col-end-21 row-start-14 row-end-15 text-2xs flex justify-center">
-        2
-      </p>
-      <p className="col-start-19 col-end-21 row-start-15 row-end-16 text-2xs flex justify-center">
-        2
-      </p>
-      <p className="col-start-19 col-end-21 row-start-16 row-end-17 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-19 col-end-21 row-start-17 row-end-18 text-2xs flex justify-center">
-        9
-      </p>
-      <p className="col-start-19 col-end-21 row-start-18 row-end-19 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-19 col-end-21 row-start-19 row-end-20 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-21 col-end-23 row-start-11 row-end-12 text-2xs font-bold pl-1">
-        Lng
-      </p>
-      <p className="col-start-21 col-end-22 row-start-13 row-end-14 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-21 col-end-22 row-start-14 row-end-15 text-2xs flex justify-center">
-        3
-      </p>
-      <p className="col-start-21 col-end-22 row-start-15 row-end-16 text-2xs flex justify-center">
-        3
-      </p>
-      <p className="col-start-21 col-end-22 row-start-16 row-end-17 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-21 col-end-22 row-start-17 row-end-18 text-2xs flex justify-center">
-        15
-      </p>
-      <p className="col-start-21 col-end-22 row-start-18 row-end-19 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-21 col-end-22 row-start-19 row-end-20 text-2xs flex justify-center">
-        <GoDash size={13} />
-      </p>
-      <p className="col-start-2 col-end-23 row-start-25 row-end-26 text-2xs">
-        Ammo: [AMS] 72, [Machine Gun] 100
-      </p>
-      <span className="col-start-1 col-end-23 row-start-27 border-b-2 border-black mx-1" />
-      <p className="col-start-3 col-end-16 row-start-28 row-end-29 text-xs">
-        <span className="font-bold">BV:</span>{" "}
-        <span className="text-red-700">608 :setBV!!</span>
-      </p>
-      <img
-        src={MechDataImage}
-        alt="sailboat lookin' thing"
-        className="col-start-18 col-end-20 row-start-28 row-end-30 mt-1"
-      />
+      <GoPlusCircle size={12} onClick={() => {toggleWeiModal('one')}} className="col-start-1 col-end-2 row-start-13 row-end-14 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]"/>
+      <p className="col-start-2 col-end-3 row-start-13 row-end-14 text-2xs">{weiOne.qty === 0 ? ("") : (weiOne.qty)}</p>
+      <p className="col-start-3 col-end-10 row-start-13 row-end-14 text-2xs">{weiOne.type === "" ? ("") : (weiOne.type)}</p>
+      <p className="col-start-9 col-end-11 row-start-13 row-end-14 text-2xs text-center">Loc 1</p>
+      <p className="col-start-11 col-end-12 row-start-13 row-end-14 text-2xs text-center"><GoDash size={13} /></p>
+      <p className="col-start-12 col-end-17 row-start-13 row-end-14 text-2xs pl-1">[E]</p>
+      <p className="col-start-16 col-end-18 row-start-13 row-end-14 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-18 col-end-19 row-start-13 row-end-14 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-19 col-end-21 row-start-13 row-end-14 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-21 col-end-22 row-start-13 row-end-14 text-2xs flex justify-center"><GoDash size={13} /></p>
+
+      <GoPlusCircle size={12} onClick={() => {toggleWeiModal('two')}} className="col-start-1 col-end-2 row-start-14 row-end-15 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]"/>
+      <p className="col-start-2 col-end-3 row-start-14 row-end-15 text-2xs">2</p>
+      <p className="col-start-3 col-end-10 row-start-14 row-end-15 text-2xs">Machine Gun</p>
+      <p className="col-start-9 col-end-11 row-start-14 row-end-15 text-2xs text-center">RA</p>
+      <p className="col-start-11 col-end-12 row-start-14 row-end-15 text-2xs text-center"><GoDash size={13} /></p>
+      <p className="col-start-12 col-end-17 row-start-14 row-end-15 text-2xs pl-1">2 [DB, AI]</p>
+      <p className="col-start-16 col-end-18 row-start-14 row-end-15 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-18 col-end-19 row-start-14 row-end-15 text-2xs flex justify-center">1</p>
+      <p className="col-start-19 col-end-21 row-start-14 row-end-15 text-2xs flex justify-center">2</p>
+      <p className="col-start-21 col-end-22 row-start-14 row-end-15 text-2xs flex justify-center">3</p>
+      
+      <p className="col-start-2 col-end-3 row-start-15 row-end-16 text-2xs">1</p>
+      <p className="col-start-3 col-end-10 row-start-15 row-end-16 text-2xs">Flamer</p>
+      <p className="col-start-9 col-end-11 row-start-15 row-end-16 text-2xs text-center">RA</p>
+      <p className="col-start-11 col-end-12 row-start-15 row-end-16 text-2xs text-center">3</p>
+      <p className="col-start-12 col-end-17 row-start-15 row-end-16 text-2xs pl-1">2 [DE, H, AI]</p>
+      <p className="col-start-16 col-end-18 row-start-15 row-end-16 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-18 col-end-19 row-start-15 row-end-16 text-2xs flex justify-center">1</p>
+      <p className="col-start-19 col-end-21 row-start-15 row-end-16 text-2xs flex justify-center">2</p>
+      <p className="col-start-21 col-end-22 row-start-15 row-end-16 text-2xs flex justify-center">3</p>
+
+      <p className="col-start-2 col-end-3 row-start-16 row-end-17 text-2xs">2</p>
+      <p className="col-start-3 col-end-10 row-start-16 row-end-17 text-2xs">Anti-Missile System</p>
+      <p className="col-start-9 col-end-11 row-start-16 row-end-17 text-2xs text-center">LA</p>
+      <p className="col-start-11 col-end-12 row-start-16 row-end-17 text-2xs text-center">1</p>
+      <p className="col-start-12 col-end-17 row-start-16 row-end-17 text-2xs pl-1">[PD]</p>
+      <p className="col-start-16 col-end-18 row-start-16 row-end-17 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-18 col-end-19 row-start-16 row-end-17 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-19 col-end-21 row-start-16 row-end-17 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-21 col-end-22 row-start-16 row-end-17 text-2xs flex justify-center"><GoDash size={13} /></p>
+
+      <p className="col-start-2 col-end-3 row-start-17 row-end-18 text-2xs">1</p>
+      <p className="col-start-3 col-end-10 row-start-17 row-end-18 text-2xs">TAG</p>
+      <p className="col-start-9 col-end-11 row-start-17 row-end-18 text-2xs text-center">LA</p>
+      <p className="col-start-11 col-end-12 row-start-17 row-end-18 text-2xs text-center"><GoDash size={13} /></p>
+      <p className="col-start-12 col-end-17 row-start-17 row-end-18 text-2xs pl-1">[E]</p>
+      <p className="col-start-16 col-end-18 row-start-17 row-end-18 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-18 col-end-19 row-start-17 row-end-18 text-2xs flex justify-center">5</p>
+      <p className="col-start-19 col-end-21 row-start-17 row-end-18 text-2xs flex justify-center">9</p>
+      <p className="col-start-21 col-end-22 row-start-17 row-end-18 text-2xs flex justify-center">15</p>
+
+      <p className="col-start-2 col-end-3 row-start-18 row-end-19 text-2xs">1</p>
+      <p className="col-start-3 col-end-10 row-start-18 row-end-19 text-2xs">A-Pod</p>
+      <p className="col-start-9 col-end-11 row-start-18 row-end-19 text-2xs text-center">RL</p>
+      <p className="col-start-11 col-end-12 row-start-18 row-end-19 text-2xs text-center"><GoDash size={13} /></p>
+      <p className="col-start-12 col-end-17 row-start-18 row-end-19 text-2xs pl-1">[PD, OS, AI]</p>
+      <p className="col-start-16 col-end-18 row-start-18 row-end-19 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-18 col-end-19 row-start-18 row-end-19 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-19 col-end-21 row-start-18 row-end-19 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-21 col-end-22 row-start-18 row-end-19 text-2xs flex justify-center"><GoDash size={13} /></p>
+
+      <p className="col-start-2 col-end-3 row-start-19 row-end-20 text-2xs">1</p>
+      <p className="col-start-3 col-end-10 row-start-19 row-end-20 text-2xs">A-Pod</p>
+      <p className="col-start-9 col-end-11 row-start-19 row-end-20 text-2xs text-center">LL</p>
+      <p className="col-start-11 col-end-12 row-start-19 row-end-20 text-2xs text-center"><GoDash size={13} /></p>
+      <p className="col-start-12 col-end-17 row-start-19 row-end-20 text-2xs pl-1">[PD, OS, AI]</p>
+      <p className="col-start-16 col-end-18 row-start-19 row-end-20 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-18 col-end-19 row-start-19 row-end-20 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-19 col-end-21 row-start-19 row-end-20 text-2xs flex justify-center"><GoDash size={13} /></p>
+      <p className="col-start-21 col-end-22 row-start-19 row-end-20 text-2xs flex justify-center"><GoDash size={13} /></p>
+
+      <p className="col-start-2 col-end-23 row-start-25 row-end-26 text-2xs">Ammo: [AMS] 72, [Machine Gun] 100</p>
+      <span className="col-start-1 col-end-23 row-start-27 border-b-2 border-black mx-1"/>
+      <p className="col-start-3 col-end-16 row-start-28 row-end-29 text-xs"><span className="font-bold">BV:</span>{" "}<span className="text-red-700">608 :setBV!!</span></p>
+      <img src={MechDataImage} alt="sailboat lookin' thing" className="col-start-18 col-end-20 row-start-28 row-end-30 mt-1"/>
     </div>
   );
 };
