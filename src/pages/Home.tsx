@@ -1,11 +1,11 @@
 //import//
 
-import { CreateRecordSheet } from "../components/CreateRecordSheet";
+import { MechRecordSheet } from "../components/MechRecordSheet";
 
 export const Home: React.FC = () => {
   return (
     <div className="flex justify-end">
-      <CreateRecordSheet />
+      <MechRecordSheet />
     </div>
   );
 };
