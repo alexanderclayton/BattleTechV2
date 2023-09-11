@@ -1,14 +1,11 @@
 //import//
 import { useState } from "react";
+import { db } from "../firebase/firebaseConfig";
+import { doc, updateDoc } from "firebase/firestore";
+import { ModalType, CriticalHitTableType } from "../types/types";
 import DamageTransferDiagram from "../assets/DamageTransferDiagram.jpg";
 import { BiCircle } from "react-icons/bi";
 import { GoPlusCircle } from "react-icons/go";
-
-type ModalType = { leftArm: boolean; leftTorso: boolean; leftLeg: boolean; head: boolean; centerTorso: boolean; rightArm: boolean; rightTorso: boolean; rightLeg: boolean;
-};
-
-type CriticalHitTableType = { one?: string; two?: string; three?: string; four?: string; five?: string; six?: string; seven?: string; eight?: string; nine?: string; ten?: string; eleven?: string; twelve?: string;
-};
 
 export const CreateCriticalHitTable: React.FC = () => {
   const [modal, setModal] = useState<ModalType>({ leftArm: false, leftTorso: false, leftLeg: false, head: false, centerTorso: false, rightArm: false, rightTorso: false, rightLeg: false });
@@ -45,10 +42,14 @@ export const CreateCriticalHitTable: React.FC = () => {
   };
 
   const saveModal = (name: string): void => {
-    setModal((prev) => ({
-      ...prev,
-      [name]: false,
-    }));
+    const valueArray = getValue(name)
+    if (valueArray) {
+      saveCriticalHitData(name, valueArray)
+      setModal((prev) => ({
+        ...prev,
+        [name]: false,
+      }));
+    }  
   };
 
   const handleChange = (bodyPart: string, propertyName: string, e: any) => {
@@ -68,6 +69,33 @@ export const CreateCriticalHitTable: React.FC = () => {
       return value;
     }
   };
+
+  const saveCriticalHitData = async (bodyPart: string, value: CriticalHitTableType) => {
+    try {
+      const updatedData = {
+        [`${bodyPart}One`]: value.one,
+        [`${bodyPart}Two`]: value.two,
+        [`${bodyPart}Three`]: value.three,
+        [`${bodyPart}Four`]: value.four,
+        [`${bodyPart}Five`]: value.five,
+        [`${bodyPart}Six`]: value.six,
+      }
+      if (value.seven !== undefined) {
+        updatedData[`${bodyPart}Seven`] = value.seven
+        updatedData[`${bodyPart}Eight`] = value.eight
+        updatedData[`${bodyPart}Nine`] = value.nine
+        updatedData[`${bodyPart}Ten`] = value.ten
+        updatedData[`${bodyPart}Eleven`] = value.eleven
+        updatedData[`${bodyPart}Twelve`] = value.twelve
+      }
+      await updateDoc(doc(db, 'mechs', 'mech'), updatedData)
+    } catch (error) {
+      console.error('error saving data', error);
+    }
+  };
+  
+  
+  
 
   const getSetter = (bodyPart: string) => {
     switch (bodyPart) {

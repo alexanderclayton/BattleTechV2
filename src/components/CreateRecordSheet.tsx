@@ -7,9 +7,8 @@ import { CreateCriticalHitTable } from './CreateCriticalHitTable'
 //unused imports//
 import Atlas from '../assets/AtlasCardImage.png'
 import ArmorDiagram from '../assets/ArmorDiagram.jpg'
-import { CriticalHitTable } from './CriticalHitTable'
 import InternalStructureDiagram from '../assets/InternalStructureDiagram.jpg'
-import { HeatData } from './HeatData'
+import { CreateHeatData } from './CreateHeatData'
 import HeatScale from '../assets/HeatScale.jpg'
 
 
@@ -54,7 +53,7 @@ export const CreateRecordSheet: React.FC = () => {
           className="col-start-45 col-end-61 row-start-46 row-end-67"
         />
         <div className="col-start-45 col-end-61 row-start-67 row-end-89">
-          <HeatData />
+          <CreateHeatData />
         </div>
         <img
           src={HeatScale}

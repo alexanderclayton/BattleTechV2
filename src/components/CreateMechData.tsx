@@ -1,44 +1,11 @@
 //import//
 import { useState } from "react";
+import { db } from "../firebase/firebaseConfig";
+import { doc, setDoc } from "firebase/firestore";
+import { MechDataType, WeaponType, WeaponsEquipmentInventoryType } from "../types/types";
 import MechDataImage from "../assets/MechDataImage.jpg";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { GoDash, GoPlusCircle } from "react-icons/go";
-
-type MechDataType = {
-  type: string;
-  walking: number;
-  running: number;
-  jumping: string;
-  tonnage: number;
-  techBase: string;
-  rulesLevel: string;
-  role: string;
-  ammo: string
-  bv: number
-};
-
-type WeaponsEquipmentInventoryType = {
-  qty: number;
-  type: string;
-  loc: string;
-  ht: number;
-  dmg: string;
-  min: number;
-  sht: number;
-  med: number;
-  lng: number;
-};
-
-type WeaponType = {
-  one: boolean;
-  two: boolean;
-  three: boolean;
-  four: boolean;
-  five: boolean;
-  six: boolean;
-  seven: boolean;
-  eight: boolean;
-}
 
 export const CreateMechData: React.FC = () => {
   const [mechModal, setMechModal] = useState<boolean>(false);
@@ -76,6 +43,7 @@ export const CreateMechData: React.FC = () => {
   }
 
   const saveModal: React.MouseEventHandler<HTMLButtonElement> = (): void => {
+    saveMechData()
     setMechModal(false);
   };
 
@@ -116,6 +84,25 @@ export const CreateMechData: React.FC = () => {
     const value = getValue(weapon)
     if (value) {
       return value;
+    }
+  }
+
+  const saveMechData = async () => {
+    try {
+      await setDoc(doc(db, 'mechs', 'mech'), {
+        type: mechData.type,
+        walking: mechData.walking,
+        running: mechData.running,
+        jumping: mechData.jumping,
+        tonnage: mechData.tonnage,
+        techBase: mechData.techBase,
+        rulesLevel: mechData.rulesLevel,
+        role: mechData.role,
+        ammo: mechData.ammo,
+        bv: mechData.bv,
+      })
+    } catch (error) {
+      console.error('error saving data')
     }
   }
 
