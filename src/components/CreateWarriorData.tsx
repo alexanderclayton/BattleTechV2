@@ -1,13 +1,10 @@
 //import//
 import { useState } from "react";
+import { db } from "../firebase/firebaseConfig";
+import { doc, updateDoc } from "firebase/firestore";
+import { WarriorDataType } from "../types/types";
 import { GoPlusCircle } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-
-type WarriorDataType = {
-  name: string;
-  gunnerySkill: number;
-  pilotingSkill: number;
-};
 
 export const CreateWarriorData: React.FC = () => {
   const [modal, setModal] = useState<boolean>(false);
@@ -26,6 +23,7 @@ export const CreateWarriorData: React.FC = () => {
   };
 
   const saveModal: React.MouseEventHandler<HTMLButtonElement> = (): void => {
+    saveWarriorData()
     setModal(false);
   };
 
@@ -43,6 +41,18 @@ export const CreateWarriorData: React.FC = () => {
       [name]: type === "string" ? "" : 0,
     }));
   };
+
+  const saveWarriorData = async () => {
+    try {
+      await updateDoc(doc(db, 'mechs', 'mech'), {
+        name: warriorData.name,
+        gunnerySkill: warriorData.gunnerySkill,
+        pilotingSkill: warriorData.pilotingSkill,
+      })
+    } catch (error) {
+      console.error('error saving data')
+    }
+  }
 
   return (
     <div className="grid grid-cols-16 grid-rows-9 w-full h-full">
