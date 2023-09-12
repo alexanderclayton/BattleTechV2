@@ -8,8 +8,12 @@ interface ReadMechDataProps {
 }
 
 export const ReadMechData: React.FC<ReadMechDataProps> = ({ mechData }) => {
-  const wei = mechData[0].weaponsEquipmentInventory
-  
+  let wei: (string | number)[] = []
+
+  if (mechData[0].weaponsEquipmentInventory) {
+    wei = mechData[0].weaponsEquipmentInventory
+  }
+
   return (
     <div className="grid grid-cols-22 grid-rows-30 w-full h-full">
         <p className="col-start-1 col-end-10 row-start-1 row-end-3 bg-black text-white text-sm text-center z-10 rounded-full pt-[2px]">

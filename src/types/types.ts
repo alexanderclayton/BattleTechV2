@@ -170,3 +170,8 @@ export type CriticalHitTableType = {
 export interface IHeatData {
   heatSinks: number;
 }
+
+export type AllMechsCardData = {
+  id: string
+  type: string
+}

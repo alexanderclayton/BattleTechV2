@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
             </a>
           </li>
           <li>
-            <a href="/" className="px-4">
+            <a href="/all-mechs" className="px-4">
               Mechs
             </a>
           </li>
