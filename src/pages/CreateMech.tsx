@@ -1,5 +1,5 @@
 //import//
-import { CreateRecordSheet } from "../components/CreateRecordSheet"
+import { CreateRecordSheet } from "../components/CreateMech/CreateRecordSheet"
 
 export const CreateMech: React.FC = () => {
   return (

@@ -1,9 +1,9 @@
 //import//
 import { useState } from "react";
-import { db } from "../firebase/firebaseConfig";
+import { db } from "../../firebase/firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
-import { ModalType, CriticalHitTableType } from "../types/types";
-import DamageTransferDiagram from "../assets/DamageTransferDiagram.jpg";
+import { ModalType, CriticalHitTableType } from "../../types/types";
+import DamageTransferDiagram from "../../assets/DamageTransferDiagram.jpg";
 import { BiCircle } from "react-icons/bi";
 import { GoPlusCircle } from "react-icons/go";
 

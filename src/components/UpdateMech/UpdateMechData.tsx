@@ -1,28 +1,29 @@
 //import//
 import { useState } from "react";
-import { db } from "../firebase/firebaseConfig";
+import { db } from "../../firebase/firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
-import { MechDataType, WeaponType, WeaponsEquipmentInventoryType } from "../types/types";
-import MechDataImage from "../assets/MechDataImage.jpg";
+import { MechDataType, WeaponType, WeaponsEquipmentInventoryType, IMechData } from "../../types/types";
+import MechDataImage from "../../assets/MechDataImage.jpg";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { GoDash, GoPlusCircle } from "react-icons/go";
 
-interface CreateMechDataProps {
+interface UpdateMechDataProps {
   id: string
+  mechInfo: IMechData[]
 }
 
-export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
+export const UpdateMechData: React.FC<UpdateMechDataProps> = ({ id, mechInfo }) => {
   const [mechModal, setMechModal] = useState<boolean>(false);
   const [weiModal, setWeiModal] = useState<WeaponType>({ one: false, two: false, three: false, four: false, five: false, six: false, seven: false, eight: false });
-  const [mechData, setMechData] = useState<MechDataType>({ type: "", walking: 0, running: 0, jumping: "", tonnage: 0, techBase: "", rulesLevel: "", role: "", ammo: "", bv: 0 });
-  const [weiOne, setWeiOne] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiTwo, setWeiTwo] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiThree, setWeiThree] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiFour, setWeiFour] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiFive, setWeiFive] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiSix, setWeiSix] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiSeven, setWeiSeven] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiEight, setWeiEight] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
+  const [mechData, setMechData] = useState<MechDataType>({ type: mechInfo[0].type, walking: mechInfo[0].walking, running: mechInfo[0].running, jumping: mechInfo[0].jumping, tonnage: mechInfo[0].tonnage, techBase: mechInfo[0].techBase, rulesLevel: mechInfo[0].rulesLevel, role: mechInfo[0].role, ammo: mechInfo[0].ammo, bv: mechInfo[0].bv });
+  const [weiOne, setWeiOne] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiOne?.qty || 0, type: mechInfo[0].weiOne?.type || "", loc: mechInfo[0].weiOne?.loc || "", ht: mechInfo[0].weiOne?.ht || 0, dmg: mechInfo[0].weiOne?.dmg || "", min: mechInfo[0].weiOne?.min || 0, sht: mechInfo[0].weiOne?.sht || 0, med: mechInfo[0].weiOne?.med || 0, lng: mechInfo[0].weiOne?.lng || 0 });
+  const [weiTwo, setWeiTwo] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiTwo?.qty || 0, type: mechInfo[0].weiTwo?.type || "", loc: mechInfo[0].weiTwo?.loc || "", ht: mechInfo[0].weiTwo?.ht || 0, dmg: mechInfo[0].weiTwo?.dmg || "", min: mechInfo[0].weiTwo?.min || 0, sht: mechInfo[0].weiTwo?.sht || 0, med: mechInfo[0].weiTwo?.med || 0, lng: mechInfo[0].weiTwo?.lng || 0 });
+  const [weiThree, setWeiThree] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiThree?.qty || 0, type: mechInfo[0].weiThree?.type || "", loc: mechInfo[0].weiThree?.loc || "", ht: mechInfo[0].weiThree?.ht || 0, dmg: mechInfo[0].weiThree?.dmg || "", min: mechInfo[0].weiThree?.min || 0, sht: mechInfo[0].weiThree?.sht || 0, med: mechInfo[0].weiThree?.med || 0, lng: mechInfo[0].weiThree?.lng || 0 });
+  const [weiFour, setWeiFour] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiFour?.qty || 0, type: mechInfo[0].weiFour?.type || "", loc: mechInfo[0].weiFour?.loc || "", ht: mechInfo[0].weiFour?.ht || 0, dmg: mechInfo[0].weiFour?.dmg || "", min: mechInfo[0].weiFour?.min || 0, sht: mechInfo[0].weiFour?.sht || 0, med: mechInfo[0].weiFour?.med || 0, lng: mechInfo[0].weiFour?.lng || 0 });
+  const [weiFive, setWeiFive] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiFive?.qty || 0, type: mechInfo[0].weiFive?.type || "", loc: mechInfo[0].weiFive?.loc || "", ht: mechInfo[0].weiFive?.ht || 0, dmg: mechInfo[0].weiFive?.dmg || "", min: mechInfo[0].weiFive?.min || 0, sht: mechInfo[0].weiFive?.sht || 0, med: mechInfo[0].weiFive?.med || 0, lng: mechInfo[0].weiFive?.lng || 0 });
+  const [weiSix, setWeiSix] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiSix?.qty || 0, type: mechInfo[0].weiSix?.type || "", loc: mechInfo[0].weiSix?.loc || "", ht: mechInfo[0].weiSix?.ht || 0, dmg: mechInfo[0].weiSix?.dmg ||  "", min: mechInfo[0].weiSix?.min || 0, sht: mechInfo[0].weiSix?.sht || 0, med: mechInfo[0].weiSix?.med || 0, lng: mechInfo[0].weiSix?.lng || 0 });
+  const [weiSeven, setWeiSeven] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiSeven?.qty || 0, type: mechInfo[0].weiSeven?.type || "", loc: mechInfo[0].weiSeven?.loc || "", ht: mechInfo[0].weiSeven?.ht || 0, dmg: mechInfo[0].weiSeven?.dmg || "", min: mechInfo[0].weiSeven?.min || 0, sht: mechInfo[0].weiSeven?.sht || 0, med: mechInfo[0].weiSeven?.med || 0, lng: mechInfo[0].weiSeven?.lng || 0 });
+  const [weiEight, setWeiEight] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiEight?.qty || 0, type: mechInfo[0].weiEight?.type || "", loc: mechInfo[0].weiEight?.loc || "", ht: mechInfo[0].weiEight?.ht || 0, dmg: mechInfo[0].weiEight?.dmg || "", min: mechInfo[0].weiEight?.min || 0, sht: mechInfo[0].weiEight?.sht || 0, med: mechInfo[0].weiEight?.med || 0, lng: mechInfo[0].weiEight?.lng || 0 });
 
   const toggleModal: React.MouseEventHandler<SVGSVGElement> = (): void => {
     setMechModal(!mechModal);
@@ -284,7 +285,7 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
                   type="number"
                   value={mechData.jumping}
                   name="jumping"
-                  placeholder={mechData.jumping === "" ? "0" : mechData.jumping.toString()}
+                  placeholder={mechData.jumping === 0 ? "0" : mechData.jumping.toString()}
                   onChange={handleChange}
                   className="border-2 border-black ml-2 pl-2 w-[26%]"
                 />
@@ -420,7 +421,7 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
         Jumping:
       </p>
       <p className="col-start-7 col-end-12 row-start-8 row-end-9 text-2xs flex">
-        {mechData.jumping === "" ? (
+        {mechData.jumping === 0 ? (
           ""
         ) : (
           <>

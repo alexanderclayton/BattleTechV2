@@ -1,5 +1,5 @@
 //import//
-import { IWarriorData } from "../types/types"
+import { IWarriorData } from "../../types/types"
 
 interface WarriorDataProps {
     mechData: IWarriorData[]

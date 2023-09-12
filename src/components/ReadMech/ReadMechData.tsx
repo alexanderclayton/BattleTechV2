@@ -1,14 +1,13 @@
 //import//
-import { IMechData } from "../types/types"
+import { IMechData } from "../../types/types"
 import { GoDash } from "react-icons/go"
-import MechDataImage from '../assets/MechDataImage.jpg'
+import MechDataImage from '../../assets/MechDataImage.jpg'
 
 interface ReadMechDataProps {
     mechData: IMechData[]
 }
 
 export const ReadMechData: React.FC<ReadMechDataProps> = ({ mechData }) => {
-  const wei: any[] = []
 
   return (
     <div className="grid grid-cols-22 grid-rows-30 w-full h-full">
