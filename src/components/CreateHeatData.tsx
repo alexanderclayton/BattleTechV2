@@ -6,7 +6,11 @@ import { BiCircle } from "react-icons/bi"
 import { GoPlusCircle } from 'react-icons/go'
 import { AiOutlineMinusCircle } from 'react-icons/ai'
 
-export const CreateHeatData: React.FC = () => {
+interface CreateHeatDataProps {
+  id: string
+}
+
+export const CreateHeatData: React.FC<CreateHeatDataProps> = ({ id }) => {
   const [heatSinksA, setHeatSinksA] = useState<number>(0)
   const [heatSinksB, setHeatSinksB] = useState<number>(0)
 
@@ -30,7 +34,7 @@ export const CreateHeatData: React.FC = () => {
 
   const saveHeatData = async () => {
     try {
-        await updateDoc(doc(db, 'mechs', 'mech'), {
+        await updateDoc(doc(db, 'mechs', id), {
             heatSinks: heatSinksA
         })
     } catch (error) {

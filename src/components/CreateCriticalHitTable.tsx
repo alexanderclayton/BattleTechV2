@@ -7,7 +7,11 @@ import DamageTransferDiagram from "../assets/DamageTransferDiagram.jpg";
 import { BiCircle } from "react-icons/bi";
 import { GoPlusCircle } from "react-icons/go";
 
-export const CreateCriticalHitTable: React.FC = () => {
+interface CreateCriticalHitTableProps {
+  id: string
+}
+
+export const CreateCriticalHitTable: React.FC<CreateCriticalHitTableProps> = ({ id }) => {
   const [modal, setModal] = useState<ModalType>({ leftArm: false, leftTorso: false, leftLeg: false, head: false, centerTorso: false, rightArm: false, rightTorso: false, rightLeg: false });
   const [input, setInput] = useState<CriticalHitTableType>({ one: "input", two: "input", three: "input", four: "input", five: "input", six: "input", seven: "input", eight: "input", nine: "input", ten: "input", eleven: "input", twelve: "input" });
   const [leftArm, setLeftArm] = useState<CriticalHitTableType>({ one: "", two: "", three: "", four: "", five: "", six: "", seven: "", eight: "", nine: "", ten: "", eleven: "", twelve: "" });
@@ -88,7 +92,7 @@ export const CreateCriticalHitTable: React.FC = () => {
         updatedData[`${bodyPart}Eleven`] = value.eleven
         updatedData[`${bodyPart}Twelve`] = value.twelve
       }
-      await updateDoc(doc(db, 'mechs', 'mech'), updatedData)
+      await updateDoc(doc(db, 'mechs', id), updatedData)
     } catch (error) {
       console.error('error saving data', error);
     }

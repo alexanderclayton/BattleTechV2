@@ -1,18 +1,23 @@
 //import//
+import { useParams } from 'react-router-dom'
 import Logo from '../assets/BattletechBlackLogo.jpg'
 import { CreateMechData } from './CreateMechData'
 import { BiCopyright } from 'react-icons/bi'
 import { CreateWarriorData } from './CreateWarriorData'
 import { CreateCriticalHitTable } from './CreateCriticalHitTable'
+import { CreateHeatData } from './CreateHeatData'
 //unused imports//
 import Atlas from '../assets/AtlasCardImage.png'
 import ArmorDiagram from '../assets/ArmorDiagram.jpg'
 import InternalStructureDiagram from '../assets/InternalStructureDiagram.jpg'
-import { CreateHeatData } from './CreateHeatData'
 import HeatScale from '../assets/HeatScale.jpg'
 
 
 export const CreateRecordSheet: React.FC = () => {
+  const { id } = useParams()
+  if(!id) {
+    <div>Loading...</div>
+  } else {
   return (
     <div className="flex justify-between w-full">
       <div>
@@ -23,10 +28,10 @@ export const CreateRecordSheet: React.FC = () => {
           <img src={Logo} alt="battletech logo" className="h-full" />
         </div>
         <div className="col-start-6 col-end-28 row-start-11 row-end-41">
-          <CreateMechData />
+          <CreateMechData id={id}/>
         </div>
         <div className="col-start-29 col-end-45 row-start-11 row-end-20">
-          <CreateWarriorData />
+          <CreateWarriorData id={id}/>
         </div>
         <img
           src={Atlas}
@@ -42,7 +47,7 @@ export const CreateRecordSheet: React.FC = () => {
           className="col-start-45 col-end-65 row-start-5 row-end-42 w-[95%]"
         />
         <div className="col-start-6 col-end-44 row-start-42 row-end-89">
-          <CreateCriticalHitTable />
+          <CreateCriticalHitTable id={id}/>
         </div>
         <p className="col-start-45 col-end-61 row-start-42 row-end-44 bg-black text-white text-sm text-center z-10 rounded-full pt-[2px]">
           INTERNAL STRUCTURE DIAGRAM
@@ -53,7 +58,7 @@ export const CreateRecordSheet: React.FC = () => {
           className="col-start-45 col-end-61 row-start-46 row-end-67"
         />
         <div className="col-start-45 col-end-61 row-start-67 row-end-89">
-          <CreateHeatData />
+          <CreateHeatData id={id}/>
         </div>
         <img
           src={HeatScale}
@@ -72,4 +77,5 @@ export const CreateRecordSheet: React.FC = () => {
       </div>
     </div>
   )
+}
 }

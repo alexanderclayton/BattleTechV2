@@ -6,7 +6,11 @@ import { WarriorDataType } from "../types/types";
 import { GoPlusCircle } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
-export const CreateWarriorData: React.FC = () => {
+interface CreateWarriorDataProps {
+  id: string
+}
+
+export const CreateWarriorData: React.FC<CreateWarriorDataProps> = ({ id }) => {
   const [modal, setModal] = useState<boolean>(false);
   const [warriorData, setWarriorData] = useState<WarriorDataType>({
     name: "",
@@ -44,7 +48,7 @@ export const CreateWarriorData: React.FC = () => {
 
   const saveWarriorData = async () => {
     try {
-      await updateDoc(doc(db, 'mechs', 'mech'), {
+      await updateDoc(doc(db, 'mechs', id), {
         name: warriorData.name,
         gunnerySkill: warriorData.gunnerySkill,
         pilotingSkill: warriorData.pilotingSkill,

@@ -1,13 +1,17 @@
 //import//
 import { useState } from "react";
 import { db } from "../firebase/firebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { MechDataType, WeaponType, WeaponsEquipmentInventoryType } from "../types/types";
 import MechDataImage from "../assets/MechDataImage.jpg";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { GoDash, GoPlusCircle } from "react-icons/go";
 
-export const CreateMechData: React.FC = () => {
+interface CreateMechDataProps {
+  id: string
+}
+
+export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
   const [mechModal, setMechModal] = useState<boolean>(false);
   const [weiModal, setWeiModal] = useState<WeaponType>({ one: false, two: false, three: false, four: false, five: false, six: false, seven: false, eight: false });
   const [mechData, setMechData] = useState<MechDataType>({ type: "", walking: 0, running: 0, jumping: "", tonnage: 0, techBase: "", rulesLevel: "", role: "", ammo: "", bv: 0 });
@@ -89,7 +93,7 @@ export const CreateMechData: React.FC = () => {
 
   const saveMechData = async () => {
     try {
-      await setDoc(doc(db, 'mechs', 'mech'), {
+      await updateDoc(doc(db, 'mechs', id), {
         type: mechData.type,
         walking: mechData.walking,
         running: mechData.running,

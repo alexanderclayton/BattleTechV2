@@ -1,5 +1,6 @@
 //import
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 import { db } from '../firebase/firebaseConfig';
 import { collection, doc, getDoc } from 'firebase/firestore';
 import Logo from "../assets/BattletechBlackLogo.jpg";
@@ -13,9 +14,10 @@ import { ReadWarriorData } from "./ReadWarriorData";
 import { ReadCriticalHitTable } from "./ReadCriticalHitTable";
 import { ReadHeatData } from "./ReadHeatData";
 
-export const MechRecordSheet: React.FC = () => {
+export const ReadRecordSheet: React.FC = () => {
   const [mechData, setMechData] = useState<any[]>([])
   const [loading, setLoading] = useState<boolean>(true)
+  const { id } = useParams()
 
   const fetchDocument = async (documentId: string) => {
     try {
@@ -34,21 +36,23 @@ export const MechRecordSheet: React.FC = () => {
         return null
     }
   }
-
-  useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const specificDocument = await fetchDocument('PcgSoVsmJdpPgTX2Eg5d')
-            if (specificDocument) {
-                setMechData([specificDocument])
-                setLoading(false)
-            }
-        } catch (error) {
-            console.error('error fetching data')
-        }
-    }
-    fetchData()
-  }, [])
+  
+  if (id) {
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const specificDocument = await fetchDocument(id)
+              if (specificDocument) {
+                  setMechData([specificDocument])
+                  setLoading(false)
+              }
+          } catch (error) {
+              console.error('error fetching data')
+          }
+      }
+      fetchData()
+    }, [])
+  }
 
   if (loading) {
     return (
