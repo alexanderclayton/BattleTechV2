@@ -8,11 +8,6 @@ interface ReadMechDataProps {
 }
 
 export const ReadMechData: React.FC<ReadMechDataProps> = ({ mechData }) => {
-  let wei: (string | number)[] = []
-
-  if (mechData[0].weaponsEquipmentInventory) {
-    wei = mechData[0].weaponsEquipmentInventory
-  }
 
   return (
     <div className="grid grid-cols-22 grid-rows-30 w-full h-full">
@@ -44,7 +39,7 @@ export const ReadMechData: React.FC<ReadMechDataProps> = ({ mechData }) => {
             <p className="text-xs font-bold">Weapons & Equipment Inventory</p>
         </div>
         <p className="col-start-1 col-end-3 row-start-11 row-end-12 text-2xs font-bold text-right">Qty</p>
-        <p className="col-start-2 col-end-3 row-start-13 row-end-14 text-2xs">{wei[0] ? wei[0] : ""}</p>
+        <p className="col-start-2 col-end-3 row-start-13 row-end-14 text-2xs">{mechData[0].weiOne ? mechData[0].weiOne.qty : ""}</p>
         <p className="col-start-2 col-end-3 row-start-14 row-end-15 text-2xs">{wei[9] ? wei[9] : ""}</p>
         <p className="col-start-2 col-end-3 row-start-15 row-end-16 text-2xs">{wei[18] ? wei[18] : ""}</p>
         <p className="col-start-2 col-end-3 row-start-16 row-end-17 text-2xs">{wei[27] ? wei[27] : ""}</p>
@@ -52,7 +47,7 @@ export const ReadMechData: React.FC<ReadMechDataProps> = ({ mechData }) => {
         <p className="col-start-2 col-end-3 row-start-18 row-end-19 text-2xs">{wei[45] ? wei[45] : ""}</p>
         <p className="col-start-2 col-end-3 row-start-19 row-end-20 text-2xs">{wei[54] ? wei[54] : ""}</p>
         <p className="col-start-3 col-end-5 row-start-11 row-end-12 text-2xs font-bold text-right">Type</p>
-        <p className="col-start-3 col-end-10 row-start-13 row-end-14 text-2xs">{wei[1] ? wei[1] : ""}</p>
+        <p className="col-start-3 col-end-10 row-start-13 row-end-14 text-2xs">{mechData[0].weiOne ? mechData[0].weiOne.type : ""}</p>
         <p className="col-start-3 col-end-10 row-start-14 row-end-15 text-2xs">{wei[10] ? wei[10] : ""}</p>
         <p className="col-start-3 col-end-10 row-start-15 row-end-16 text-2xs">{wei[19] ? wei[19] : ""}</p>
         <p className="col-start-3 col-end-10 row-start-16 row-end-17 text-2xs">{wei[28] ? wei[28] : ""}</p>
@@ -60,7 +55,7 @@ export const ReadMechData: React.FC<ReadMechDataProps> = ({ mechData }) => {
         <p className="col-start-3 col-end-10 row-start-18 row-end-19 text-2xs">{wei[46] ? wei[46] : ""}</p>
         <p className="col-start-3 col-end-10 row-start-19 row-end-20 text-2xs">{wei[55] ? wei[55] : ""}</p>
         <p className="col-start-9 col-end-11 row-start-11 row-end-12 text-2xs font-bold text-center">Loc</p>
-        <p className="col-start-9 col-end-11 row-start-13 row-end-14 text-2xs text-center">{wei[2] ? wei[2] : ""}</p>
+        <p className="col-start-9 col-end-11 row-start-13 row-end-14 text-2xs text-center">{mechData[0].weiOne ? mechData[0].weiOne.loc : ""}</p>
         <p className="col-start-9 col-end-11 row-start-14 row-end-15 text-2xs text-center">{wei[11] ? wei[11] : ""}</p>
         <p className="col-start-9 col-end-11 row-start-15 row-end-16 text-2xs text-center">{wei[20] ? wei[20] : ""}</p>
         <p className="col-start-9 col-end-11 row-start-16 row-end-17 text-2xs text-center">{wei[29] ? wei[29] : ""}</p>
@@ -76,7 +71,7 @@ export const ReadMechData: React.FC<ReadMechDataProps> = ({ mechData }) => {
         <p className="col-start-11 col-end-12 row-start-18 row-end-19 text-2xs text-center">{wei[48] !== null && wei[48] !== undefined ? (wei[48] === 0 ? <GoDash size={13} /> : wei[48]) : ""}</p>
         <p className="col-start-11 col-end-12 row-start-19 row-end-20 text-2xs text-center">{wei[57] !== null && wei[57] !== undefined ? (wei[57] === 0 ? <GoDash size={13} /> : wei[57]) : ""}</p>
         <p className="col-start-12 col-end-17 row-start-11 row-end-12 text-2xs font-bold pl-2">Dmg</p>
-        <p className="col-start-12 col-end-17 row-start-13 row-end-14 text-2xs pl-1">{wei[4] ? wei[4] : ""}</p>
+        <p className="col-start-12 col-end-17 row-start-13 row-end-14 text-2xs pl-1">{mechData[0].weiOne ? mechData[0].weiOne.dmg : ""}</p>
         <p className="col-start-12 col-end-17 row-start-14 row-end-15 text-2xs pl-1">{wei[13] ? wei[13] : ""}</p>
         <p className="col-start-12 col-end-17 row-start-15 row-end-16 text-2xs pl-1">{wei[22] ? wei[22] : ""}</p>
         <p className="col-start-12 col-end-17 row-start-16 row-end-17 text-2xs pl-1">{wei[31] ? wei[31] : ""}</p>
