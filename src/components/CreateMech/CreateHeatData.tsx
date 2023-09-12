@@ -5,13 +5,15 @@ import { doc, updateDoc } from "firebase/firestore";
 import { BiCircle } from "react-icons/bi";
 import { GoPlusCircle } from "react-icons/go";
 import { AiOutlineMinusCircle } from "react-icons/ai";
+import { IHeatData } from "../../types/types";
 
 interface CreateHeatDataProps {
   id: string;
+  mechInfo: IHeatData[]
 }
 
-export const CreateHeatData: React.FC<CreateHeatDataProps> = ({ id }) => {
-  const [heatSinksA, setHeatSinksA] = useState<number>(0);
+export const CreateHeatData: React.FC<CreateHeatDataProps> = ({ id, mechInfo }) => {
+  const [heatSinksA, setHeatSinksA] = useState<number>(mechInfo[0].heatSinks || 0);
 
   const addHeatSink = () => {
     setHeatSinksA((prevHeatSinksA) => {
