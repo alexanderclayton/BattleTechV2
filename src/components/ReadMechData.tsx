@@ -8,6 +8,7 @@ interface ReadMechDataProps {
 }
 
 export const ReadMechData: React.FC<ReadMechDataProps> = ({ mechData }) => {
+  const wei: any[] = []
 
   return (
     <div className="grid grid-cols-22 grid-rows-30 w-full h-full">
@@ -40,76 +41,76 @@ export const ReadMechData: React.FC<ReadMechDataProps> = ({ mechData }) => {
         </div>
         <p className="col-start-1 col-end-3 row-start-11 row-end-12 text-2xs font-bold text-right">Qty</p>
         <p className="col-start-2 col-end-3 row-start-13 row-end-14 text-2xs">{mechData[0].weiOne ? mechData[0].weiOne.qty : ""}</p>
-        <p className="col-start-2 col-end-3 row-start-14 row-end-15 text-2xs">{wei[9] ? wei[9] : ""}</p>
-        <p className="col-start-2 col-end-3 row-start-15 row-end-16 text-2xs">{wei[18] ? wei[18] : ""}</p>
-        <p className="col-start-2 col-end-3 row-start-16 row-end-17 text-2xs">{wei[27] ? wei[27] : ""}</p>
-        <p className="col-start-2 col-end-3 row-start-17 row-end-18 text-2xs">{wei[36] ? wei[36] : ""}</p>
-        <p className="col-start-2 col-end-3 row-start-18 row-end-19 text-2xs">{wei[45] ? wei[45] : ""}</p>
-        <p className="col-start-2 col-end-3 row-start-19 row-end-20 text-2xs">{wei[54] ? wei[54] : ""}</p>
+        <p className="col-start-2 col-end-3 row-start-14 row-end-15 text-2xs">{mechData[0].weiTwo ? mechData[0].weiTwo.qty : ""}</p>
+        <p className="col-start-2 col-end-3 row-start-15 row-end-16 text-2xs">{mechData[0].weiThree ? mechData[0].weiThree.qty : ""}</p>
+        <p className="col-start-2 col-end-3 row-start-16 row-end-17 text-2xs">{mechData[0].weiFour ? mechData[0].weiFour.qty : ""}</p>
+        <p className="col-start-2 col-end-3 row-start-17 row-end-18 text-2xs">{mechData[0].weiFive ? mechData[0].weiFive.qty : ""}</p>
+        <p className="col-start-2 col-end-3 row-start-18 row-end-19 text-2xs">{mechData[0].weiSix ? mechData[0].weiSix.qty : ""}</p>
+        <p className="col-start-2 col-end-3 row-start-19 row-end-20 text-2xs">{mechData[0].weiSeven ? mechData[0].weiSeven.qty : ""}</p>
         <p className="col-start-3 col-end-5 row-start-11 row-end-12 text-2xs font-bold text-right">Type</p>
         <p className="col-start-3 col-end-10 row-start-13 row-end-14 text-2xs">{mechData[0].weiOne ? mechData[0].weiOne.type : ""}</p>
-        <p className="col-start-3 col-end-10 row-start-14 row-end-15 text-2xs">{wei[10] ? wei[10] : ""}</p>
-        <p className="col-start-3 col-end-10 row-start-15 row-end-16 text-2xs">{wei[19] ? wei[19] : ""}</p>
-        <p className="col-start-3 col-end-10 row-start-16 row-end-17 text-2xs">{wei[28] ? wei[28] : ""}</p>
-        <p className="col-start-3 col-end-10 row-start-17 row-end-18 text-2xs">{wei[37] ? wei[37] : ""}</p>
-        <p className="col-start-3 col-end-10 row-start-18 row-end-19 text-2xs">{wei[46] ? wei[46] : ""}</p>
-        <p className="col-start-3 col-end-10 row-start-19 row-end-20 text-2xs">{wei[55] ? wei[55] : ""}</p>
+        <p className="col-start-3 col-end-10 row-start-14 row-end-15 text-2xs">{mechData[0].weiTwo ? mechData[0].weiTwo.type : ""}</p>
+        <p className="col-start-3 col-end-10 row-start-15 row-end-16 text-2xs">{mechData[0].weiThree ? mechData[0].weiThree.type : ""}</p>
+        <p className="col-start-3 col-end-10 row-start-16 row-end-17 text-2xs">{mechData[0].weiFour ? mechData[0].weiFour.type : ""}</p>
+        <p className="col-start-3 col-end-10 row-start-17 row-end-18 text-2xs">{mechData[0].weiFive ? mechData[0].weiFive.type : ""}</p>
+        <p className="col-start-3 col-end-10 row-start-18 row-end-19 text-2xs">{mechData[0].weiSix ? mechData[0].weiSix.type : ""}</p>
+        <p className="col-start-3 col-end-10 row-start-19 row-end-20 text-2xs">{mechData[0].weiSeven ? mechData[0].weiSeven.type : ""}</p>
         <p className="col-start-9 col-end-11 row-start-11 row-end-12 text-2xs font-bold text-center">Loc</p>
         <p className="col-start-9 col-end-11 row-start-13 row-end-14 text-2xs text-center">{mechData[0].weiOne ? mechData[0].weiOne.loc : ""}</p>
-        <p className="col-start-9 col-end-11 row-start-14 row-end-15 text-2xs text-center">{wei[11] ? wei[11] : ""}</p>
-        <p className="col-start-9 col-end-11 row-start-15 row-end-16 text-2xs text-center">{wei[20] ? wei[20] : ""}</p>
-        <p className="col-start-9 col-end-11 row-start-16 row-end-17 text-2xs text-center">{wei[29] ? wei[29] : ""}</p>
-        <p className="col-start-9 col-end-11 row-start-17 row-end-18 text-2xs text-center">{wei[38] ? wei[38] : ""}</p>
-        <p className="col-start-9 col-end-11 row-start-18 row-end-19 text-2xs text-center">{wei[47] ? wei[47] : ""}</p>
-        <p className="col-start-9 col-end-11 row-start-19 row-end-20 text-2xs text-center">{wei[56] ? wei[56] : ""}</p>
+        <p className="col-start-9 col-end-11 row-start-14 row-end-15 text-2xs text-center">{mechData[0].weiTwo ? mechData[0].weiTwo.loc : ""}</p>
+        <p className="col-start-9 col-end-11 row-start-15 row-end-16 text-2xs text-center">{mechData[0].weiThree ? mechData[0].weiThree.loc : ""}</p>
+        <p className="col-start-9 col-end-11 row-start-16 row-end-17 text-2xs text-center">{mechData[0].weiFour ? mechData[0].weiFour.loc : ""}</p>
+        <p className="col-start-9 col-end-11 row-start-17 row-end-18 text-2xs text-center">{mechData[0].weiFive ? mechData[0].weiFive.loc : ""}</p>
+        <p className="col-start-9 col-end-11 row-start-18 row-end-19 text-2xs text-center">{mechData[0].weiSix ? mechData[0].weiSix.loc : ""}</p>
+        <p className="col-start-9 col-end-11 row-start-19 row-end-20 text-2xs text-center">{mechData[0].weiSeven ? mechData[0].weiSeven.loc : ""}</p>
         <p className="col-start-11 col-end-12 row-start-11 row-end-12 text-2xs font-bold text-right">Ht</p>
-        <p className="col-start-11 col-end-12 row-start-13 row-end-14 text-2xs text-center">{wei[3] !== null && wei[3] !== undefined ? (wei[3] === 0 ? <GoDash size={13} /> : wei[3]) : ""}</p>
-        <p className="col-start-11 col-end-12 row-start-14 row-end-15 text-2xs text-center">{wei[12] !== null && wei[12] !== undefined ? (wei[12] === 0 ? <GoDash size={13} /> : wei[12]) : ""}</p>
-        <p className="col-start-11 col-end-12 row-start-15 row-end-16 text-2xs text-center">{wei[21] !== null && wei[21] !== undefined ? (wei[21] === 0 ? <GoDash size={13} /> : wei[21]) : ""}</p>
-        <p className="col-start-11 col-end-12 row-start-16 row-end-17 text-2xs text-center">{wei[30] !== null && wei[30] !== undefined ? (wei[30] === 0 ? <GoDash size={13} /> : wei[30]) : ""}</p>
-        <p className="col-start-11 col-end-12 row-start-17 row-end-18 text-2xs text-center">{wei[39] !== null && wei[39] !== undefined ? (wei[39] === 0 ? <GoDash size={13} /> : wei[39]) : ""}</p>
-        <p className="col-start-11 col-end-12 row-start-18 row-end-19 text-2xs text-center">{wei[48] !== null && wei[48] !== undefined ? (wei[48] === 0 ? <GoDash size={13} /> : wei[48]) : ""}</p>
-        <p className="col-start-11 col-end-12 row-start-19 row-end-20 text-2xs text-center">{wei[57] !== null && wei[57] !== undefined ? (wei[57] === 0 ? <GoDash size={13} /> : wei[57]) : ""}</p>
+        <p className="col-start-11 col-end-12 row-start-13 row-end-14 text-2xs text-center">{mechData[0].weiOne !== null && mechData[0].weiOne !== undefined ? (mechData[0].weiOne.ht === 0 ? <GoDash size={13} /> : mechData[0].weiOne.ht) : ""}</p>
+        <p className="col-start-11 col-end-12 row-start-14 row-end-15 text-2xs text-center">{mechData[0].weiTwo !== null && mechData[0].weiTwo !== undefined ? (mechData[0].weiTwo.ht === 0 ? <GoDash size={13} /> : mechData[0].weiTwo.ht) : ""}</p>
+        <p className="col-start-11 col-end-12 row-start-15 row-end-16 text-2xs text-center">{mechData[0].weiThree !== null && mechData[0].weiThree !== undefined ? (mechData[0].weiThree.ht === 0 ? <GoDash size={13} /> : mechData[0].weiThree.ht) : ""}</p>
+        <p className="col-start-11 col-end-12 row-start-16 row-end-17 text-2xs text-center">{mechData[0].weiFour !== null && mechData[0].weiFour !== undefined ? (mechData[0].weiFour.ht === 0 ? <GoDash size={13} /> : mechData[0].weiFour.ht) : ""}</p>
+        <p className="col-start-11 col-end-12 row-start-17 row-end-18 text-2xs text-center">{mechData[0].weiFive !== null && mechData[0].weiFive !== undefined ? (mechData[0].weiFive.ht === 0 ? <GoDash size={13} /> : mechData[0].weiFive.ht) : ""}</p>
+        <p className="col-start-11 col-end-12 row-start-18 row-end-19 text-2xs text-center">{mechData[0].weiSix !== null && mechData[0].weiSix !== undefined ? (mechData[0].weiSix.ht === 0 ? <GoDash size={13} /> : mechData[0].weiSix.ht) : ""}</p>
+        <p className="col-start-11 col-end-12 row-start-19 row-end-20 text-2xs text-center">{mechData[0].weiSeven !== null && mechData[0].weiSeven !== undefined ? (mechData[0].weiSeven.ht === 0 ? <GoDash size={13} /> : mechData[0].weiSeven.ht) : ""}</p>
         <p className="col-start-12 col-end-17 row-start-11 row-end-12 text-2xs font-bold pl-2">Dmg</p>
         <p className="col-start-12 col-end-17 row-start-13 row-end-14 text-2xs pl-1">{mechData[0].weiOne ? mechData[0].weiOne.dmg : ""}</p>
-        <p className="col-start-12 col-end-17 row-start-14 row-end-15 text-2xs pl-1">{wei[13] ? wei[13] : ""}</p>
-        <p className="col-start-12 col-end-17 row-start-15 row-end-16 text-2xs pl-1">{wei[22] ? wei[22] : ""}</p>
-        <p className="col-start-12 col-end-17 row-start-16 row-end-17 text-2xs pl-1">{wei[31] ? wei[31] : ""}</p>
-        <p className="col-start-12 col-end-17 row-start-17 row-end-18 text-2xs pl-1">{wei[40] ? wei[40] : ""}</p>
-        <p className="col-start-12 col-end-17 row-start-18 row-end-19 text-2xs pl-1">{wei[49] ? wei[49] : ""}</p>
-        <p className="col-start-12 col-end-17 row-start-19 row-end-20 text-2xs pl-1">{wei[58] ? wei[58] : ""}</p>
+        <p className="col-start-12 col-end-17 row-start-14 row-end-15 text-2xs pl-1">{mechData[0].weiTwo ? mechData[0].weiTwo.dmg : ""}</p>
+        <p className="col-start-12 col-end-17 row-start-15 row-end-16 text-2xs pl-1">{mechData[0].weiThree ? mechData[0].weiThree.dmg : ""}</p>
+        <p className="col-start-12 col-end-17 row-start-16 row-end-17 text-2xs pl-1">{mechData[0].weiFour ? mechData[0].weiFour.dmg : ""}</p>
+        <p className="col-start-12 col-end-17 row-start-17 row-end-18 text-2xs pl-1">{mechData[0].weiFive ? mechData[0].weiFive.dmg : ""}</p>
+        <p className="col-start-12 col-end-17 row-start-18 row-end-19 text-2xs pl-1">{mechData[0].weiSix ? mechData[0].weiSix.dmg : ""}</p>
+        <p className="col-start-12 col-end-17 row-start-19 row-end-20 text-2xs pl-1">{mechData[0].weiSeven ? mechData[0].weiSeven.dmg : ""}</p>
         <p className="col-start-16 col-end-18 row-start-11 row-end-12 text-2xs font-bold text-right">Min</p>
-        <p className="col-start-16 col-end-18 row-start-13 row-end-14 text-2xs flex justify-center">{wei[5] !== null && wei[5] !== undefined ? (wei[5] === 0 ? <GoDash size={13} /> : wei[5]) : ""}</p>
-        <p className="col-start-16 col-end-18 row-start-14 row-end-15 text-2xs flex justify-center">{wei[14] !== null && wei[14] !== undefined ? (wei[14] === 0 ? <GoDash size={13} /> : wei[14]) : ""}</p>
-        <p className="col-start-16 col-end-18 row-start-15 row-end-16 text-2xs flex justify-center">{wei[23] !== null && wei[23] !== undefined ? (wei[23] === 0 ? <GoDash size={13} /> : wei[23]) : ""}</p>
-        <p className="col-start-16 col-end-18 row-start-16 row-end-17 text-2xs flex justify-center">{wei[32] !== null && wei[32] !== undefined ? (wei[32] === 0 ? <GoDash size={13} /> : wei[32]) : ""}</p>
-        <p className="col-start-16 col-end-18 row-start-17 row-end-18 text-2xs flex justify-center">{wei[41] !== null && wei[41] !== undefined ? (wei[41] === 0 ? <GoDash size={13} /> : wei[41]) : ""}</p>
-        <p className="col-start-16 col-end-18 row-start-18 row-end-19 text-2xs flex justify-center">{wei[50] !== null && wei[50] !== undefined ? (wei[50] === 0 ? <GoDash size={13} /> : wei[50]) : ""}</p>
-        <p className="col-start-16 col-end-18 row-start-19 row-end-20 text-2xs flex justify-center">{wei[59] !== null && wei[59] !== undefined ? (wei[59] === 0 ? <GoDash size={13} /> : wei[59]) : ""}</p>
+        <p className="col-start-16 col-end-18 row-start-13 row-end-14 text-2xs flex justify-center">{mechData[0].weiOne !== null && mechData[0].weiOne !== undefined ? (mechData[0].weiOne.min === 0 ? <GoDash size={13} /> : mechData[0].weiOne.min) : ""}</p>
+        <p className="col-start-16 col-end-18 row-start-14 row-end-15 text-2xs flex justify-center">{mechData[0].weiTwo !== null && mechData[0].weiTwo !== undefined ? (mechData[0].weiTwo.min === 0 ? <GoDash size={13} /> : mechData[0].weiTwo.min) : ""}</p>
+        <p className="col-start-16 col-end-18 row-start-15 row-end-16 text-2xs flex justify-center">{mechData[0].weiThree !== null && mechData[0].weiThree !== undefined ? (mechData[0].weiThree.min === 0 ? <GoDash size={13} /> : mechData[0].weiThree.min) : ""}</p>
+        <p className="col-start-16 col-end-18 row-start-16 row-end-17 text-2xs flex justify-center">{mechData[0].weiFour !== null && mechData[0].weiFour !== undefined ? (mechData[0].weiFour.min === 0 ? <GoDash size={13} /> : mechData[0].weiFour.min) : ""}</p>
+        <p className="col-start-16 col-end-18 row-start-17 row-end-18 text-2xs flex justify-center">{mechData[0].weiFive !== null && mechData[0].weiFive !== undefined ? (mechData[0].weiFive.min === 0 ? <GoDash size={13} /> : mechData[0].weiFive.min) : ""}</p>
+        <p className="col-start-16 col-end-18 row-start-18 row-end-19 text-2xs flex justify-center">{mechData[0].weiSix !== null && mechData[0].weiSix !== undefined ? (mechData[0].weiSix.min === 0 ? <GoDash size={13} /> : mechData[0].weiSix.min) : ""}</p>
+        <p className="col-start-16 col-end-18 row-start-19 row-end-20 text-2xs flex justify-center">{mechData[0].weiSeven !== null && mechData[0].weiSeven !== undefined ? (mechData[0].weiSeven.min === 0 ? <GoDash size={13} /> : mechData[0].weiSeven.min) : ""}</p>
         <p className="col-start-18 col-end-19 row-start-11 row-end-12 text-2xs font-bold pl-[2px]">Sht</p>
-        <p className="col-start-18 col-end-19 row-start-13 row-end-14 text-2xs flex justify-center">{wei[6] !== null && wei[6] !== undefined ? (wei[6] === 0 ? <GoDash size={13} /> : wei[6]) : ""}</p>
-        <p className="col-start-18 col-end-19 row-start-14 row-end-15 text-2xs flex justify-center">{wei[15] !== null && wei[15] !== undefined ? (wei[15] === 0 ? <GoDash size={13} /> : wei[15]) : ""}</p>
-        <p className="col-start-18 col-end-19 row-start-15 row-end-16 text-2xs flex justify-center">{wei[24] !== null && wei[24] !== undefined ? (wei[24] === 0 ? <GoDash size={13} /> : wei[24]) : ""}</p>
-        <p className="col-start-18 col-end-19 row-start-16 row-end-17 text-2xs flex justify-center">{wei[33] !== null && wei[33] !== undefined ? (wei[33] === 0 ? <GoDash size={13} /> : wei[33]) : ""}</p>
-        <p className="col-start-18 col-end-19 row-start-17 row-end-18 text-2xs flex justify-center">{wei[42] !== null && wei[42] !== undefined ? (wei[42] === 0 ? <GoDash size={13} /> : wei[42]) : ""}</p>
-        <p className="col-start-18 col-end-19 row-start-18 row-end-19 text-2xs flex justify-center">{wei[51] !== null && wei[51] !== undefined ? (wei[51] === 0 ? <GoDash size={13} /> : wei[51]) : ""}</p>
-        <p className="col-start-18 col-end-19 row-start-19 row-end-20 text-2xs flex justify-center">{wei[60] !== null && wei[60] !== undefined ? (wei[60] === 0 ? <GoDash size={13} /> : wei[60]) : ""}</p>
+        <p className="col-start-18 col-end-19 row-start-13 row-end-14 text-2xs flex justify-center">{mechData[0].weiOne !== null && mechData[0].weiOne !== undefined ? (mechData[0].weiOne.sht === 0 ? <GoDash size={13} /> : mechData[0].weiOne.sht) : ""}</p>
+        <p className="col-start-18 col-end-19 row-start-14 row-end-15 text-2xs flex justify-center">{mechData[0].weiTwo !== null && mechData[0].weiTwo !== undefined ? (mechData[0].weiTwo.sht === 0 ? <GoDash size={13} /> : mechData[0].weiTwo.sht) : ""}</p>
+        <p className="col-start-18 col-end-19 row-start-15 row-end-16 text-2xs flex justify-center">{mechData[0].weiThree !== null && mechData[0].weiThree !== undefined ? (mechData[0].weiThree.sht === 0 ? <GoDash size={13} /> : mechData[0].weiThree.sht) : ""}</p>
+        <p className="col-start-18 col-end-19 row-start-16 row-end-17 text-2xs flex justify-center">{mechData[0].weiFour !== null && mechData[0].weiFour !== undefined ? (mechData[0].weiFour.sht === 0 ? <GoDash size={13} /> : mechData[0].weiFour.sht) : ""}</p>
+        <p className="col-start-18 col-end-19 row-start-17 row-end-18 text-2xs flex justify-center">{mechData[0].weiFive !== null && mechData[0].weiFive !== undefined ? (mechData[0].weiFive.sht === 0 ? <GoDash size={13} /> : mechData[0].weiFive.sht) : ""}</p>
+        <p className="col-start-18 col-end-19 row-start-18 row-end-19 text-2xs flex justify-center">{mechData[0].weiSix !== null && mechData[0].weiSix !== undefined ? (mechData[0].weiSix.sht === 0 ? <GoDash size={13} /> : mechData[0].weiSix.sht) : ""}</p>
+        <p className="col-start-18 col-end-19 row-start-19 row-end-20 text-2xs flex justify-center">{mechData[0].weiSeven !== null && mechData[0].weiSeven !== undefined ? (mechData[0].weiSeven.sht === 0 ? <GoDash size={13} /> : mechData[0].weiSeven.sht) : ""}</p>
         <p className="col-start-19 col-end-21 row-start-11 row-end-12 text-2xs font-bold text-right">Med</p>
-        <p className="col-start-19 col-end-21 row-start-13 row-end-14 text-2xs flex justify-center">{wei[7] !== null && wei[7] !== undefined ? (wei[7] === 0 ? <GoDash size={13} /> : wei[7]) : ""}</p>
-        <p className="col-start-19 col-end-21 row-start-14 row-end-15 text-2xs flex justify-center">{wei[16] !== null && wei[16] !== undefined ? (wei[16] === 0 ? <GoDash size={13} /> : wei[16]) : ""}</p>
-        <p className="col-start-19 col-end-21 row-start-15 row-end-16 text-2xs flex justify-center">{wei[25] !== null && wei[25] !== undefined ? (wei[25] === 0 ? <GoDash size={13} /> : wei[25]) : ""}</p>
-        <p className="col-start-19 col-end-21 row-start-16 row-end-17 text-2xs flex justify-center">{wei[34] !== null && wei[34] !== undefined ? (wei[34] === 0 ? <GoDash size={13} /> : wei[34]) : ""}</p>
-        <p className="col-start-19 col-end-21 row-start-17 row-end-18 text-2xs flex justify-center">{wei[43] !== null && wei[43] !== undefined ? (wei[43] === 0 ? <GoDash size={13} /> : wei[43]) : ""}</p>
-        <p className="col-start-19 col-end-21 row-start-18 row-end-19 text-2xs flex justify-center">{wei[52] !== null && wei[52] !== undefined ? (wei[52] === 0 ? <GoDash size={13} /> : wei[52]) : ""}</p>
-        <p className="col-start-19 col-end-21 row-start-19 row-end-20 text-2xs flex justify-center">{wei[61] !== null && wei[61] !== undefined ? (wei[61] === 0 ? <GoDash size={13} /> : wei[61]) : ""}</p>
+        <p className="col-start-19 col-end-21 row-start-13 row-end-14 text-2xs flex justify-center">{mechData[0].weiOne !== null && mechData[0].weiOne !== undefined ? (mechData[0].weiOne.med === 0 ? <GoDash size={13} /> : mechData[0].weiOne.med) : ""}</p>
+        <p className="col-start-19 col-end-21 row-start-14 row-end-15 text-2xs flex justify-center">{mechData[0].weiTwo !== null && mechData[0].weiTwo !== undefined ? (mechData[0].weiTwo.med === 0 ? <GoDash size={13} /> : mechData[0].weiTwo.med) : ""}</p>
+        <p className="col-start-19 col-end-21 row-start-15 row-end-16 text-2xs flex justify-center">{mechData[0].weiThree !== null && mechData[0].weiThree !== undefined ? (mechData[0].weiThree.med === 0 ? <GoDash size={13} /> : mechData[0].weiThree.med) : ""}</p>
+        <p className="col-start-19 col-end-21 row-start-16 row-end-17 text-2xs flex justify-center">{mechData[0].weiFour !== null && mechData[0].weiFour !== undefined ? (mechData[0].weiFour.med === 0 ? <GoDash size={13} /> : mechData[0].weiFour.med) : ""}</p>
+        <p className="col-start-19 col-end-21 row-start-17 row-end-18 text-2xs flex justify-center">{mechData[0].weiFive !== null && mechData[0].weiFive !== undefined ? (mechData[0].weiFive.med === 0 ? <GoDash size={13} /> : mechData[0].weiFive.med) : ""}</p>
+        <p className="col-start-19 col-end-21 row-start-18 row-end-19 text-2xs flex justify-center">{mechData[0].weiSix !== null && mechData[0].weiSix !== undefined ? (mechData[0].weiSix.med === 0 ? <GoDash size={13} /> : mechData[0].weiSix.med) : ""}</p>
+        <p className="col-start-19 col-end-21 row-start-19 row-end-20 text-2xs flex justify-center">{mechData[0].weiSeven !== null && mechData[0].weiSeven !== undefined ? (mechData[0].weiSeven.med === 0 ? <GoDash size={13} /> : mechData[0].weiSeven.med) : ""}</p>
         <p className="col-start-21 col-end-23 row-start-11 row-end-12 text-2xs font-bold pl-1">Lng</p>
-        <p className="col-start-21 col-end-22 row-start-13 row-end-14 text-2xs flex justify-center">{wei[8] !== null && wei[8] !== undefined ? (wei[8] === 0 ? <GoDash size={13} /> : wei[8]) : ""}</p>
-        <p className="col-start-21 col-end-22 row-start-14 row-end-15 text-2xs flex justify-center">{wei[17] !== null && wei[17] !== undefined ? (wei[17] === 0 ? <GoDash size={13} /> : wei[17]) : ""}</p>
-        <p className="col-start-21 col-end-22 row-start-15 row-end-16 text-2xs flex justify-center">{wei[26] !== null && wei[26] !== undefined ? (wei[26] === 0 ? <GoDash size={13} /> : wei[26]) : ""}</p>
-        <p className="col-start-21 col-end-22 row-start-16 row-end-17 text-2xs flex justify-center">{wei[35] !== null && wei[35] !== undefined ? (wei[35] === 0 ? <GoDash size={13} /> : wei[35]) : ""}</p>
-        <p className="col-start-21 col-end-22 row-start-17 row-end-18 text-2xs flex justify-center">{wei[44] !== null && wei[44] !== undefined ? (wei[44] === 0 ? <GoDash size={13} /> : wei[44]) : ""}</p>
-        <p className="col-start-21 col-end-22 row-start-18 row-end-19 text-2xs flex justify-center">{wei[53] !== null && wei[53] !== undefined ? (wei[53] === 0 ? <GoDash size={13} /> : wei[53]) : ""}</p>
-        <p className="col-start-21 col-end-22 row-start-19 row-end-20 text-2xs flex justify-center">{wei[62] !== null && wei[62] !== undefined ? (wei[62] === 0 ? <GoDash size={13} /> : wei[62]) : ""}</p>
+        <p className="col-start-21 col-end-22 row-start-13 row-end-14 text-2xs flex justify-center">{mechData[0].weiOne !== null && mechData[0].weiOne !== undefined ? (mechData[0].weiOne.lng === 0 ? <GoDash size={13} /> : mechData[0].weiOne.lng) : ""}</p>
+        <p className="col-start-21 col-end-22 row-start-14 row-end-15 text-2xs flex justify-center">{mechData[0].weiTwo !== null && mechData[0].weiTwo !== undefined ? (mechData[0].weiTwo.lng === 0 ? <GoDash size={13} /> : mechData[0].weiTwo.lng) : ""}</p>
+        <p className="col-start-21 col-end-22 row-start-15 row-end-16 text-2xs flex justify-center">{mechData[0].weiThree !== null && mechData[0].weiThree !== undefined ? (mechData[0].weiThree.lng === 0 ? <GoDash size={13} /> : mechData[0].weiThree.lng) : ""}</p>
+        <p className="col-start-21 col-end-22 row-start-16 row-end-17 text-2xs flex justify-center">{mechData[0].weiFour !== null && mechData[0].weiFour !== undefined ? (mechData[0].weiFour.lng === 0 ? <GoDash size={13} /> : mechData[0].weiFour.lng) : ""}</p>
+        <p className="col-start-21 col-end-22 row-start-17 row-end-18 text-2xs flex justify-center">{mechData[0].weiFive !== null && mechData[0].weiFive !== undefined ? (mechData[0].weiFive.lng === 0 ? <GoDash size={13} /> : mechData[0].weiFive.lng) : ""}</p>
+        <p className="col-start-21 col-end-22 row-start-18 row-end-19 text-2xs flex justify-center">{mechData[0].weiSix !== null && mechData[0].weiSix !== undefined ? (mechData[0].weiSix.lng === 0 ? <GoDash size={13} /> : mechData[0].weiSix.lng) : ""}</p>
+        <p className="col-start-21 col-end-22 row-start-19 row-end-20 text-2xs flex justify-center">{mechData[0].weiSeven !== null && mechData[0].weiSeven !== undefined ? (mechData[0].weiSeven.lng === 0 ? <GoDash size={13} /> : mechData[0].weiSeven.lng) : ""}</p>
         <p className="col-start-2 col-end-23 row-start-25 row-end-26 text-2xs">Ammo: {mechData[0].ammo}</p>
         <span className="col-start-1 col-end-23 row-start-27 border-b-2 border-black mx-1"/>
         <p className="col-start-3 col-end-16 row-start-28 row-end-29 text-xs"><span className="font-bold">BV:</span> {mechData[0].bv}</p>
