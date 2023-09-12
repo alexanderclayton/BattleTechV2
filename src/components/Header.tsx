@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
             </a>
           </li>
           <li>
-            <a href="/" className="px-4">
+            <a href="/about" className="px-4">
               About
             </a>
           </li>

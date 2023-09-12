@@ -1,6 +1,6 @@
 //import//
-import { ICriticalHitTable } from '../types/types'
-import DamageTransferDiagram from '../assets/DamageTransferDiagram.jpg'
+import { ICriticalHitTable } from '../../types/types'
+import DamageTransferDiagram from '../../assets/DamageTransferDiagram.jpg'
 import { BiCircle } from "react-icons/bi"
 
 interface ReadCriticalHitTableProps {

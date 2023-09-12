@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { AllMechsCardData } from "../types/types";
+import { CreateNewMech } from "../components/CreateMech/CreateNewMech";
 
 export const AllMechs: React.FC = () => {
   const [mechs, setMechs] = useState<AllMechsCardData[]>([]);
@@ -41,6 +42,7 @@ export const AllMechs: React.FC = () => {
           </div>
         ))}
       </div>
+      <CreateNewMech />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 //import//
-import { IHeatData } from '../types/types'
+import { IHeatData } from '../../types/types'
 import { BiCircle } from "react-icons/bi"
 
 interface ReadHeatDataProps {

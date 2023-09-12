@@ -1,65 +1,23 @@
-//import
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
-import { db } from '../firebase/firebaseConfig';
-import { collection, doc, getDoc } from 'firebase/firestore';
-import Logo from "../assets/BattletechBlackLogo.jpg";
-import Atlas from "../assets/AtlasCardImage.png";
-import ArmorDiagram from "../assets/ArmorDiagram.jpg";
-import InternalStructureDiagram from "../assets/InternalStructureDiagram.jpg";
-import HeatScale from "../assets/HeatScale.jpg";
-import { BiCopyright } from "react-icons/bi";
-import { ReadMechData } from "./ReadMechData";
-import { ReadWarriorData } from "./ReadWarriorData";
-import { ReadCriticalHitTable } from "./ReadCriticalHitTable";
-import { ReadHeatData } from "./ReadHeatData";
+//import//
+import { useParams } from 'react-router-dom'
+import Logo from '../../assets/BattletechBlackLogo.jpg'
+import { CreateMechData } from './CreateMechData'
+import { BiCopyright } from 'react-icons/bi'
+import { CreateWarriorData } from './CreateWarriorData'
+import { CreateCriticalHitTable } from './CreateCriticalHitTable'
+import { CreateHeatData } from './CreateHeatData'
+//unused imports//
+import Atlas from '../../assets/AtlasCardImage.png'
+import ArmorDiagram from '../../assets/ArmorDiagram.jpg'
+import InternalStructureDiagram from '../../assets/InternalStructureDiagram.jpg'
+import HeatScale from '../../assets/HeatScale.jpg'
 
-export const ReadRecordSheet: React.FC = () => {
-  const [mechData, setMechData] = useState<any[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
+
+export const CreateRecordSheet: React.FC = () => {
   const { id } = useParams()
-
-  const fetchDocument = async (documentId: string) => {
-    try {
-        const mechCollection = collection(db, 'mechs')
-        const docRef = doc(mechCollection, documentId)
-        const docSnapshot = await getDoc(docRef)
-
-        if (docSnapshot.exists()) {
-            return docSnapshot.data()
-        } else {
-            console.log('document does not exist')
-            return null
-        }
-    } catch (error) {
-        console.error('error fetching document')
-        return null
-    }
-  }
-  
-  if (id) {
-    useEffect(() => {
-      const fetchData = async () => {
-          try {
-              const specificDocument = await fetchDocument(id)
-              if (specificDocument) {
-                  setMechData([specificDocument])
-                  setLoading(false)
-              }
-          } catch (error) {
-              console.error('error fetching data')
-          }
-      }
-      fetchData()
-    }, [])
-  }
-
-  if (loading) {
-    return (
-        <div>Loading...</div>
-    )
+  if(!id) {
+    <div>Loading...</div>
   } else {
-
   return (
     <div className="flex justify-between w-full">
       <div>
@@ -70,10 +28,10 @@ export const ReadRecordSheet: React.FC = () => {
           <img src={Logo} alt="battletech logo" className="h-full" />
         </div>
         <div className="col-start-6 col-end-28 row-start-11 row-end-41">
-          <ReadMechData mechData={mechData} />
+          <CreateMechData id={id}/>
         </div>
         <div className="col-start-29 col-end-45 row-start-11 row-end-20">
-          <ReadWarriorData mechData={mechData} />
+          <CreateWarriorData id={id}/>
         </div>
         <img
           src={Atlas}
@@ -89,7 +47,7 @@ export const ReadRecordSheet: React.FC = () => {
           className="col-start-45 col-end-65 row-start-5 row-end-42 w-[95%]"
         />
         <div className="col-start-6 col-end-44 row-start-42 row-end-89">
-          <ReadCriticalHitTable mechData={mechData}/>
+          <CreateCriticalHitTable id={id}/>
         </div>
         <p className="col-start-45 col-end-61 row-start-42 row-end-44 bg-black text-white text-sm text-center z-10 rounded-full pt-[2px]">
           INTERNAL STRUCTURE DIAGRAM
@@ -100,7 +58,7 @@ export const ReadRecordSheet: React.FC = () => {
           className="col-start-45 col-end-61 row-start-46 row-end-67"
         />
         <div className="col-start-45 col-end-61 row-start-67 row-end-89">
-          <ReadHeatData mechData={mechData} />
+          <CreateHeatData id={id}/>
         </div>
         <img
           src={HeatScale}
@@ -118,6 +76,6 @@ export const ReadRecordSheet: React.FC = () => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 }

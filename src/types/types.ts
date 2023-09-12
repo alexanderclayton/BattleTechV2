@@ -8,7 +8,7 @@ export interface IMechData {
   rulesLevel: string;
   role: string;
   ammo: string;
-  bv: string;
+  bv: number;
   weiOne?: WeaponsEquipmentInventoryType
   weiTwo?: WeaponsEquipmentInventoryType
   weiThree?: WeaponsEquipmentInventoryType
@@ -23,7 +23,7 @@ export type MechDataType = {
   type: string;
   walking: number;
   running: number;
-  jumping: string;
+  jumping: number;
   tonnage: number;
   techBase: string;
   rulesLevel: string;
