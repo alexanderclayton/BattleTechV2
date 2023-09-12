@@ -2,20 +2,21 @@
 import { useState } from "react";
 import { db } from "../../firebase/firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
-import { WarriorDataType } from "../../types/types";
+import { IWarriorData, WarriorDataType } from "../../types/types";
 import { GoPlusCircle } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
 interface CreateWarriorDataProps {
   id: string
+  mechInfo: IWarriorData[]
 }
 
-export const CreateWarriorData: React.FC<CreateWarriorDataProps> = ({ id }) => {
+export const CreateWarriorData: React.FC<CreateWarriorDataProps> = ({ id, mechInfo }) => {
   const [modal, setModal] = useState<boolean>(false);
   const [warriorData, setWarriorData] = useState<WarriorDataType>({
-    name: "",
-    gunnerySkill: 0,
-    pilotingSkill: 0,
+    name: mechInfo[0].name || "",
+    gunnerySkill: mechInfo[0].gunnerySkill || 0,
+    pilotingSkill: mechInfo[0].pilotingSkill || 0,
   });
 
   const toggleModal: React.MouseEventHandler<SVGSVGElement> = (): void => {

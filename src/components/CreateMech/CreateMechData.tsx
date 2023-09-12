@@ -2,27 +2,30 @@
 import { useState } from "react";
 import { db } from "../../firebase/firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
-import { MechDataType, WeaponType, WeaponsEquipmentInventoryType } from "../../types/types";
+import { IMechData, MechDataType, WeaponType, WeaponsEquipmentInventoryType } from "../../types/types";
 import MechDataImage from "../../assets/MechDataImage.jpg";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { GoDash, GoPlusCircle } from "react-icons/go";
+import { WeiModal } from "../Modals/WeiModal";
+import { MechDataModal } from "../Modals/MechDataModal";
 
 interface CreateMechDataProps {
   id: string
+  mechInfo: IMechData[]
 }
 
-export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
+export const CreateMechData: React.FC<CreateMechDataProps> = ({ id, mechInfo }) => {
   const [mechModal, setMechModal] = useState<boolean>(false);
   const [weiModal, setWeiModal] = useState<WeaponType>({ one: false, two: false, three: false, four: false, five: false, six: false, seven: false, eight: false });
-  const [mechData, setMechData] = useState<MechDataType>({ type: "", walking: 0, running: 0, jumping: 0, tonnage: 0, techBase: "", rulesLevel: "", role: "", ammo: "", bv: 0 });
-  const [weiOne, setWeiOne] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiTwo, setWeiTwo] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiThree, setWeiThree] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiFour, setWeiFour] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiFive, setWeiFive] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiSix, setWeiSix] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiSeven, setWeiSeven] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
-  const [weiEight, setWeiEight] = useState<WeaponsEquipmentInventoryType>({ qty: 0, type: "", loc: "", ht: 0, dmg: "", min: 0, sht: 0, med: 0, lng: 0 });
+  const [mechData, setMechData] = useState<MechDataType>({ type: mechInfo[0].type || "", walking: mechInfo[0].walking || 0, running: mechInfo[0].running || 0, jumping: mechInfo[0].jumping || 0, tonnage: mechInfo[0].tonnage || 0, techBase: mechInfo[0].techBase || "", rulesLevel: mechInfo[0].rulesLevel || "", role: mechInfo[0].role || "", ammo: mechInfo[0].ammo || "", bv: mechInfo[0].bv || 0 });
+  const [weiOne, setWeiOne] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiOne?.qty || 0, type: mechInfo[0].weiOne?.type || "", loc: mechInfo[0].weiOne?.loc || "", ht: mechInfo[0].weiOne?.ht || 0, dmg: mechInfo[0].weiOne?.dmg || "", min: mechInfo[0].weiOne?.min || 0, sht: mechInfo[0].weiOne?.sht || 0, med: mechInfo[0].weiOne?.med || 0, lng: mechInfo[0].weiOne?.lng || 0 });
+  const [weiTwo, setWeiTwo] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiTwo?.qty || 0, type: mechInfo[0].weiTwo?.type || "", loc: mechInfo[0].weiTwo?.loc || "", ht: mechInfo[0].weiTwo?.ht || 0, dmg: mechInfo[0].weiTwo?.dmg || "", min: mechInfo[0].weiTwo?.min || 0, sht: mechInfo[0].weiTwo?.sht || 0, med: mechInfo[0].weiTwo?.med || 0, lng: mechInfo[0].weiTwo?.lng || 0 });
+  const [weiThree, setWeiThree] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiThree?.qty || 0, type: mechInfo[0].weiThree?.type || "", loc: mechInfo[0].weiThree?.loc || "", ht: mechInfo[0].weiThree?.ht || 0, dmg: mechInfo[0].weiThree?.dmg || "", min: mechInfo[0].weiThree?.min || 0, sht: mechInfo[0].weiThree?.sht || 0, med: mechInfo[0].weiThree?.med || 0, lng: mechInfo[0].weiThree?.lng || 0 });
+  const [weiFour, setWeiFour] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiFour?.qty || 0, type: mechInfo[0].weiFour?.type || "", loc: mechInfo[0].weiFour?.loc || "", ht: mechInfo[0].weiFour?.ht || 0, dmg: mechInfo[0].weiFour?.dmg || "", min: mechInfo[0].weiFour?.min || 0, sht: mechInfo[0].weiFour?.sht || 0, med: mechInfo[0].weiFour?.med || 0, lng: mechInfo[0].weiFour?.lng || 0 });
+  const [weiFive, setWeiFive] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiFive?.qty || 0, type: mechInfo[0].weiFive?.type || "", loc: mechInfo[0].weiFive?.loc || "", ht: mechInfo[0].weiFive?.ht || 0, dmg: mechInfo[0].weiFive?.dmg || "", min: mechInfo[0].weiFive?.min || 0, sht: mechInfo[0].weiFive?.sht || 0, med: mechInfo[0].weiFive?.med || 0, lng: mechInfo[0].weiFive?.lng || 0 });
+  const [weiSix, setWeiSix] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiSix?.qty || 0, type: mechInfo[0].weiSix?.type || "", loc: mechInfo[0].weiSix?.loc || "", ht: mechInfo[0].weiSix?.ht || 0, dmg: mechInfo[0].weiSix?.dmg || "", min: mechInfo[0].weiSix?.min || 0, sht: mechInfo[0].weiSix?.sht || 0, med: mechInfo[0].weiSix?.med || 0, lng: mechInfo[0].weiSix?.lng || 0 });
+  const [weiSeven, setWeiSeven] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiSeven?.qty || 0, type: mechInfo[0].weiSeven?.type || "", loc: mechInfo[0].weiSeven?.loc || "", ht: mechInfo[0].weiSeven?.ht || 0, dmg: mechInfo[0].weiSeven?.dmg || "", min: mechInfo[0].weiSeven?.min || 0, sht: mechInfo[0].weiSeven?.sht || 0, med: mechInfo[0].weiSeven?.med || 0, lng: mechInfo[0].weiSeven?.lng || 0 });
+  const [weiEight, setWeiEight] = useState<WeaponsEquipmentInventoryType>({ qty: mechInfo[0].weiEight?.qty || 0, type: mechInfo[0].weiEight?.type || "", loc: mechInfo[0].weiEight?.loc || "", ht: mechInfo[0].weiEight?.ht || 0, dmg: mechInfo[0].weiEight?.dmg || "", min: mechInfo[0].weiEight?.min || 0, sht: mechInfo[0].weiEight?.sht || 0, med: mechInfo[0].weiEight?.med || 0, lng: mechInfo[0].weiEight?.lng || 0 });
 
   const toggleModal: React.MouseEventHandler<SVGSVGElement> = (): void => {
     setMechModal(!mechModal);
@@ -39,17 +42,17 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
     setMechModal(false);
   };
 
+  const saveModal: React.MouseEventHandler<HTMLButtonElement> = (): void => {
+    saveMechData()
+    setMechModal(false);
+  };
+
   const closeWeiModal = (weapon: string): void => {
     setWeiModal((prev) => ({
       ...prev,
       [weapon]: false
     }))
   }
-
-  const saveModal: React.MouseEventHandler<HTMLButtonElement> = (): void => {
-    saveMechData()
-    setMechModal(false);
-  };
 
   const saveWeiModal = (weapon: string): void => {
     const weiData: WeaponsEquipmentInventoryType = getValue(weapon)
@@ -69,13 +72,6 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
     }));
   };
 
-  const handleDelete = (name: string, type: "string" | "number") => {
-    setMechData((prev) => ({
-      ...prev,
-      [name]: type === "string" ? "" : 0,
-    }));
-  };
-  
   const handleWeiChange = (weapon: string, propertyName: string, e: any) => {
     e.preventDefault()
     const setter = getSetter(weapon)
@@ -95,13 +91,13 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
     }
   }
 
-  const handleWeiValue = (weapon: string) => {
-    const value = getValue(weapon)
-    if (value) {
-      return value;
-    }
-  }
-
+  const handleDelete = (name: string, type: "string" | "number") => {
+    setMechData((prev) => ({
+      ...prev,
+      [name]: type === "string" ? "" : 0,
+    }));
+  };
+  
   const saveMechData = async () => {
     try {
       await updateDoc(doc(db, 'mechs', id), {
@@ -132,24 +128,10 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
     }
   }
 
-  const getSetter = (weapon: string) => {
-    switch (weapon) {
-      case "one":
-        return { setter: setWeiOne, name: "setWeiOne"};
-      case "two":
-        return { setter: setWeiTwo, name: "setWeiTwo"};
-      case "three":
-        return { setter: setWeiThree, name: "setWeiThree"};
-      case "four":
-        return { setter: setWeiFour, name: "setWeiFour"};
-      case "five":
-        return { setter: setWeiFive, name: "setWeiFive"};
-      case "six":
-        return { setter: setWeiSix, name: "setWeiSix"};
-      case "seven":
-        return { setter: setWeiSeven, name: "setWeiSeven"};
-      case "eight":
-        return { setter: setWeiEight, name: "setWeiEight"};
+  const handleWeiValue = (weapon: string) => {
+    const value = getValue(weapon)
+    if (value) {
+      return value;
     }
   }
 
@@ -186,6 +168,27 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
     }
   }
 
+  const getSetter = (weapon: string) => {
+    switch (weapon) {
+      case "one":
+        return { setter: setWeiOne, name: "setWeiOne"};
+      case "two":
+        return { setter: setWeiTwo, name: "setWeiTwo"};
+      case "three":
+        return { setter: setWeiThree, name: "setWeiThree"};
+      case "four":
+        return { setter: setWeiFour, name: "setWeiFour"};
+      case "five":
+        return { setter: setWeiFive, name: "setWeiFive"};
+      case "six":
+        return { setter: setWeiSix, name: "setWeiSix"};
+      case "seven":
+        return { setter: setWeiSeven, name: "setWeiSeven"};
+      case "eight":
+        return { setter: setWeiEight, name: "setWeiEight"};
+    }
+  }
+
   return (
     <div className="grid grid-cols-22 grid-rows-30 w-full h-full">
       <p className="col-start-1 col-end-11 row-start-1 row-end-3 bg-black text-white text-sm text-center z-10 rounded-full flex justify-center items-center">
@@ -198,172 +201,7 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
       <div className="col-start-1 col-end-23 row-start-1 row-end-31"></div>
       <span className="col-start-1 col-end-23 row-start-2 row-end-31 border-2 border-black rounded-record"></span>
 
-      {mechModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="absolute inset-0 bg-black opacity-70"></div>
-          <div className="bg-white p-4 rounded-lg z-50 flex flex-col">
-            <p className="text-2xl font-bold text-center w-full bg-blue-300 rounded-md py-2">
-              Mech Data:
-            </p>
-            {/* Modal content goes here */}
-            <div className="w-full flex pt-4">
-              <label htmlFor="" className="font-bold">
-                Mech Type
-              </label>
-              <input
-                type="text"
-                value={mechData.type}
-                name="type"
-                placeholder={mechData.type}
-                onChange={handleChange}
-                className="border-2 border-black ml-2 pl-2 w-[80%]"
-              />
-            </div>
-            <div className="flex pt-2">
-              <div className="flex w-[50%]">
-                <label htmlFor="" className="font-bold">
-                  Walking
-                </label>
-                <input
-                  type="number"
-                  value={mechData.walking}
-                  name="walking"
-                  placeholder={mechData.walking.toString()}
-                  onChange={handleChange}
-                  className="border-2 border-black ml-3 pl-2 w-[25%]"
-                />
-              </div>
-              <div className="flex w-[50%]">
-                <label htmlFor="" className="font-bold">
-                  Tonnage
-                </label>
-                <input
-                  type="number"
-                  value={mechData.tonnage}
-                  name="tonnage"
-                  placeholder={mechData.tonnage.toString()}
-                  onChange={handleChange}
-                  className="border-2 border-black ml-2 pl-2 w-[25%]"
-                />
-              </div>
-            </div>
-            <div className="flex pt-2">
-              <div className="flex w-[50%]">
-                <label htmlFor="" className="font-bold">
-                  Running
-                </label>
-                <input
-                  type="number"
-                  value={mechData.running}
-                  name="running"
-                  placeholder={mechData.running.toString()}
-                  onChange={handleChange}
-                  className="border-2 border-black ml-3 pl-2 w-[25%]"
-                />
-              </div>
-              <div className="flex w-[50%]">
-                <label htmlFor="" className="font-bold">
-                  Tech Base
-                </label>
-                <input
-                  type="text"
-                  value={mechData.techBase}
-                  name="techBase"
-                  placeholder={mechData.techBase}
-                  onChange={handleChange}
-                  className="border-2 border-black ml-2 pl-2 w-[70%]"
-                />
-              </div>
-            </div>
-            <div className="flex pt-2">
-              <div className="flex w-[50%]">
-                <label htmlFor="" className="font-bold">
-                  Jumping
-                </label>
-                <input
-                  type="number"
-                  value={mechData.jumping}
-                  name="jumping"
-                  placeholder={mechData.jumping === 0 ? "0" : mechData.jumping.toString()}
-                  onChange={handleChange}
-                  className="border-2 border-black ml-2 pl-2 w-[26%]"
-                />
-              </div>
-              <div className="flex w-[50%]">
-                <label htmlFor="" className="font-bold">
-                  Rules Level
-                </label>
-                <input
-                  type="text"
-                  value={mechData.rulesLevel}
-                  name="rulesLevel"
-                  placeholder={mechData.rulesLevel}
-                  onChange={handleChange}
-                  className="border-2 border-black ml-2 pl-2 w-[66%]"
-                />
-              </div>
-            </div>
-            <div className="flex justify-end pt-2">
-              <div className="flex w-[50%]">
-                <label htmlFor="" className="font-bold">
-                  Role
-                </label>
-                <input
-                  type="text"
-                  value={mechData.role}
-                  name="role"
-                  placeholder={mechData.role}
-                  onChange={handleChange}
-                  className="border-2 border-black ml-2 pl-2 w-[84%]"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col items-start pt-2 w-[75%]">
-              <div className="w-full">
-                <label htmlFor="" className="font-bold">
-                  Ammo
-                </label>
-                <input
-                  type="text"
-                  value={mechData.ammo}
-                  name="ammo"
-                  placeholder={mechData.ammo}
-                  onChange={handleChange}
-                  className="border-2 border-black ml-2 pl-2 w-[84%]"
-                />
-              </div>
-              <div className="w-full pt-2">
-                <label htmlFor="" className="font-bold pl-5">
-                  BV#
-                </label>
-                <input
-                  type="number"
-                  value={mechData.bv}
-                  name="bv"
-                  placeholder={mechData.bv.toString()}
-                  onChange={handleChange}
-                  className="border-2 border-black ml-2 pl-2 w-[20%]"
-                />
-              </div>
-                
-            </div>
-            <div className="flex justify-around">
-              <button
-                onClick={closeModal}
-                className="bg-red-400 px-4 rounded-lg mt-4"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={saveModal}
-                className="bg-green-400 px-6 rounded-lg mt-4"
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <MechDataModal mechModal={mechModal} mechData={mechData} handleChange={handleChange} closeModal={closeModal} saveModal={saveModal}/>
       
       <div className="col-start-1 col-end-23 row-start-3 row-end-5 pl-1">
         <p className="font-bold text-xs flex items-center">
@@ -500,143 +338,8 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
       <div className="col-start-1 col-end-23 row-start-9 row-end-11 pl-1 pt-2">
         <p className="text-xs font-bold">Weapons & Equipment Inventory</p>
       </div>
-      {Object.entries(weiModal).map(([weapon, isOpen]) => {
-        if (isOpen) {
-          return (
-            <div key={weapon} className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="absolute inset-0 bg-black opacity-70"></div>
-          <div className="bg-white p-4 rounded-lg z-50 flex flex-col">
-            <p className="text-2xl font-bold text-center w-full bg-blue-300 rounded-md py-2 px-4">
-              Weapons & Equipment Inventory ({weapon.toUpperCase()})
-            </p>
-            <div className="flex items-center py-4">
-              <div className="flex flex-col">
-                <label htmlFor="" className="pl-4 font-bold">
-                  Qty
-                </label>
-                <input
-                  type="number"
-                  name={`${weapon}.qty`}
-                  value={handleWeiValue(weapon)?.qty}
-                  placeholder={handleWeiValue(weapon)?.qty.toString()}
-                  onChange={(e) => handleWeiChange(weapon, 'qty', e)}
-                  className="border-2 border-black ml-2 pl-2"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="" className="pl-4 font-bold">
-                  Type
-                </label>
-                <input
-                  type="text"
-                  name={`${weapon}.type`}
-                  value={handleWeiValue(weapon)?.type}
-                  placeholder={handleWeiValue(weapon)?.type}
-                  onChange={(e) => handleWeiChange(weapon, 'type', e)}
-                  className="border-2 border-black ml-2 pl-2"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="" className="pl-4 font-bold">
-                  Loc
-                </label>
-                <input
-                  type="text"
-                  name={`${weapon}.loc`}
-                  value={handleWeiValue(weapon)?.loc}
-                  placeholder={handleWeiValue(weapon)?.loc}
-                  onChange={(e) => handleWeiChange(weapon, 'loc', e)}
-                  className="border-2 border-black ml-2 pl-2"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="" className="pl-4 font-bold">
-                  Ht
-                </label>
-                <input
-                  type="number"
-                  name={`${weapon}.ht`}
-                  value={handleWeiValue(weapon)?.ht}
-                  placeholder={handleWeiValue(weapon)?.ht.toString()}
-                  onChange={(e) => handleWeiChange(weapon, 'ht', e)}
-                  className="border-2 border-black ml-2 pl-2"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="" className="pl-4 font-bold">
-                  Dmg
-                </label>
-                <input
-                  type="text"
-                  name={`${weapon}.dmg`}
-                  value={handleWeiValue(weapon)?.dmg}
-                  placeholder={handleWeiValue(weapon)?.dmg}
-                  onChange={(e) => handleWeiChange(weapon, 'dmg', e)}
-                  className="border-2 border-black ml-2 pl-2"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="" className="pl-4 font-bold">
-                  Min
-                </label>
-                <input
-                  type="number"
-                  name={`${weapon}.min`}
-                  value={handleWeiValue(weapon)?.min}
-                  placeholder={handleWeiValue(weapon)?.min.toString()}
-                  onChange={(e) => handleWeiChange(weapon, 'min', e)}
-                  className="border-2 border-black ml-2 pl-2"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="" className="pl-4 font-bold">
-                  Sht
-                </label>
-                <input
-                  type="number"
-                  name={`${weapon}.sht`}
-                  value={handleWeiValue(weapon)?.sht}
-                  placeholder={handleWeiValue(weapon)?.sht.toString()}
-                  onChange={(e) => handleWeiChange(weapon, 'sht', e)}
-                  className="border-2 border-black ml-2 pl-2"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="" className="pl-4 font-bold">
-                  Med
-                </label>
-                <input
-                  type="number"
-                  name={`${weapon}.med`}
-                  value={handleWeiValue(weapon)?.med}
-                  placeholder={handleWeiValue(weapon)?.med.toString()}
-                  onChange={(e) => handleWeiChange(weapon, 'med', e)}
-                  className="border-2 border-black ml-2 pl-2"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="" className="pl-4 font-bold">
-                  Lng
-                </label>
-                <input
-                  type="number"
-                  name={`${weapon}.lng`}
-                  value={handleWeiValue(weapon)?.lng}
-                  placeholder={handleWeiValue(weapon)?.lng.toString()}
-                  onChange={(e) => handleWeiChange(weapon, 'lng', e)}
-                  className="border-2 border-black ml-2 pl-2"
-                />
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <button name={weapon} onClick={() => closeWeiModal(weapon)} className="bg-red-400 px-4 rounded-lg mt-4 mx-4">Cancel</button>
-              <button name={weapon} onClick={() => saveWeiModal(weapon)} className="bg-green-400 px-6 rounded-lg mt-4 mx-4">Save</button>
-            </div>
-          </div>
-        </div>
-          )
-        }
-      })}
+
+      <WeiModal weiModal={weiModal} handleWeiValue={handleWeiValue} handleWeiChange={handleWeiChange} closeWeiModal={closeWeiModal} saveWeiModal={saveWeiModal}/>
         
       <p className="col-start-1 col-end-3 row-start-11 row-end-12 text-2xs font-bold text-right">Qty</p>
       <p className="col-start-3 col-end-5 row-start-11 row-end-12 text-2xs font-bold text-right">Type</p>

@@ -1,5 +1,8 @@
 //import//
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { db } from '../../firebase/firebaseConfig'
+import { collection, doc, getDoc } from 'firebase/firestore'
 import Logo from '../../assets/BattletechBlackLogo.jpg'
 import { CreateMechData } from './CreateMechData'
 import { BiCopyright } from 'react-icons/bi'
@@ -14,10 +17,54 @@ import HeatScale from '../../assets/HeatScale.jpg'
 
 
 export const CreateRecordSheet: React.FC = () => {
+  const [mechInfo, setMechInfo] = useState<any[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
   const { id } = useParams()
-  if(!id) {
-    <div>Loading...</div>
+
+  const fetchDocument = async (documentId: string) => {
+    try {
+      const mechCollection = collection(db, 'mechs')
+      const docRef = doc(mechCollection, documentId)
+      const docSnapshot = await getDoc(docRef)
+
+      if (docSnapshot.exists()) {
+        return docSnapshot.data()
+      } else {
+        console.log('document does not exist')
+        return null
+      }
+    } catch (error) {
+      console.error('error fetching document')
+    }
+  }
+
+  if (id) {
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const specificDocument = await fetchDocument(id)
+          if (specificDocument) {
+            setMechInfo([specificDocument])
+            setLoading(false)
+          }
+        } catch (error) {
+          console.error('error fetching data')
+        }
+      }
+      fetchData()
+    }, [])
+  }
+  
+  if(!loading) {
+    return (
+      <div>Loading...</div>
+    )
+  } else if (!id) {
+    return (
+      <div>Loading...</div>
+    )
   } else {
+
   return (
     <div className="flex justify-between w-full">
       <div>
@@ -28,10 +75,10 @@ export const CreateRecordSheet: React.FC = () => {
           <img src={Logo} alt="battletech logo" className="h-full" />
         </div>
         <div className="col-start-6 col-end-28 row-start-11 row-end-41">
-          <CreateMechData id={id}/>
+          <CreateMechData id={id} mechInfo={mechInfo}/>
         </div>
         <div className="col-start-29 col-end-45 row-start-11 row-end-20">
-          <CreateWarriorData id={id}/>
+          <CreateWarriorData id={id} mechInfo={mechInfo}/>
         </div>
         <img
           src={Atlas}
@@ -47,7 +94,7 @@ export const CreateRecordSheet: React.FC = () => {
           className="col-start-45 col-end-65 row-start-5 row-end-42 w-[95%]"
         />
         <div className="col-start-6 col-end-44 row-start-42 row-end-89">
-          <CreateCriticalHitTable id={id}/>
+          <CreateCriticalHitTable id={id} mechInfo={mechInfo}/>
         </div>
         <p className="col-start-45 col-end-61 row-start-42 row-end-44 bg-black text-white text-sm text-center z-10 rounded-full pt-[2px]">
           INTERNAL STRUCTURE DIAGRAM
@@ -58,7 +105,7 @@ export const CreateRecordSheet: React.FC = () => {
           className="col-start-45 col-end-61 row-start-46 row-end-67"
         />
         <div className="col-start-45 col-end-61 row-start-67 row-end-89">
-          <CreateHeatData id={id}/>
+          <CreateHeatData id={id} mechInfo={mechInfo}/>
         </div>
         <img
           src={HeatScale}
