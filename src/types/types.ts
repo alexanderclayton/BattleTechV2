@@ -7,9 +7,16 @@ export interface IMechData {
   techBase: string;
   rulesLevel: string;
   role: string;
-  weaponsEquipmentInventory: (string | number)[];
   ammo: string;
   bv: string;
+  weiOne?: WeaponsEquipmentInventoryType
+  weiTwo?: WeaponsEquipmentInventoryType
+  weiThree?: WeaponsEquipmentInventoryType
+  weiFour?: WeaponsEquipmentInventoryType
+  weiFive?: WeaponsEquipmentInventoryType
+  weiSix?: WeaponsEquipmentInventoryType
+  weiSeven?: WeaponsEquipmentInventoryType
+  weiEight?: WeaponsEquipmentInventoryType
 }
 
 export type MechDataType = {

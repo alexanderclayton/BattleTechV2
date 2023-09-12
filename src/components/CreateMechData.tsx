@@ -52,6 +52,9 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
   };
 
   const saveWeiModal = (weapon: string): void => {
+    const weiData: WeaponsEquipmentInventoryType = getValue(weapon)
+    saveWei(weapon, weiData)
+    console.log(weiData)
     setWeiModal((prev) => ({
       ...prev,
       [weapon]: false,
@@ -79,7 +82,15 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
     if (setter) {
       setter?.setter((prev) => ({
         ...prev,
-        [propertyName]: e.target.value
+        [propertyName]: 
+        propertyName === 'qty' || 
+        propertyName === 'ht' || 
+        propertyName === 'min' || 
+        propertyName === 'sht' || 
+        propertyName === 'med' || 
+        propertyName === 'lng' 
+          ? parseInt(e.target.value, 10) 
+          : e.target.value
       }))
     }
   }
@@ -110,6 +121,17 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
     }
   }
 
+  const saveWei = async (number: string, weiData: WeaponsEquipmentInventoryType) => {
+    try {
+      const capitalNumber = number.charAt(0).toUpperCase() + number.slice(1)
+      await updateDoc(doc(db, 'mechs', id), {
+        [`wei${capitalNumber}`]: weiData
+      })
+    } catch (error) {
+      console.error('error saving wei')
+    }
+  }
+
   const getSetter = (weapon: string) => {
     switch (weapon) {
       case "one":
@@ -131,7 +153,7 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
     }
   }
 
-  const getValue = (weapon: string) => {
+  const getValue = (weapon: string): WeaponsEquipmentInventoryType => {
     switch (weapon) {
       case "one":
         return weiOne;
@@ -149,6 +171,18 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id }) => {
         return weiSeven;
       case "eight":
         return weiEight;
+      default:
+        return {
+          qty: 0,
+          type: "",
+          loc: "",
+          ht: 0,
+          dmg: "",
+          min: 0,
+          sht: 0,
+          med: 0,
+          lng: 0,
+        }
     }
   }
 
