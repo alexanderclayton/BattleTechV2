@@ -13,7 +13,7 @@ interface CreateHeatDataProps {
 }
 
 export const CreateHeatData: React.FC<CreateHeatDataProps> = ({ id, mechInfo }) => {
-  const [heatSinksA, setHeatSinksA] = useState<number>(mechInfo[0].heatSinks || 0);
+  const [heatSinksA, setHeatSinksA] = useState<number>(mechInfo[0]?.heatSinks || 0);
 
   const addHeatSink = () => {
     setHeatSinksA((prevHeatSinksA) => {
