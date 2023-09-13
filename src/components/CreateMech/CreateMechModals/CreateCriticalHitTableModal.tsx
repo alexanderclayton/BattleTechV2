@@ -1,5 +1,4 @@
 //import//
-
 import { CriticalHitTableType, ModalType } from "../../../types/types"
 import { CreateCriticalHitTableInput } from "./CreateCriticalHitTableInput"
 
@@ -25,9 +24,7 @@ export const CreateCriticalHitTableModal: React.FC<CreateCriticalHitTableProps> 
             >
               <div className="absolute inset-0 bg-black opacity-70"></div>
               <div className="bg-white p-4 rounded-lg z-50 flex flex-col">
-                <p className="text-2xl font-bold text-center w-full bg-blue-300 rounded-md py-2 px-4">
-                  Critical Hit Table: {bodyPart.toUpperCase()}
-                </p>
+                <p className="text-2xl font-bold text-center w-full bg-blue-300 rounded-md py-2 px-4">Critical Hit Table: {bodyPart.toUpperCase()}</p>
                 
                 <CreateCriticalHitTableInput number="1." input={input} value="one" handleInput={handleInput} handleChange={handleChange} bodyPart={bodyPart} handleValue={handleValue}/>
                 <CreateCriticalHitTableInput number="2." input={input} value="two" handleInput={handleInput} handleChange={handleChange} bodyPart={bodyPart} handleValue={handleValue}/>
@@ -42,19 +39,11 @@ export const CreateCriticalHitTableModal: React.FC<CreateCriticalHitTableProps> 
                 {handleValue(bodyPart)?.eleven !== undefined && <CreateCriticalHitTableInput number="11." input={input} value="eleven" handleInput={handleInput} handleChange={handleChange} bodyPart={bodyPart} handleValue={handleValue}/>}
                 {handleValue(bodyPart)?.twelve !== undefined && <CreateCriticalHitTableInput number="12." input={input} value="twelve" handleInput={handleInput} handleChange={handleChange} bodyPart={bodyPart} handleValue={handleValue}/>}
 
-                
                 <div className="flex justify-around">
-                  <button 
-                    name={bodyPart} 
-                    onClick={() => closeModal(bodyPart)} 
-                    className="bg-red-400 px-4 rounded-lg mt-4"
-                  >
+                  <button name={bodyPart} onClick={() => closeModal(bodyPart)} className="bg-red-400 px-4 rounded-lg mt-4">
                     Cancel
                   </button>
-                  <button 
-                    onClick={() => saveModal(bodyPart)} 
-                    className="bg-green-400 px-6 rounded-lg mt-4"
-                  >
+                  <button onClick={() => saveModal(bodyPart)} className="bg-green-400 px-6 rounded-lg mt-4">
                     Save
                   </button>
                 </div>

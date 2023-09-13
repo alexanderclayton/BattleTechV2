@@ -9,13 +9,7 @@ interface CreateMechDataModalProps {
   saveModal: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const CreateMechDataModal: React.FC<CreateMechDataModalProps> = ({
-  mechModal,
-  mechData,
-  handleChange,
-  closeModal,
-  saveModal,
-}) => {
+export const CreateMechDataModal: React.FC<CreateMechDataModalProps> = ({ mechModal, mechData, handleChange, closeModal, saveModal }) => {
   return (
     <>
       {mechModal && (
@@ -25,7 +19,6 @@ export const CreateMechDataModal: React.FC<CreateMechDataModalProps> = ({
             <p className="text-2xl font-bold text-center w-full bg-blue-300 rounded-md py-2">
               Mech Data:
             </p>
-            {/* Modal content goes here */}
             <div className="w-full flex pt-4">
               <label htmlFor="" className="font-bold">
                 Mech Type

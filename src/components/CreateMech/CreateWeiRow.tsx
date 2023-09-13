@@ -2,14 +2,14 @@
 import { GoPlusCircle, GoDash } from "react-icons/go";
 import { WeaponType, WeaponsEquipmentInventoryType } from "../../types/types";
 
-interface WeiRowProps {
+interface CreateWeiRowProps {
     toggleWeiModal: (weapon: keyof WeaponType) => void
     number: keyof WeaponType
     wei: WeaponsEquipmentInventoryType
     hidden?: WeaponsEquipmentInventoryType
 }
 
-export const WeiRow: React.FC<WeiRowProps> = ({ toggleWeiModal, number, wei, hidden }) => {
+export const CreateWeiRow: React.FC<CreateWeiRowProps> = ({ toggleWeiModal, number, wei, hidden }) => {
   return (
     <div className="w-full h-full grid grid-cols-22 grid-rows-1">
         <GoPlusCircle
