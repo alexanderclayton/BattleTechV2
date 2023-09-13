@@ -1,15 +1,21 @@
 //import//
-import { MechDataType } from "../../types/types";
+import { MechDataType } from "../../../types/types";
 
-interface MechDataModalProps {
-    mechModal: boolean
-    mechData: MechDataType
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-    closeModal: React.MouseEventHandler<HTMLButtonElement>
-    saveModal: React.MouseEventHandler<HTMLButtonElement>
+interface CreateMechDataModalProps {
+  mechModal: boolean;
+  mechData: MechDataType;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  closeModal: React.MouseEventHandler<HTMLButtonElement>;
+  saveModal: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const MechDataModal: React.FC<MechDataModalProps> = ({mechModal, mechData, handleChange, closeModal, saveModal}) => {
+export const CreateMechDataModal: React.FC<CreateMechDataModalProps> = ({
+  mechModal,
+  mechData,
+  handleChange,
+  closeModal,
+  saveModal,
+}) => {
   return (
     <>
       {mechModal && (
