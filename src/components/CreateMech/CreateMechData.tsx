@@ -41,17 +41,17 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id, mechInfo }) 
   const closeModal: React.MouseEventHandler<HTMLButtonElement> = (): void => {
     setMechModal(false);
   };
-
-  const saveModal: React.MouseEventHandler<HTMLButtonElement> = (): void => {
-    saveMechData();
-    setMechModal(false);
-  };
-
+  
   const closeWeiModal = (weapon: string): void => {
     setWeiModal((prev) => ({
       ...prev,
       [weapon]: false,
     }));
+  };
+  
+  const saveModal: React.MouseEventHandler<HTMLButtonElement> = (): void => {
+    saveMechData();
+    setMechModal(false);
   };
 
   const saveWeiModal = (weapon: string): void => {
@@ -193,9 +193,7 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id, mechInfo }) 
       </p>
       <div className="col-start-1 col-end-23 row-start-1 row-end-31"></div>
       <span className="col-start-1 col-end-23 row-start-2 row-end-31 border-2 border-black rounded-record"></span>
-
       <CreateMechDataModal mechModal={mechModal} mechData={mechData} handleChange={handleChange} closeModal={closeModal} saveModal={saveModal}/>
-
       <div className="col-start-1 col-end-23 row-start-3 row-end-5 pl-1">
         <p className="font-bold text-xs flex items-center">Type: {mechData.type === "" ? "" : `${mechData.type}`}</p>
       </div>
@@ -218,9 +216,7 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id, mechInfo }) 
       <div className="col-start-1 col-end-23 row-start-9 row-end-11 pl-1 pt-2">
         <p className="text-xs font-bold">Weapons & Equipment Inventory</p>
       </div>
-
       <CreateWeiModal weiModal={weiModal} handleWeiValue={handleWeiValue} handleWeiChange={handleWeiChange} closeWeiModal={closeWeiModal} saveWeiModal={saveWeiModal}/>
-
       <p className="col-start-1 col-end-3 row-start-11 row-end-12 text-2xs font-bold text-right">Qty</p>
       <p className="col-start-3 col-end-5 row-start-11 row-end-12 text-2xs font-bold text-right">Type</p>
       <p className="col-start-9 col-end-11 row-start-11 row-end-12 text-2xs font-bold text-center">Loc</p>
@@ -230,7 +226,6 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id, mechInfo }) 
       <p className="col-start-18 col-end-19 row-start-11 row-end-12 text-2xs font-bold pl-[2px]">Sht</p>
       <p className="col-start-19 col-end-21 row-start-11 row-end-12 text-2xs font-bold text-right">Med</p>
       <p className="col-start-21 col-end-23 row-start-11 row-end-12 text-2xs font-bold pl-1">Lng</p>
-
       <div className="col-start-1 col-end-23 row-start-13 row-end-14">
         <CreateWeiRow toggleWeiModal={toggleWeiModal} number="one" wei={weiOne} />
       </div>
@@ -255,21 +250,10 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id, mechInfo }) 
       <div className="col-start-1 col-end-23 row-start-20 row-end-21">
         <CreateWeiRow toggleWeiModal={toggleWeiModal} number="eight" wei={weiEight} hidden={weiSeven}/>
       </div>
-
-      <p className="col-start-2 col-end-23 row-start-25 row-end-26 text-2xs">
-        <span className="font-bold">Ammo: </span>
-        {mechData.ammo}
-      </p>
+      <p className="col-start-2 col-end-23 row-start-25 row-end-26 text-2xs"><span className="font-bold">Ammo: </span>{mechData.ammo}</p>
       <span className="col-start-1 col-end-23 row-start-27 border-b-2 border-black mx-1" />
-      <p className="col-start-3 col-end-16 row-start-28 row-end-29 text-xs">
-        <span className="font-bold">BV: </span>
-        {mechData.bv}
-      </p>
-      <img
-        src={MechDataImage}
-        alt="sailboat lookin' thing"
-        className="col-start-18 col-end-20 row-start-28 row-end-30 mt-1"
-      />
+      <p className="col-start-3 col-end-16 row-start-28 row-end-29 text-xs"><span className="font-bold">BV: </span>{mechData.bv}</p>
+      <img src={MechDataImage} alt="sailboat lookin' thing" className="col-start-18 col-end-20 row-start-28 row-end-30 mt-1"/>
     </div>
   );
 };

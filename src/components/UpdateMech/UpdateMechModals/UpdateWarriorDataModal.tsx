@@ -1,8 +1,8 @@
 //import//
 
-import { WarriorDataType } from "../../../types/types"
+import { WarriorDataType } from "../../../types/types";
 
-interface CreateWarriorDataModalProps {
+interface UpdateWarriorDataModalProps {
     modal: boolean
     warriorData: WarriorDataType
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -10,10 +10,10 @@ interface CreateWarriorDataModalProps {
     saveModal: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-export const CreateWarriorDataModal: React.FC<CreateWarriorDataModalProps> = ({ modal, warriorData, handleChange, closeModal, saveModal }) => {
+export const UpdateWarriorDataModal: React.FC<UpdateWarriorDataModalProps> = ({ modal, warriorData, handleChange, closeModal, saveModal }) => {
   return (
     <>
-    {modal && (
+      {modal && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="absolute inset-0 bg-black opacity-70"></div>
           <div className="bg-white p-4 rounded-lg z-50 flex flex-col w-[50%]">
@@ -81,5 +81,5 @@ export const CreateWarriorDataModal: React.FC<CreateWarriorDataModalProps> = ({ 
         </div>
       )}
     </>
-  )
-}
+  );
+};
