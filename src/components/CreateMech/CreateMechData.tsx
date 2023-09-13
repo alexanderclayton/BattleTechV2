@@ -7,7 +7,7 @@ import MechDataImage from "../../assets/MechDataImage.jpg";
 import { GoPlusCircle } from "react-icons/go";
 import { CreateWeiModal } from "./CreateMechModals/CreateWeiModal";
 import { CreateMechDataModal } from "./CreateMechModals/CreateMechDataModal";
-import { WeiRow } from "./WeiRow";
+import { CreateWeiRow } from "./CreateWeiRow";
 
 interface CreateMechDataProps {
   id: string;
@@ -232,28 +232,28 @@ export const CreateMechData: React.FC<CreateMechDataProps> = ({ id, mechInfo }) 
       <p className="col-start-21 col-end-23 row-start-11 row-end-12 text-2xs font-bold pl-1">Lng</p>
 
       <div className="col-start-1 col-end-23 row-start-13 row-end-14">
-        <WeiRow toggleWeiModal={toggleWeiModal} number="one" wei={weiOne} />
+        <CreateWeiRow toggleWeiModal={toggleWeiModal} number="one" wei={weiOne} />
       </div>
       <div className="col-start-1 col-end-23 row-start-14 row-end-15">
-        <WeiRow toggleWeiModal={toggleWeiModal} number="two" wei={weiTwo} hidden={weiOne}/>
+        <CreateWeiRow toggleWeiModal={toggleWeiModal} number="two" wei={weiTwo} hidden={weiOne}/>
       </div>
       <div className="col-start-1 col-end-23 row-start-15 row-end-16">
-        <WeiRow toggleWeiModal={toggleWeiModal} number="three" wei={weiThree} hidden={weiTwo}/>
+        <CreateWeiRow toggleWeiModal={toggleWeiModal} number="three" wei={weiThree} hidden={weiTwo}/>
       </div>
       <div className="col-start-1 col-end-23 row-start-16 row-end-17">
-        <WeiRow toggleWeiModal={toggleWeiModal} number="four" wei={weiFour} hidden={weiThree}/>
+        <CreateWeiRow toggleWeiModal={toggleWeiModal} number="four" wei={weiFour} hidden={weiThree}/>
       </div>
       <div className="col-start-1 col-end-23 row-start-17 row-end-18">
-        <WeiRow toggleWeiModal={toggleWeiModal} number="five" wei={weiFive} hidden={weiFour}/>
+        <CreateWeiRow toggleWeiModal={toggleWeiModal} number="five" wei={weiFive} hidden={weiFour}/>
       </div>
       <div className="col-start-1 col-end-23 row-start-18 row-end-19">
-        <WeiRow toggleWeiModal={toggleWeiModal} number="six" wei={weiSix} hidden={weiFive}/>
+        <CreateWeiRow toggleWeiModal={toggleWeiModal} number="six" wei={weiSix} hidden={weiFive}/>
       </div>
       <div className="col-start-1 col-end-23 row-start-19 row-end-20">
-        <WeiRow toggleWeiModal={toggleWeiModal} number="seven" wei={weiSeven} hidden={weiSix}/>
+        <CreateWeiRow toggleWeiModal={toggleWeiModal} number="seven" wei={weiSeven} hidden={weiSix}/>
       </div>
       <div className="col-start-1 col-end-23 row-start-20 row-end-21">
-        <WeiRow toggleWeiModal={toggleWeiModal} number="eight" wei={weiEight} hidden={weiSeven}/>
+        <CreateWeiRow toggleWeiModal={toggleWeiModal} number="eight" wei={weiEight} hidden={weiSeven}/>
       </div>
 
       <p className="col-start-2 col-end-23 row-start-25 row-end-26 text-2xs">
