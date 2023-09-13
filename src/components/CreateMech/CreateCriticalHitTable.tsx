@@ -100,9 +100,6 @@ export const CreateCriticalHitTable: React.FC<CreateCriticalHitTableProps> = ({ 
     }
   };
   
-  
-  
-
   const getSetter = (bodyPart: string) => {
     switch (bodyPart) {
       case "leftArm":

@@ -1,8 +1,8 @@
 //import//
 import { CriticalHitTableType } from "../../../types/types";
 
-interface CreateCriticalHitTableInputProps {
-  number: string
+interface UpdateCriticalHitTableInputProps {
+  number: string;
   input: CriticalHitTableType | any;
   value: string;
   handleInput: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -11,7 +11,7 @@ interface CreateCriticalHitTableInputProps {
   handleValue: (bodyPart: string) => CriticalHitTableType | undefined;
 }
 
-export const CreateCriticalHitTableInput: React.FC<CreateCriticalHitTableInputProps> = ({ number, input, value, handleInput, handleChange, bodyPart, handleValue }) => {
+export const UpdateCriticalHitTableInput: React.FC<UpdateCriticalHitTableInputProps> = ({ number, input, value, handleInput, handleChange, bodyPart, handleValue }) => {
   return (
     <div className="w-full flex pt-4">
       <label htmlFor="" className="font-bold w-8">
