@@ -11,12 +11,12 @@ interface IFirebase {
 }
 
 const firebaseConfig: IFirebase = {
-    apiKey: "AIzaSyDhhNYSA8dU40Kigx_BGrRf0Ni_hwJ0F9U",
-    authDomain: "battletech-ef52d.firebaseapp.com",
-    projectId: "battletech-ef52d",
-    storageBucket: "battletech-ef52d.appspot.com",
-    messagingSenderId: "773827423783",
-    appId: "1:773827423783:web:29d6d4d7088d5b2a256802"
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDING_ID,
+    appId: import.meta.env.VITE_APP_ID
   };
 
   export const app: FirebaseApp = initializeApp(firebaseConfig)
