@@ -5,6 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { AllMechsCardData } from "../types/types";
 import { CreateNewMech } from "../components/CreateMech/CreateNewMech";
+import Placeholder from '../assets/placeholder.png'
 
 export const AllMechs: React.FC = () => {
   const [mechs, setMechs] = useState<AllMechsCardData[]>([]);
@@ -16,8 +17,8 @@ export const AllMechs: React.FC = () => {
         const querySnapshot = await getDocs(collection(db, "mechs"));
         const allMechsData: AllMechsCardData[] = [];
         querySnapshot.forEach((doc) => {
-          const { id, type } = doc.data();
-          allMechsData.push({ id, type });
+          const { id, type, imageUrl } = doc.data();
+          allMechsData.push({ id, type, imageUrl });
           console.log(mechs);
         });
         setMechs(allMechsData);
@@ -37,8 +38,9 @@ export const AllMechs: React.FC = () => {
       <h2 className="font-bold">All Mechs</h2>
       <div className="flex">
         {mechs.map((mech) => (
-          <div key={mech.id} onClick={() => goToMech(mech.id)} className="border hover:cursor-pointer p-3 m-3">
-            <h3>{mech.type}</h3>
+          <div key={mech.id} onClick={() => goToMech(mech.id)} className="border hover:cursor-pointer p-3 m-3 flex flex-col justify-between items-center w-[200px]">
+            <img src={mech.imageUrl ? mech.imageUrl : Placeholder} alt={mech.imageUrl ? `${mech.imageUrl}` : 'no image'} />
+            <h3 className="font-bold">{mech.type}</h3>
           </div>
         ))}
       </div>
