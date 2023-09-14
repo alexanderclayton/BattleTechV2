@@ -6,14 +6,14 @@ import { db } from "../../firebase/firebaseConfig";
 import Placeholder from "../../assets/placeholder.png";
 import { GoPlusCircle } from "react-icons/go";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { CreateImageModal } from "./CreateMechModals/CreateImageModal";
+import { UpdateImageModal } from "./UpdateMechModals/UpdateImageModal";
 
-interface CreateImageProps {
+interface UpdateImageProps {
   id: string;
   mechInfo: any;
 }
 
-export const CreateImage: React.FC<CreateImageProps> = ({ id, mechInfo }) => {
+export const UpdateImage: React.FC<UpdateImageProps> = ({ id, mechInfo }) => {
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null)
   const [displayImage, setDisplayImage] = useState<string>(mechInfo[0]?.imageUrl || "");
@@ -71,7 +71,7 @@ export const CreateImage: React.FC<CreateImageProps> = ({ id, mechInfo }) => {
 
   return (
     <div className="w-full h-full">
-      <CreateImageModal modal={modal} handleImage={handleImage} preview={preview} saveImage={saveImage} closeModal={closeModal}/>
+      <UpdateImageModal modal={modal} handleImage={handleImage} preview={preview} saveImage={saveImage} closeModal={closeModal}/>
       {displayImage === "" ? (
         <>
           <div className="h-[80%] flex justify-center">

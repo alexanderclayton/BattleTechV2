@@ -76,11 +76,9 @@ export const CreateRecordSheet: React.FC = () => {
           <div className="col-start-29 col-end-45 row-start-11 row-end-20">
             <CreateWarriorData id={id} mechInfo={mechInfo}/>
           </div>
-          {/* image */}
           <div className='col-start-29 col-end-45 row-start-21 row-end-42'>
             <CreateImage id={id} mechInfo={mechInfo}/>
           </div>
-          {/* image */}
           <p className="col-start-49 col-end-60 row-start-3 row-end-5 bg-black text-white text-sm text-center z-10 rounded-full pt-[2px]">
             ARMOR DIAGRAM
           </p>

@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import { db } from '../../firebase/firebaseConfig';
 import { collection, doc, getDoc } from 'firebase/firestore';
 import Logo from "../../assets/BattletechBlackLogo.jpg";
-import Atlas from "../../assets/AtlasCardImage.png";
 import ArmorDiagram from "../../assets/ArmorDiagram.jpg";
 import InternalStructureDiagram from "../../assets/InternalStructureDiagram.jpg";
 import HeatScale from "../../assets/HeatScale.jpg";
@@ -12,6 +11,7 @@ import { UpdateWarriorData } from './UpdateWarriorData';
 import { UpdateMechData } from './UpdateMechData';
 import { UpdateCriticalHitTable } from './UpdateCriticalHitTable';
 import { UpdateHeatData } from './UpdateHeatData';
+import { UpdateImage } from './UpdateImage';
 
 interface ReadRecordSheetProps {
   id: string
@@ -77,11 +77,9 @@ export const UpdateRecordSheet: React.FC<ReadRecordSheetProps> = ({ id }) => {
         <div className="col-start-29 col-end-45 row-start-11 row-end-20">
           <UpdateWarriorData id={id} mechInfo={mechInfo} />
         </div>
-        <img
-          src={Atlas}
-          alt="mech image"
-          className="col-start-28 col-end-45 row-start-21 row-end-42"
-        />
+        <div className='col-start-29 col-end-45 row-start-21 row-end-42'>
+            <UpdateImage id={id} mechInfo={mechInfo}/>
+          </div>
         <p className="col-start-49 col-end-60 row-start-3 row-end-5 bg-black text-white text-sm text-center z-10 rounded-full pt-[2px]">
           ARMOR DIAGRAM
         </p>

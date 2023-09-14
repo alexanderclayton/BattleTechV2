@@ -181,4 +181,5 @@ export interface IHeatData {
 export type AllMechsCardData = {
   id: string
   type: string
+  imageUrl: string
 }
