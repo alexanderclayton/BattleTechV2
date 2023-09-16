@@ -1,7 +1,7 @@
 //import//
 import { useState } from "react";
 import { db } from "../../firebase/firebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, collection, addDoc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 export const CreateNewMech: React.FC = () => {
@@ -21,22 +21,22 @@ export const CreateNewMech: React.FC = () => {
 
   const createNewMech = async () => {
     try {
-      await setDocument()
+      const mechCollection = collection(db, 'mechs')
+      const newMechRef = await addDoc(mechCollection, {
+        id: "",
+        type: mechType,
+      })
+      const newMechId = newMechRef.id
+      await updateDoc(doc(db, 'mechs', newMechId), {
+        id: newMechId,
+      })
+      navigate(`/create-mech/${newMechId}`)
     } catch (error) {
       console.error('error creating mech')
     }
-    navigate(`/create-mech/${mechType}`)
+    
   }
 
-  const setDocument = async () => {
-    try {
-      await setDoc(doc(db, 'mechs', mechType), {
-        id: mechType
-      })
-    } catch (error) {
-      console.error('error saving data')
-    }
-  }
   return (
     <>
       <button
