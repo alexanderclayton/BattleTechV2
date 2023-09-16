@@ -55,7 +55,7 @@ export const SignUp: React.FC = () => {
       <button onClick={handleModal} className="bg-blue-400 px-4 py-2 rounded-lg mx-2">Sign Up</button>
       <div
         className={
-          modal ? "fixed w-[420px] bg-blue-200 top-20 right-10" : "hidden"
+          modal ? "fixed w-[420px] bg-blue-200 top-20 right-10 z-20" : "hidden"
         }
       >
         <form

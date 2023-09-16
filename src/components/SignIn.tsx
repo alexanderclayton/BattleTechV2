@@ -57,7 +57,7 @@ export const SignIn: React.FC = () => {
       <button onClick={handleModal}>Sign In</button>
       <div
         className={
-          modal ? "fixed w-[420px] bg-blue-200 top-20 right-10" : "hidden"
+          modal ? "fixed w-[420px] bg-blue-200 top-20 right-10 z-20" : "hidden"
         }
       >
         <form
