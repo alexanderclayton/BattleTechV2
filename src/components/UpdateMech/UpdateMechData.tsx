@@ -235,22 +235,22 @@ export const UpdateMechData: React.FC<UpdateMechDataProps> = ({ id, mechInfo }) 
       <div className="col-start-1 col-end-23 row-start-14 row-end-15">
         <UpdateWeiRow toggleWeiModal={toggleWeiModal} number="two" wei={weiTwo} hidden={weiOne}/>
       </div>
-      <div className="col-start-1 col-end-23 row-start-14 row-end-15">
+      <div className="col-start-1 col-end-23 row-start-15 row-end-16">
         <UpdateWeiRow toggleWeiModal={toggleWeiModal} number="three" wei={weiThree} hidden={weiTwo}/>
       </div>
-      <div className="col-start-1 col-end-23 row-start-14 row-end-15">
+      <div className="col-start-1 col-end-23 row-start-16 row-end-17">
         <UpdateWeiRow toggleWeiModal={toggleWeiModal} number="four" wei={weiFour} hidden={weiThree}/>
       </div>
-      <div className="col-start-1 col-end-23 row-start-14 row-end-15">
+      <div className="col-start-1 col-end-23 row-start-17 row-end-18">
         <UpdateWeiRow toggleWeiModal={toggleWeiModal} number="five" wei={weiFive} hidden={weiFour}/>
       </div>
-      <div className="col-start-1 col-end-23 row-start-14 row-end-15">
+      <div className="col-start-1 col-end-23 row-start-18 row-end-19">
         <UpdateWeiRow toggleWeiModal={toggleWeiModal} number="six" wei={weiSix} hidden={weiFive}/>
       </div>
-      <div className="col-start-1 col-end-23 row-start-14 row-end-15">
+      <div className="col-start-1 col-end-23 row-start-19 row-end-20">
         <UpdateWeiRow toggleWeiModal={toggleWeiModal} number="seven" wei={weiSeven} hidden={weiSix}/>
       </div>
-      <div className="col-start-1 col-end-23 row-start-14 row-end-15">
+      <div className="col-start-1 col-end-23 row-start-20 row-end-21">
         <UpdateWeiRow toggleWeiModal={toggleWeiModal} number="eight" wei={weiEight} hidden={weiSeven}/>
       </div>
       <p className="col-start-2 col-end-23 row-start-25 row-end-26 text-2xs"><span className="font-bold">Ammo: </span>{mechData.ammo}</p>

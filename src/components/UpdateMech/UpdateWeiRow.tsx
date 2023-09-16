@@ -12,7 +12,7 @@ interface UpdateWeiRowProps {
 export const UpdateWeiRow: React.FC<UpdateWeiRowProps> = ({ toggleWeiModal, number, wei, hidden}) => {
   return (
     <div className="w-full h-full grid grid-cols-22 grid-rows-1">
-        <GoPlusCircle size={12} onClick={() => {toggleWeiModal(number)}} className={hidden?.qty === 0 ? "hidden" : "col-start-1 col-end-2 row-start-13 row-end-14 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px]"}/>
+        <GoPlusCircle size={12} onClick={() => {toggleWeiModal(number)}} className={hidden?.qty === 0 ? "hidden" : "col-start-1 col-end-2 row-start-13 row-end-14 bg-yellow-300 rounded-full hover:cursor-pointer flex mt-[2px] ml-[2px] z-10"}/>
       <div className={wei.qty === 0 ? ("hidden") : ("grid grid-cols-22 grid-rows-1 col-start-1 col-end-23 row-start-13 row-end-14")}>
         <p className="col-start-2 col-end-3 row-start-1 row-end-2 text-2xs">{wei.qty === 0 ? ("") : (wei.qty)}</p>
         <p className="col-start-3 col-end-10 row-start-1 row-end-2 text-2xs">{wei.type === "" ? ("") : (wei.type)}</p>
