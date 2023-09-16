@@ -24,7 +24,7 @@ export const UpdateWeiModal: React.FC<UpdateWeiModalProps> = ({ weiModal, handle
                 <p className="text-2xl font-bold text-center w-full bg-blue-300 rounded-md py-2 px-4">
                   Weapons & Equipment Inventory ({weapon.toUpperCase()})
                 </p>
-                <div className="flex items-center py-4">
+                <div className="flex flex-col items-center py-4">
                   <div className="flex flex-col">
                     <label htmlFor="" className="pl-4 font-bold">
                       Qty
