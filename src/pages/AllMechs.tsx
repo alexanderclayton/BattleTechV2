@@ -1,8 +1,10 @@
 //import//
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
+import { auth } from "../firebase/firebaseAuth";
 import { AllMechsCardData } from "../types/types";
 import { CreateNewMech } from "../components/CreateMech/CreateNewMech";
 import Placeholder from '../assets/placeholder.png'
@@ -10,6 +12,7 @@ import Placeholder from '../assets/placeholder.png'
 export const AllMechs: React.FC = () => {
   const [mechs, setMechs] = useState<AllMechsCardData[]>([]);
   const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth)
 
   useEffect(() => {
     const getData = async () => {
@@ -33,6 +36,22 @@ export const AllMechs: React.FC = () => {
     navigate(`/mech/${id}`);
   };
 
+  if (loading) {
+    return (
+      <div>
+        <p>Checking for User...</p>
+      </div>
+    );
+  }
+  
+  if (error) {
+    return (
+      <div>
+        <p>Error</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h2 className="font-bold">All Mechs</h2>
@@ -44,7 +63,8 @@ export const AllMechs: React.FC = () => {
           </div>
         ))}
       </div>
-      <CreateNewMech />
+      {user && <CreateNewMech />}
+      
     </div>
   );
 };
